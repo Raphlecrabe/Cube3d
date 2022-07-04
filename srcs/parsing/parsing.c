@@ -41,11 +41,6 @@ int	ft_processline(t_cube *cube, char *line)
 		if (ft_addtexture(cube, line) == -1)
 			return (-1);
 	}
-	if (i == 1)
-	{
-		if (ft_addfloorceiling(cube, line) == -1)
-			return (-1);
-	}
 	if (i == 2)
 	{
 		if (ft_parsemap(cube, line) == -1)

@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                       :::      ::::::::    */
 /*   findcoulour.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
@@ -27,9 +27,8 @@ int	ft_findf(t_cube *cube, char *line, int i)
 		return (-1);
 	if (ft_testnumber(numbers) == -1)
 		return (-1);
-	cube->floor.r = ft_atoi(numbers[0]);
-	cube->floor.g = ft_atoi(numbers[1]);
-	cube->floor.b = ft_atoi(numbers[2]);
+	cube->floor = ft_create_trgb(0, ft_atoi(numbers[0]),
+			ft_atoi(numbers[1]), ft_atoi(numbers[2]));
 }
 
 int	ft_findc(t_cube *cube, char *line, int i)
@@ -47,9 +46,8 @@ int	ft_findc(t_cube *cube, char *line, int i)
 		return (-1);
 	if (ft_testnumber(numbers) == -1)
 		return (-1);
-	cube->ceiling.r = ft_atoi(numbers[0]);
-	cube->ceiling.g = ft_atoi(numbers[1]);
-	cube->ceiling.b = ft_atoi(numbers[2]);
+	cube->ceiling = ft_create_trgb(0, ft_atoi(numbers[0]),
+			ft_atoi(numbers[1]), ft_atoi(numbers[2]));
 }
 
 int	ft_findcolour(t_cube *cube, char *line)

@@ -13,18 +13,11 @@
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
-
 typedef struct s_cube
 {
 	int		fd;
-	t_rgb	ceiling;
-	t_rgb	floor;
+	int		ceiling;
+	int		floor;
 	t_maps	*maps;
 	char	*west;
 	char	*east;
