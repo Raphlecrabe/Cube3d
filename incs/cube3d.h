@@ -13,17 +13,32 @@
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	float	angle;
+}	t_player;
+
+typedef struct s_map
+{
+	int	**map;
+	int	heigth;
+	int	width;
+}	t_map;
+
 typedef struct s_cube
 {
-	int		fd;
-	int		ceiling;
-	int		floor;
-	t_maps	*maps;
-	char	*west;
-	char	*east;
-	char	*north;
-	char	*south;
-	int		parsed;
+	int			fd;
+	int			ceiling;
+	int			floor;
+	t_map		*map;
+	t_player	*player;
+	char		*west;
+	char		*east;
+	char		*north;
+	char		*south;
+	int			parsed;
 }	t_cube;
 
 #endif

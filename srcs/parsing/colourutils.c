@@ -17,7 +17,6 @@ int	ft_create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-
 int	ft_testnumber(char **numbers)
 {
 	if (ft_testsize(numbers) == -1)
