@@ -15,8 +15,8 @@
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	float	x;
+	float	y;
 	float	angle;
 }	t_player;
 
@@ -26,6 +26,17 @@ typedef struct s_map
 	int	heigth;
 	int	width;
 }	t_map;
+
+typedef struct s_check
+{
+	int	pfloor;
+	int	pceil;
+	int	pwest;
+	int	peast;
+	int	psouth;
+	int	pnorth;
+	int	player;
+}	t_check;
 
 typedef struct s_cube
 {
@@ -38,6 +49,7 @@ typedef struct s_cube
 	char		*east;
 	char		*north;
 	char		*south;
+	t_check		check;
 	int			parsed;
 }	t_cube;
 
