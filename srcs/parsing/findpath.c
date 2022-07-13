@@ -36,6 +36,7 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
+	cube->check.pwest = 1;
 	return (0);
 }
 
@@ -63,6 +64,7 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
+	cube->check.peast = 1;
 	return (0);
 }
 
@@ -90,6 +92,7 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
+	cube->check.pnorth = 1;
 	return (0);
 }
 
@@ -117,6 +120,7 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
+	cube->check.psouth = 1;
 	return (0);
 }
 

@@ -12,6 +12,22 @@
 
 #include "../../incs/parsing.h"
 
-int	ft_parsemap(t_cube *cube, char *line)
+int	ft_parsemap(t_cube *cube, char *line, int fd)
 {
+	if (ft_islast(cube) == 0)
+		return (-1);
+	if (ft_parseline(line) == -1)
+		return (-1);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line == NULL)
+			return (0);
+		if (ft_parseline(line) == -1)
+			return (-1);
+		if (ft_addline(cube, line) == -1)
+			return (-1);
+	}
+	ft
 }

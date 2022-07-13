@@ -62,11 +62,13 @@ int	ft_findcolour(t_cube *cube, char *line)
 		i++;
 		if (ft_findf(cube, line, i) == -1)
 			return (-1);
+		cube->check.pfloor = 1;
 	}
 	if (line[i] == 'C')
 	{
 		i++;
 		if (ft_findc(cube, line, i) == -1)
 			return (-1);
+		cube->check.pceil = 1;
 	}
 }
