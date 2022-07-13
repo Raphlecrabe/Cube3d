@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 14:54:25 by marvin            #+#    #+#             */
-/*   Updated: 2022/07/04 14:54:25 by marvin           ###   ########.fr       */
+/*   Created: 2022/07/04 15:57:39 by marvin            #+#    #+#             */
+/*   Updated: 2022/07/04 15:57:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/vectors.h"
+#include "../incs/display.h"
+#include "../incs/raycast.h"
 
-t_vector2	vector2(int x, int y)
+static void	display_stripe(t_stripe stripe)
 {
-	t_vector2 vector;
-
-	vector.x = x;
-	vector.y = y;
-
-	return (vector);
+	printf("Displaying stripe n°%d, raycast hit a wall at distance %f\n", stripe.x, stripe.distance);
 }
 
-t_vector2 vector2_substract(t_vector2 vector_1, t_vector2 vector_2)
+void	display_screen(t_map map, t_player player)
 {
-	t_vector2 result;
+	t_stripe stripe;
+	int	x;
 
-	result.x = vector_1.x - vector_2.x;
-	result.y = vector_1.y - vector_2.y;
-
-	return (result);
+	x = 0;
+	while (x < screen_size)
+	{
+		stripe = get_stripe(map, player, x);
+		display_stripe(stripe);
+	}
 }
