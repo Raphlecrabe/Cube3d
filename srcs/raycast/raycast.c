@@ -12,8 +12,10 @@
 
 #include "../../incs/raycast.h"
 #include "../../incs/vectors.h"
+#include "../../incs/display.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 static float	get_distance(int side, t_raycast ray)
 {
@@ -23,88 +25,88 @@ static float	get_distance(int side, t_raycast ray)
 		return (ray.side_dist.y - ray.delta_dist.y);
 }
 
-static t_vector2 *calc_step_and_sidedist(t_raycast ray, t_vector2 pos)
+static t_vector2 get_step(t_raycast ray)
 {
-	t_vector2 *stepside;
-
-	stepside = malloc(sizeof(t_vector2) * 2);
+	t_vector2 step;
 
 	if (ray.dir.x < 0)
-	{
-		stepside[0].x = -1;
-		stepside[1].x = (pos.x - ray.pos.x) * ray.delta_dist.x;
-	}
+		step.x = -1;
 	else
-	{
-		stepside[0].x = 1;
-		stepside[1].x = (ray.pos.x + 1 - pos.x) * ray.delta_dist.x;
-	}
-
+		step.x = 1;
 	if (ray.dir.y < 0)
-	{
-		stepside[0].y = -1;
-		stepside[1].y = (pos.y - ray.pos.y) * ray.delta_dist.y;
-	}
+		step.y = -1;
 	else
-	{
-		stepside[0].y = 1;
-		stepside[1].y = (ray.pos.y + 1 - pos.y) * ray.delta_dist.y;
-	}
+		step.y = 1;
 
-	return (stepside);
+	return (step);
 }
 
-static t_raycast	init_ray(int x, int screen_width, t_vector2 pos, t_vector2 player_dir, t_vector2 plane)
+static t_vector2 get_side(t_raycast ray, t_vector2 pos)
+{
+	t_vector2 side;
+
+	if (ray.dir.x < 0)
+		side.x = (pos.x - ray.mappos.x) * ray.delta_dist.x;
+	else
+		side.x = (ray.mappos.x + 1 - pos.x) * ray.delta_dist.x;
+	if (ray.dir.y < 0)
+		side.y = (pos.y - ray.mappos.y) * ray.delta_dist.y;
+	else
+		side.y = (ray.mappos.y + 1 - pos.y) * ray.delta_dist.y;
+
+	return (side);
+}
+
+static t_raycast	init_ray(int x, t_display *display)
 {
 	t_raycast	ray;
-	t_vector2	*stepside;
 
-	ray.cameraX = 2 * x / screen_width - 1;
-	ray.dir = 	vector2(player_dir.x + plane.x * ray.cameraX,
-						player_dir.y + plane.y * ray.cameraX);	
-	ray.pos = vector2((int)pos.x, (int)pos.y);
-	ray.delta_dist = vector2(0, 0);
+	ray.cameraX = (float)(2 * x) / (float)display->screen_width - 1;
+	ray.dir.x = display->player_dir.x + display->plane.x * ray.cameraX;
+	ray.dir.y = display->player_dir.y + display->plane.y * ray.cameraX;
+	ray.delta_dist.x = (ray.dir.x == 0) ? 2147483647 : fabs(1 / ray.dir.x);
+	ray.delta_dist.y = (ray.dir.y == 0) ? 2147483647 : fabs(1 / ray.dir.y);
+	ray.mappos = vector2((int)display->player_pos.x, (int)display->player_pos.y);
 	ray.perpWall_dist = 0;
-	
-	stepside = calc_step_and_sidedist(ray, pos);
-
-	ray.step = stepside[0];
-	ray.side_dist = stepside[1];
+	ray.step = get_step(ray);
+	ray.side_dist = get_side(ray, display->player_pos);
 
 	return (ray);
 }
 
-static void	check_hit(t_hit *hit, t_map map, t_raycast *ray)
+static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 {
 	if (ray->side_dist.x < ray->side_dist.y)
 	{
 		ray->side_dist.x += ray->delta_dist.x;
-		ray->pos.x += ray->step.x;
+		ray->mappos.x += ray->step.x;
 		hit->side = 0;
 	}
 	else
 	{
 		ray->side_dist.y += ray->delta_dist.y;
-		ray->pos.y += ray->step.y;
+		ray->mappos.y += ray->step.y;
 		hit->side = 1;
 	}
 
-	printf("check: %d, %d\n", (int)ray->pos.x, (int)ray->pos.y);
-
-	if (map.map[(int)ray->pos.x][(int)ray->pos.y] > 0)
+	if (map->map[(int)ray->mappos.x][(int)ray->mappos.y] > 0)
+	{
+		hit->pos = ray->mappos;
 		hit->hit = 1;
+	}
 }
 
-t_hit	raycast_hit(t_map map, t_vector2 pos, t_vector2 player_dir, t_vector2 plane, int screen_width, int x)
+t_hit	raycast_hit(int x, t_display *display)
 {
 	t_hit		hit;
 	t_raycast	ray;
 
+	ray = init_ray(x, display);
+
 	hit.hit = 0;
-	ray = init_ray(x, screen_width, pos, player_dir, plane);
 
 	while (hit.hit == 0)
-		check_hit(&hit, map, &ray);
+		check_hit(&hit, display->map, &ray);
 
 	hit.distance = get_distance(hit.side, ray);
 

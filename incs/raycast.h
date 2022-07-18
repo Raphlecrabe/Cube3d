@@ -3,10 +3,12 @@
 
 #include "vectors.h"
 #include "cube3d.h"
+#include "display.h"
 
 typedef struct 	s_hit
 {
-	int	distance;
+	t_vector2 pos;
+	float	distance;
 	int	side;
 	int	hit;
 }				t_hit;
@@ -15,7 +17,7 @@ typedef struct	s_raycast
 {
 	float		cameraX;
 	t_vector2	dir;
-	t_vector2	pos;
+	t_vector2	mappos;
 	t_vector2	side_dist;
 	t_vector2	delta_dist;
 	float		perpWall_dist;
@@ -25,6 +27,7 @@ typedef struct	s_raycast
 typedef struct 	s_stripe
 {
 	int		x;
+	t_vector2 pos;
 	float 	distance;
 	void	*sprite;
 }				t_stripe;
@@ -44,7 +47,7 @@ typedef struct	s_wallsprite
 #define COLOR_RED "red";
 #define COLOR_WHITE "white";
 
-t_hit		raycast_hit();
-t_stripe 	get_stripe(t_map map, t_player player, int screen_width, int x);
+t_hit		raycast_hit(int x, t_display *display);
+t_stripe 	get_stripe(int x, t_display *display);
 
 #endif

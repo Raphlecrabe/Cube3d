@@ -13,6 +13,7 @@
 #include "../../incs/display.h"
 #include "../../incs/raycast.h"
 #include "../../incs/vectors.h"
+#include <stdio.h>
 
 void	*get_sprite(int side)
 {
@@ -31,20 +32,17 @@ void	*get_sprite(int side)
 	return (p);
 }
 
-t_stripe	get_stripe(t_map map, t_player player, int screen_width, int x)
+t_stripe	get_stripe(int x, t_display *display)
 {
 	t_stripe 	stripe;
 	t_hit		hit;
 
-	t_vector2 pos = vector2(player.x, player.y);
-	t_vector2 dir = vector2(0, 1);
-	t_vector2 plane = vector2(1, 0);
-
-	hit = raycast_hit(map, pos, dir, plane, screen_width, x);
+	hit = raycast_hit(x, display);
 
 	stripe.x = x;
 	stripe.distance = hit.distance;
 	stripe.sprite = get_sprite(hit.side);
+	stripe.pos = hit.pos;
 
 	return (stripe);
 }

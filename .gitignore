@@ -1,3 +1,4 @@
 *.o
 cube3d
 cub3d
+*libft.a

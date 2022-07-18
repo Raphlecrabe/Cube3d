@@ -16,21 +16,22 @@
 
 static void	display_stripe(t_stripe stripe)
 {
-	printf("Displaying stripe n°%d, raycast hit a wall at distance %f\n", stripe.x, stripe.distance);
+	printf("|%.1f", stripe.distance);
+	//printf("Displaying stripe n°%d, raycast hit a wall at position %d, %d\n", stripe.x, (int)stripe.pos.x, (int)stripe.pos.y);
 }
 
-void	display_screen(t_map *map, t_player *player)
+void	display_screen(t_display *display)
 {
-	t_stripe stripe;
-	int	screen_width;
-	int	x;
+	t_stripe 	stripe;
+	int			x;
 
 	x = 0;
-	screen_width = 100;
-	while (x < screen_width)
+	while (x < display->screen_width)
 	{
-		stripe = get_stripe(*map, *player, screen_width, x);
+		stripe = get_stripe(x, display);
 		display_stripe(stripe);
 		x++;
 	}
+
+	printf("|\n");
 }
