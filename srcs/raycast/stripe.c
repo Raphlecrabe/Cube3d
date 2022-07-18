@@ -10,23 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../display.h"
-#include "../../raycast.h"
-#include "../../vectors.h"
-
-t_stripe	get_stripe(t_map map, t_player player, int x)
-{
-	t_stripe 	stripe;
-	t_hit		hit;
-
-	hit = raycast_hit(map, x);
-
-	stripe.x = x;
-	stripe.distance = hit.distance;
-	stripe.sprite = get_sprite(hit.side);
-
-	return (stripe);
-}
+#include "../../incs/display.h"
+#include "../../incs/raycast.h"
+#include "../../incs/vectors.h"
 
 void	*get_sprite(int side)
 {
@@ -34,12 +20,31 @@ void	*get_sprite(int side)
 
 	if (side == 0)
 		wall.color = COLOR_WHITE;
-	else if (side == 1)
-		wall.color = WALL_BLUE;
-	else if (side == 2)
-		wall.color = WALL_GREEN;
-	else
-		wall.color = WALL_RED;
+	if (side == 1)
+		wall.color = COLOR_BLUE;
+	if (side == 2)
+		wall.color = COLOR_GREEN;
+	if (side == 3)
+		wall.color = COLOR_RED;
 	
-	return (&wall);
+	void *p = &wall;
+	return (p);
+}
+
+t_stripe	get_stripe(t_map map, t_player player, int screen_width, int x)
+{
+	t_stripe 	stripe;
+	t_hit		hit;
+
+	t_vector2 pos = vector2(player.x, player.y);
+	t_vector2 dir = vector2(0, 1);
+	t_vector2 plane = vector2(1, 0);
+
+	hit = raycast_hit(map, pos, dir, plane, screen_width, x);
+
+	stripe.x = x;
+	stripe.distance = hit.distance;
+	stripe.sprite = get_sprite(hit.side);
+
+	return (stripe);
 }

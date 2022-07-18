@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 15:10:35 by wmonacho          #+#    #+#             */
-/*   Updated: 2022/01/20 11:14:04 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/18 11:12:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef struct s_StructBuffer
 
 char	*get_next_line(int fd);
 char	*ft_free(char *freestr);
-char	*ft_strchr(char *string, int searchedChar);
-int		ft_strlen(char *str);
+//char	*ft_strchr(char *string, int searchedChar);
+//int		ft_strlen(char *str);
 int		ft_strlenn(char *str);
-void	ft_bzero(void *s, size_t n);
+//void	ft_bzero(void *s, size_t n);
 
 #endif

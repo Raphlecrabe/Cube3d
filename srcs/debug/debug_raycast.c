@@ -1,42 +1,43 @@
 //DO NOT INCLUDE THIS FILE TO THE FINAL PROJECT
-#include "../../cube3d.h"
+#include "../../incs/cube3d.h"
+#include "../../incs/get_next_line.h"
+#include "../../incs/display.h"
 #include <stdlib.h>
+#include <fcntl.h>
+#include <stdio.h>
 
-int	**create_map()
+int	**create_map(char *mapfile)
 {
-	int	**map;
+	char	*line;
+	int		**map;
+	int		i;
+	int		j;
+	int		fd;
+
+	fd = open(mapfile, O_RDONLY);
 
 	map = malloc(sizeof(int*) * 24);
 
-	map[0] =  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-	map[1] =  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[2] =  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[3] =  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[4] =  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1};
-	map[5] =  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[6] =  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[7] =  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1};
-	map[8] =  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[9] =  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1};
-	map[10] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[11] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[12] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[13] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[14] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[15] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[16] = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[17] = {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[18] = {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[19] = {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[20] = {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[21] = {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[22] = {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
-	map[23] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		map[i] = malloc(sizeof(int) * 24);
+		j = -1;
+		while (++j < 24)
+		{
+			map[i][j] = line[j] - '0';
+			printf("%d", map[i][j]);
+		}
+		printf("\n");
+		line = get_next_line(fd);
+		i++;
+	}
 
 	return (map);
 }
 
-t_cube	init_cubdatas()
+t_cube	init_cubdatas(char *mapfile)
 {
 	t_cube		cube;
 	t_map		map;
@@ -46,8 +47,8 @@ t_cube	init_cubdatas()
 	player.y = 12;
 	player.angle = 0.0f;
 
-	map.map = create_map();
-	map.height = 24;
+	map.map = create_map(mapfile);
+	map.heigth = 24;
 	map.width = 24;
 
 	cube.player = &player;
@@ -56,11 +57,15 @@ t_cube	init_cubdatas()
 	return (cube);
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	t_cube cube;
 
-	cube = init_cubdatas();
+	argc += 0;
 
-	
+	cube = init_cubdatas(argv[1]);
+
+	display_screen(cube.map, cube.player);
+
+	cube.map += 0;
 }

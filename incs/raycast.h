@@ -1,12 +1,14 @@
 #ifndef RAYCAST_H
 # define RAYCAST_H
 
-#include "vector2.h"
+#include "vectors.h"
+#include "cube3d.h"
 
 typedef struct 	s_hit
 {
 	int	distance;
 	int	side;
+	int	hit;
 }				t_hit;
 
 typedef struct	s_raycast
@@ -24,12 +26,12 @@ typedef struct 	s_stripe
 {
 	int		x;
 	float 	distance;
-	void	*sprite
+	void	*sprite;
 }				t_stripe;
 
 typedef struct	s_wallcolor
 {
-	int	color;
+	char	*color;
 }				t_wallcolor;
 
 typedef struct	s_wallsprite
@@ -37,7 +39,12 @@ typedef struct	s_wallsprite
 	int	fd;
 }				t_wallsprite;
 
+#define COLOR_BLUE "blue";
+#define COLOR_GREEN "green";
+#define COLOR_RED "red";
+#define COLOR_WHITE "white";
+
 t_hit		raycast_hit();
-t_stripe 	get_stripe(t_map, t_player, int);
+t_stripe 	get_stripe(t_map map, t_player player, int screen_width, int x);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "../../incs/vectors.h"
 
-t_vector2	vector2(int x, int y)
+t_vector2	vector2(float x, float y)
 {
 	t_vector2 vector;
 
