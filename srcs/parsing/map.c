@@ -14,9 +14,9 @@
 
 int	ft_parsemap(t_cube *cube, char *line, int fd)
 {
-	if (ft_islast(cube) == 0)
+	if (ft_islast(cube) == -1)
 		return (-1);
-	if (ft_parseline(line) == -1)
+	if (ft_parseline(cube, line) == -1)
 		return (-1);
 	while (line != NULL)
 	{
@@ -24,10 +24,9 @@ int	ft_parsemap(t_cube *cube, char *line, int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			return (0);
-		if (ft_parseline(line) == -1)
+		if (ft_parseline(cube, line) == -1)
 			return (-1);
 		if (ft_addline(cube, line) == -1)
 			return (-1);
 	}
-	ft
 }

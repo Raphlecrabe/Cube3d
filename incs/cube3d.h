@@ -51,6 +51,7 @@ typedef struct s_cube
 	char		*south;
 	t_check		check;
 	int			parsed;
+	char		*path;
 }	t_cube;
 
 #endif
