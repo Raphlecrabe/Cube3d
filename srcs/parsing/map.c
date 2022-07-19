@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:53:33 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/06/30 13:53:43 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/19 11:49:24 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int	ft_parsemap(t_cube *cube, char *line, int fd)
 		if (ft_addline(cube, line) == -1)
 			return (-1);
 	}
+	ft_parseopen(cube, line);
 }

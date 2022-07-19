@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:46:57 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/01 15:27:10 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/19 11:50:18 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	**map;
+	int	*line;
 	int	heigth;
 	int	width;
 }	t_map;
@@ -44,6 +44,7 @@ typedef struct s_cube
 	int			ceiling;
 	int			floor;
 	t_map		*map;
+	t_list		*mapping;
 	t_player	*player;
 	char		*west;
 	char		*east;

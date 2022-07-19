@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/07/06 13:00:13 by raphael          ###   ########.fr       */
+/*   Updated: 2022/07/19 12:01:52 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ int	ft_islast(t_cube *cube, char *l, int fd)
 		write(2, "Error, map is not last or wrong format on textures\n", 51);
 		return (-1);
 	}
-
 	return (0);
 }
 
-int	ft_parsel(t_cube *cube, char *l)
+int	ft_parseline(t_cube *cube, char *l)
 {
 	int	i;
 
@@ -52,4 +51,14 @@ int	ft_parsel(t_cube *cube, char *l)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_addline(t_cube *cube, char *line)
+{
+	t_list	*lista;
+
+	lista = ft_lstnew(line);
+	if (lista == NULL)
+		return (-1);
+	ft_lstadd_back(&cube->mapping, lista);
 }
