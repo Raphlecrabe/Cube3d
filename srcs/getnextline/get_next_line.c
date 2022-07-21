@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 11:17:07 by wmonacho          #+#    #+#             */
-/*   Updated: 2022/06/29 17:15:35 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/19 15:42:29 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../libft/libft.h"
 #include "../../incs/get_next_line.h"
 
 static char	*ft_line_alloc(char *line, char *buf)

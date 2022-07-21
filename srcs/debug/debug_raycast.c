@@ -2,11 +2,12 @@
 #include "../../incs/cube3d.h"
 #include "../../incs/get_next_line.h"
 #include "../../incs/display.h"
+#include "../../incs/garbage.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
 
-int	**create_map(char *mapfile)
+int	**create_map(char *mapfile, t_memory *mem)
 {
 	char	*line;
 	int		**map;
@@ -16,11 +17,11 @@ int	**create_map(char *mapfile)
 
 	fd = open(mapfile, O_RDONLY);
 
-	map = malloc(sizeof(int*) * 24);
+	map = ft_malloc_const(24, sizeof(int*), mem);
 
 	i = -1;
 	while (++i < 24)	
-		map[i] = malloc(sizeof(int) * 24);
+		map[i] = ft_malloc_const(24, sizeof(int), mem);
 	
 	i = 0;
 	line = get_next_line(fd);
@@ -29,6 +30,7 @@ int	**create_map(char *mapfile)
 		j = -1;
 		while (++j < 24)
 			map[j][i] = line[j] - '0';
+		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
@@ -51,18 +53,18 @@ void display_map(t_map *map)
 	}
 }
 
-t_cube	init_cubdatas(char *mapfile)
+t_cube	init_cubdatas(char *mapfile, t_memory *mem)
 {
 	t_cube		cube;
 	t_map		*map;
 	t_player	*player;
 
-	map = malloc(sizeof(t_map) * 1);
-	map->map = create_map(mapfile);
+	map = ft_malloc_const(1, sizeof(t_map), mem);
+	map->map = create_map(mapfile, mem);
 	map->heigth = 24;
 	map->width = 24;
 
-	player = malloc(sizeof(t_player) * 1);
+	player = ft_malloc_const(1, sizeof(t_player), mem);
 	player->x = 3;
 	player->y = 2;
 	player->angle = 0.0f;
@@ -94,14 +96,18 @@ int main(int argc, char **argv)
 {
 	t_cube 		cube;
 	t_display 	display;
+	t_memory	mem;
 
 	argc += 0;
+	argv += 0;
 
-	cube = init_cubdatas(argv[1]);
+	mem.used = NULL;
+
+	cube = init_cubdatas(argv[1], &mem);
 
 	display = init_displaydatas(&cube);
 
 	display_screen(&display);
 
-	cube.map += 0;
+	ft_freemem(&mem);
 }

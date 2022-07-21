@@ -1,7 +1,22 @@
 #ifndef GARBAGE_H
 # define GARBAGE_H
 
-void 	*ft_malloc(size_t, size_t);
+# include <stdlib.h>
+# include "../libft/libft.h"
+
+# define TAG(p) ((unsigned long long int) (p) + 1)
+# define UNTAG(p) (((unsigned long long int) (p)) - 1)
+# define TAGGED(p) (((unsigned long long int) (p) & 1))
+
+typedef struct	s_memory
+{
+	t_list	*used;
+}				t_memory;
+
+void 	*ft_malloc_const(size_t memory, size_t size, t_memory *mem);
+void	*ft_malloc_temp(size_t memory, size_t size, t_memory *mem);
+void	ft_freemem(t_memory *mem);
+void	ft_freetemp(t_memory *mem);
 void	ft_to_free(void *);
 
 #endif
