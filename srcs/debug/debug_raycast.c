@@ -3,9 +3,11 @@
 #include "../../incs/get_next_line.h"
 #include "../../incs/display.h"
 #include "../../incs/garbage.h"
+#include "../../incs/events.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <mlx.h>
 
 int	**create_map(char *mapfile, t_memory *mem)
 {
@@ -94,9 +96,13 @@ t_display init_displaydatas(t_cube *cube)
 
 int main(int argc, char **argv)
 {
+
 	t_cube 		cube;
 	t_display 	display;
 	t_memory	mem;
+
+	void	*mlx;
+	void	*mlx_win;
 
 	argc += 0;
 	argv += 0;
@@ -108,6 +114,11 @@ int main(int argc, char **argv)
 	display = init_displaydatas(&cube);
 
 	display_screen(&display);
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 200, 200, "cub3d");
+	mlx_key_hook(mlx_win, key_hook, &display);
+	mlx_loop(mlx);
 
 	ft_freemem(&mem);
 }

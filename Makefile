@@ -29,11 +29,12 @@ SRCS_PARSING = 	colourutils.c \
 SRCS_GNL = 	get_next_line.c \
 			get_next_line_utils.c \
 
-SRCS_RAYCAST = vectors.c \
+SRCS_RAYCAST = 	vectors.c \
 				raycast.c \
 				stripe.c \
 
-SRCS_DISPLAY = display.c \
+SRCS_DISPLAY = 	display.c \
+				move.c \
 
 SRCS_DEBUG = debug_raycast.c \
 
@@ -74,11 +75,21 @@ LEAKS= -g3 -fsanitize=address
 
 INC_DIR = incs
 
-INCLUDES =	${INC_DIR}/garbage.h \
+IMLX_MACOS = -Imlx
+
+LMLX_MACOS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+IMLX_LINUX = -I/usr/include -Imlx_linux -O3
+
+LMLX_LINUX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+INCLUDES =	mlx/mlx.h \
+			${INC_DIR}/garbage.h \
 			${INC_DIR}/cube3d.h \
 			${INC_DIR}/get_next_line.h \
 			${INC_DIR}/parsing.h \
 			${INC_DIR}/raycast.h \
+			${INC_DIR}/events.h \
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 				mkdir -p ${OBJ_DIR}
@@ -87,15 +98,18 @@ ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 				mkdir -p ${OBJ_DIR}${RAYCAST}
 				mkdir -p ${OBJ_DIR}${DEBUG}
 				mkdir -p ${OBJ_DIR}${DISPLAY}
-				${CC} ${FLAGS} -c $< -o $@
+				${CC} ${FLAGS} ${IMLX_MACOS} -c $< -o $@
 
-all: makelib ${NAME}
+all: Makefile makelib makemlx ${NAME}
 
 ${NAME}:	Makefile ${OBJS}
-			${CC} ${FLAGS} ${OBJS} ${LMLX} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${FLAGS} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
+
+makemlx:
+		${MAKE} -C mlx/ all
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
@@ -107,7 +121,7 @@ fclean:		clean
 
 re:			fclean all
 
-debug:		makelib Makefile ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LMLX} ${LIBFT_PATH}/libft.a -o ${NAME}
+debug:		 Makefile makelib makemlx ${OBJS_DEBUG}
+			${CC} ${OBJS_DEBUG} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 PHONY= all clean fclean re
