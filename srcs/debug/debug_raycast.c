@@ -81,7 +81,7 @@ t_cube	init_cubdatas(char *mapfile, t_memory *mem)
 	return (cube);
 }
 
-t_display init_displaydatas(t_cube *cube)
+t_display init_displaydatas(t_cube *cube, t_memory *mem)
 {
 	t_display display;
 
@@ -90,6 +90,7 @@ t_display init_displaydatas(t_cube *cube)
 	display.player_dir = vector2(0, 1);
 	display.plane = vector2(0.66f, 0);
 	display.screen_width = 30;
+	display.mem = mem;
 
 	return (display);
 }
@@ -111,7 +112,7 @@ int main(int argc, char **argv)
 
 	cube = init_cubdatas(argv[1], &mem);
 
-	display = init_displaydatas(&cube);
+	display = init_displaydatas(&cube, &mem);
 
 	display_screen(&display);
 

@@ -98,18 +98,18 @@ ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 				mkdir -p ${OBJ_DIR}${RAYCAST}
 				mkdir -p ${OBJ_DIR}${DEBUG}
 				mkdir -p ${OBJ_DIR}${DISPLAY}
-				${CC} ${FLAGS} ${IMLX_MACOS} -c $< -o $@
+				${CC} ${FLAGS} ${IMLX_LINUX} -c $< -o $@
 
 all: Makefile makelib makemlx ${NAME}
 
 ${NAME}:	Makefile ${OBJS}
-			${CC} ${FLAGS} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${FLAGS} ${OBJS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
 
 makemlx:
-		${MAKE} -C mlx/ all
+		${MAKE} -C mlx_linux/ all
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
@@ -122,6 +122,6 @@ fclean:		clean
 re:			fclean all
 
 debug:		 Makefile makelib makemlx ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${OBJS_DEBUG} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 PHONY= all clean fclean re

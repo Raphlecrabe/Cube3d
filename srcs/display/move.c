@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/07/21 17:26:22 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/07/22 14:09:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	key_affect(int keycode, t_display *display)
 {
 	float rotate_speed = 0.1;
 
-	if (keycode == A_KEY)
+	if (keycode == Q_KEY_LIN)
 		rotate_left(display, rotate_speed);
-	else if (keycode == D_KEY)
+	else if (keycode == D_KEY_LIN)
 		rotate_right(display, rotate_speed);
 }
 
