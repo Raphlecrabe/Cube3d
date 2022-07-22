@@ -22,6 +22,16 @@ t_vector2	vector2(float x, float y)
 	return (vector);
 }
 
+t_vector2 vector2_add(t_vector2 vector_1, t_vector2 vector_2)
+{
+	t_vector2 result;
+
+	result.x = vector_1.x + vector_2.x;
+	result.y = vector_1.y + vector_2.y;
+
+	return (result);
+}
+
 t_vector2 vector2_substract(t_vector2 vector_1, t_vector2 vector_2)
 {
 	t_vector2 result;
@@ -30,4 +40,12 @@ t_vector2 vector2_substract(t_vector2 vector_1, t_vector2 vector_2)
 	result.y = vector_1.y - vector_2.y;
 
 	return (result);
+}
+
+t_vector2 vector2_multiply(t_vector2 v, float m)
+{
+	v.x *= m;
+	v.y *= m;
+
+	return (v);
 }
