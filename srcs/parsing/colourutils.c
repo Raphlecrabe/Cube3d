@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 15:31:43 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/01 16:06:56 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/21 17:05:12 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_fullwhole(char *whole, char *line, int i)
 	}
 }
 
-char	*ft_getwhole(char *line, int i)
+char	*ft_getwhole(char *line, int i, t_memory *mem)
 {
 	char	*whole;
 	int		j;
@@ -78,7 +78,7 @@ char	*ft_getwhole(char *line, int i)
 		else
 			i++;
 	}
-	whole = ft_malloc(sizeof(char), j + 1);
+	whole = ft_malloc_temp(sizeof(char), j + 1, mem);
 	if (whole == NULL)
 		return (NULL);
 	whole[j] = '\0';

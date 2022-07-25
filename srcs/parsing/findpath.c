@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:40:15 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/01 15:46:35 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/21 17:17:38 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
-	cube->west = ft_malloc(sizeof(char), (j + 1));
+	cube->west = ft_malloc_const(sizeof(char), (j + 1), cube->mem);
 	if (cube->west == NULL)
 		return (-1);
 	cube->west[j] = '\0';
@@ -52,7 +52,7 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
-	cube->east = ft_malloc(sizeof(char), (j + 1));
+	cube->east = ft_malloc_const(sizeof(char), (j + 1), cube->mem);
 	if (cube->east == NULL)
 		return (-1);
 	cube->east[j] = '\0';
@@ -80,7 +80,7 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
-	cube->north = ft_malloc(sizeof(char), (j + 1));
+	cube->north = ft_malloc_const(sizeof(char), (j + 1), cube->mem);
 	if (cube->north == NULL)
 		return (-1);
 	cube->north[j] = '\0';
@@ -108,7 +108,7 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 		j++;
 		i++;
 	}
-	cube->south = ft_malloc(sizeof(char), (j + 1));
+	cube->south = ft_malloc_const(sizeof(char), (j + 1), cube->mem);
 	if (cube->south == NULL)
 		return (-1);
 	cube->south[j] = '\0';

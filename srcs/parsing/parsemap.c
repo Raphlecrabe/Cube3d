@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/07/19 12:01:52 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/21 17:29:14 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	ft_parseline(t_cube *cube, char *l)
 	return (0);
 }
 
-int	ft_addline(t_cube *cube, char *line)
+int	ft_addline(t_cube *cube, char *line, t_list *mapping)
 {
 	t_list	*lista;
 
-	lista = ft_lstnew(line);
+	lista = ft_lstnew_temp(line, cube->mem);
 	if (lista == NULL)
 		return (-1);
-	ft_lstadd_back(&cube->mapping, lista);
+	ft_lstadd_back(&mapping, lista);
 }
