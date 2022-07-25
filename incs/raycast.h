@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 17:18:47 by rmonacho          #+#    #+#             */
+/*   Updated: 2022/07/21 17:18:47 by rmonacho         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RAYCAST_H
 # define RAYCAST_H
 
-#include "vectors.h"
-#include "cube3d.h"
-#include "display.h"
+# include "vectors.h"
+# include "cube3d.h"
+# include "display.h"
 
-typedef struct 	s_hit
+typedef struct s_hit
 {
 	t_vector2 pos;
 	float	distance;
@@ -48,6 +60,6 @@ typedef struct	s_wallsprite
 #define COLOR_WHITE "white";
 
 t_hit		raycast_hit(int x, t_display *display);
-t_stripe 	get_stripe(int x, t_display *display);
+t_stripe	get_stripe(int x, t_display *display);
 
 #endif

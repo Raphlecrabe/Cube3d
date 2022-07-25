@@ -14,7 +14,9 @@ DEBUG = debug/
 
 SRCS = main.c
 
-SRCS_GARBAGE = garbagecoll.c \
+SRCS_GARBAGE = 	garbagecoll.c \
+				garbageutils.c \
+				garbagesplittemp.c \
 
 SRCS_PARSING = 	colourutils.c \
 				findcolour.c \
