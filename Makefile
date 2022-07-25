@@ -31,13 +31,17 @@ SRCS_PARSING = 	colourutils.c \
 SRCS_GNL = 	get_next_line.c \
 			get_next_line_utils.c \
 
-SRCS_RAYCAST = vectors.c \
+SRCS_RAYCAST = 	vectors.c \
 				raycast.c \
 				stripe.c \
 
-SRCS_DISPLAY = display.c \
+SRCS_DISPLAY = 	display.c \
+				move.c \
+				mlx_utils.c \
 
 SRCS_DEBUG = debug_raycast.c \
+
+#OBJS
 
 OBJ_DIR = objs/
 
@@ -64,6 +68,33 @@ OBJS_DEBUG = ${SRCS_DEBUG_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_RAYCAST_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_DISPLAY_ABS:%.c=${OBJ_DIR}%.o} \
 
+#MLX
+
+IMLX_MACOS = -Imlx
+
+LMLX_MACOS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+IMLX_LINUX = -I/usr/include -Imlx_linux -O3
+
+LMLX_LINUX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+#INCLUDES
+
+INC_DIR = incs
+
+INC_FILES = garbage.h \
+			cube3d.h \
+			get_next_line.h \
+			parsing.h \
+			raycast.h \
+			events.h \
+			mlx_utils.h \
+
+INCLUDES =	mlx/mlx.h \
+			${INC_FILES:%.h=${INC_DIR}/%.h} \
+
+#OTHER
+
 LIBFT_PATH = libft
 
 NAME= cub3d
@@ -72,32 +103,28 @@ CC= gcc
 
 FLAGS= -Wall -Wextra -Werror
 
-LEAKS= -g3 -fsanitize=address
-
-INC_DIR = incs
-
-INCLUDES =	${INC_DIR}/garbage.h \
-			${INC_DIR}/cube3d.h \
-			${INC_DIR}/get_next_line.h \
-			${INC_DIR}/parsing.h \
-			${INC_DIR}/raycast.h \
+LEAKS= -fsanitize=address -g3
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
-				mkdir -p ${OBJ_DIR}
-				mkdir -p ${OBJ_DIR}${GNL}
-				mkdir -p ${OBJ_DIR}${GARBAGE}
-				mkdir -p ${OBJ_DIR}${RAYCAST}
-				mkdir -p ${OBJ_DIR}${DEBUG}
-				mkdir -p ${OBJ_DIR}${DISPLAY}
-				${CC} ${FLAGS} -c $< -o $@
+				${CC} ${FLAGS} ${IMLX_LINUX} -c $< -o $@
 
-all: makelib ${NAME}
+all: Makefile makelib makemlx makedirs ${NAME}
 
 ${NAME}:	Makefile ${OBJS}
-			${CC} ${FLAGS} ${OBJS} ${LMLX} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${FLAGS} ${OBJS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
+
+makemlx:
+		${MAKE} -C mlx_linux/ all
+
+makedirs:
+			mkdir -p ${OBJ_DIR}${GNL}
+			mkdir -p ${OBJ_DIR}${GARBAGE}
+			mkdir -p ${OBJ_DIR}${RAYCAST}
+			mkdir -p ${OBJ_DIR}${DEBUG}
+			mkdir -p ${OBJ_DIR}${DISPLAY}
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
@@ -109,7 +136,7 @@ fclean:		clean
 
 re:			fclean all
 
-debug:		makelib Makefile ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LMLX} ${LIBFT_PATH}/libft.a -o ${NAME}
+debug:		 Makefile makelib makemlx makedirs ${OBJS_DEBUG}
+			${CC} ${OBJS_DEBUG} ${LEAKS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 PHONY= all clean fclean re

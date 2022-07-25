@@ -13,23 +13,26 @@
 #include "../../incs/display.h"
 #include "../../incs/raycast.h"
 #include "../../incs/vectors.h"
+#include "../../incs/garbage.h"
 #include <stdio.h>
 
-void	*get_sprite(int side)
+static void	*get_sprite(int side, t_memory *mem)
 {
-	t_wallcolor wall;
+	t_wallcolor *wall;
 
+	wall = ft_malloc_temp(1, sizeof(t_wallcolor), mem);
+	if (wall == NULL)
+		return (NULL);
 	if (side == 0)
-		wall.color = COLOR_WHITE;
+		wall->color = COLOR_WHITE;
 	if (side == 1)
-		wall.color = COLOR_BLUE;
+		wall->color = COLOR_BLUE;
 	if (side == 2)
-		wall.color = COLOR_GREEN;
+		wall->color = COLOR_GREEN;
 	if (side == 3)
-		wall.color = COLOR_RED;
+		wall->color = COLOR_RED;
 	
-	void *p = &wall;
-	return (p);
+	return (wall);
 }
 
 t_stripe	get_stripe(int x, t_display *display)
@@ -41,7 +44,7 @@ t_stripe	get_stripe(int x, t_display *display)
 
 	stripe.x = x;
 	stripe.distance = hit.distance;
-	stripe.sprite = get_sprite(hit.side);
+	stripe.sprite = get_sprite(hit.side, display->mem);
 	stripe.pos = hit.pos;
 
 	return (stripe);
