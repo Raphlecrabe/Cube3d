@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:38:34 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/22 13:13:08 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 14:11:30 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ char	*ft_strncopy_const(char *line, int n, char c, t_memory *mem)
 	}
 	while (i <= n)
 	{
-		copy[i] == c;
+		copy[i] = c;
 		i++;
 	}
 	copy[i] = '\0';
+	return (copy);
 }
 
 t_list	*ft_lstnew_temp(void *content, t_memory *mem)

@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:53:33 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/22 15:02:19 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 15:41:33 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_miniholes(char **lines, int *i, int *j)
 	}
 }
 
-void	ft_convertholes(t_cube *cube, char **lines)
+void	ft_convertholes(char **lines)
 {
 	int	i;
 	int	j;
@@ -46,9 +46,9 @@ void	ft_convertholes(t_cube *cube, char **lines)
 	}
 }
 
-int	ft_maxlines(t_list *mapping)
+size_t	ft_maxlines(t_list *mapping)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (mapping)
@@ -92,6 +92,7 @@ int	ft_parsemap(t_cube *cube, char *line, int fd)
 {
 	t_list	*mapping;
 
+	mapping = NULL;
 	if (ft_islast(cube) == -1)
 		return (-1);
 	if (ft_parseline(cube, line) == -1)
@@ -111,7 +112,8 @@ int	ft_parsemap(t_cube *cube, char *line, int fd)
 	}
 	if (ft_convertchar(cube, mapping) == -1)
 		return (-1);
-	ft_convertholes(cube, cube->map->lines);
+	ft_convertholes(cube->map->lines);
 	if (ft_parseopen(cube) == -1)
 		return (-1);
+	return (0);
 }

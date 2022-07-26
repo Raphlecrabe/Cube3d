@@ -6,13 +6,13 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:15:54 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/01 14:38:27 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 15:19:32 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/parsing.h"
 
-int	ft_parsewest(t_cube *cube, char *line, int i)
+int	ft_parsewest(char *line, int i)
 {
 	if (line[i + 1] != 'E')
 	{
@@ -24,9 +24,10 @@ int	ft_parsewest(t_cube *cube, char *line, int i)
 		write(2, "Error, wrong texture format : WE\n", 34);
 		return (-1);
 	}
+	return (0);
 }
 
-int	ft_parseeast(t_cube *cube, char *line, int i)
+int	ft_parseeast(char *line, int i)
 {
 	if (line[i + 1] != 'A')
 	{
@@ -38,9 +39,10 @@ int	ft_parseeast(t_cube *cube, char *line, int i)
 		write(2, "Error, wrong texture format : EA\n", 34);
 		return (-1);
 	}
+	return (0);
 }
 
-int	ft_parsenorth(t_cube *cube, char *line, int i)
+int	ft_parsenorth(char *line, int i)
 {
 	if (line[i + 1] != 'O')
 	{
@@ -52,9 +54,10 @@ int	ft_parsenorth(t_cube *cube, char *line, int i)
 		write(2, "Error, wrong texture format : NO\n", 34);
 		return (-1);
 	}
+	return (0);
 }
 
-int	ft_parsesouth(t_cube *cube, char *line, int i)
+int	ft_parsesouth(char *line, int i)
 {
 	if (line[i + 1] != 'O')
 	{
@@ -66,4 +69,5 @@ int	ft_parsesouth(t_cube *cube, char *line, int i)
 		write(2, "Error, wrong texture format : SO\n", 34);
 		return (-1);
 	}
+	return (0);
 }

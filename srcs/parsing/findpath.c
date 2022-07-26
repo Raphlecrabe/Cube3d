@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:40:15 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/21 17:17:38 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 14:16:53 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
-	while (line[i] != '\0' && (line[i] >= 9 && line[i] <= 13) || line[i] == 32)
+	while (line[i] != '\0'
+		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		j++;
 		i++;
@@ -30,7 +31,7 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 	cube->west[j] = '\0';
 	i = i - j;
 	j = 0;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		cube->west[j] = line[i];
 		j++;
@@ -45,9 +46,10 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
-	while (line[i] != '\0' && (line[i] >= 9 && line[i] <= 13) || line[i] == 32)
+	while (line[i] != '\0'
+		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		j++;
 		i++;
@@ -58,7 +60,7 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 	cube->east[j] = '\0';
 	i = i - j;
 	j = 0;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		cube->east[j] = line[i];
 		j++;
@@ -73,9 +75,10 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
-	while (line[i] != '\0' && (line[i] >= 9 && line[i] <= 13) || line[i] == 32)
+	while (line[i] != '\0'
+		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		j++;
 		i++;
@@ -86,7 +89,7 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 	cube->north[j] = '\0';
 	i = i - j;
 	j = 0;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		cube->north[j] = line[i];
 		j++;
@@ -101,9 +104,10 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
-	while (line[i] != '\0' && (line[i] >= 9 && line[i] <= 13) || line[i] == 32)
+	while (line[i] != '\0'
+		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		j++;
 		i++;
@@ -114,7 +118,7 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 	cube->south[j] = '\0';
 	i = i - j;
 	j = 0;
-	while (line[i] != '\0' && (line[i] < 9 || line[i] > 13) && line[i] != 32)
+	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
 		cube->south[j] = line[i];
 		j++;

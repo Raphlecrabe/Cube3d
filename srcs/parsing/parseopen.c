@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:34:43 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/22 15:56:49 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 15:42:36 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int	ft_initparseonec(int j, char **lines, int *i)
 	*i = 0;
 	while (lines[*i] != NULL && ft_checkspacec(lines, j, *i) == 1)
 			*i = *i + 1;
-	if (line[*i][j] == '0')
+	if (lines[*i][j] == '0')
 		return (-1);
 	while (lines[*i] != NULL && ft_checknumbersc(lines, j, *i) == 1)
 		*i = *i + 1;
+	return (0);
 }
 
-int	ft_parseonec(t_cube *cube, int j, char **lines)
+int	ft_parseonec(int j, char **lines)
 {
 	int	i;
 
@@ -49,9 +50,9 @@ int	ft_parsecolumns(t_cube *cube)
 	j = 0;
 	while (cube->map->lines[0][j] != '\0')
 	{
-		if (ft_parseonec(cube, j, cube->map->lines) == -1)
+		if (ft_parseonec(j, cube->map->lines) == -1)
 			return (-1);
-		i++;
+		j++;
 	}
 	return (0);
 }

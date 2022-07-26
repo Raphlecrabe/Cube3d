@@ -29,7 +29,7 @@ void	*ft_malloc_const(size_t memory, size_t size, t_memory *mem);
 void	*ft_malloc_temp(size_t memory, size_t size, t_memory *mem);
 void	ft_freemem(t_memory *mem);
 void	ft_freetemp(t_memory *mem);
-char	*ft_strncopy_temp(char *line, int n, char c, t_memory *mem);
+char	*ft_strncopy_const(char *line, int n, char c, t_memory *mem);
 t_list	*ft_lstnew_temp(void *content, t_memory *mem);
 char	**ft_split_temp(char const *s, char c, t_memory *mem);
 

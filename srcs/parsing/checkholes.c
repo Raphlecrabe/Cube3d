@@ -6,13 +6,13 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:04:24 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/22 15:29:19 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 15:39:30 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/parsing.h"
 
-int	ft_checline_hole(char **lines, int i, int j)
+int	ft_checkline_hole(char **lines, int i, int j)
 {
 	int	mem;
 
@@ -56,4 +56,5 @@ int	ft_ishole(char **lines, int i, int j)
 		return (0);
 	if (ft_checkcol_hole(lines, i, j) == 0)
 		return (0);
+	return (1);
 }

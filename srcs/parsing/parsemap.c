@@ -6,13 +6,13 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/07/21 17:29:14 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 15:41:09 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/parsing.h"
 
-int	ft_islast(t_cube *cube, char *l, int fd)
+int	ft_islast(t_cube *cube)
 {
 	if (cube->check.pfloor != 1 || cube->check.pceil != 1
 		|| cube->check.pwest != 1 || cube->check.peast != 1
@@ -31,7 +31,7 @@ int	ft_parseline(t_cube *cube, char *l)
 	i = 0;
 	while (l[i] != '\0')
 	{
-		while (l[i] != '\0' && (l[i] >= 9 && l[i] <= 13) || l[i] == 32)
+		while (l[i] != '\0' && ((l[i] >= 9 && l[i] <= 13) || l[i] == 32))
 			i = i + 1;
 		if (l[i] == 'W' || l[i] == 'E' || l[i] == 'N' || l[i] == 'S')
 		{
@@ -61,4 +61,5 @@ int	ft_addline(t_cube *cube, char *line, t_list *mapping)
 	if (lista == NULL)
 		return (-1);
 	ft_lstadd_back(&mapping, lista);
+	return (0);
 }

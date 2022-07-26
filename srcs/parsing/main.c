@@ -5,24 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/25 15:07:30 by rmonacho         ###   ########lyon.fr   */
+/*   Created: 2022/07/25 12:40:15 by rmonacho          #+#    #+#             */
+/*   Updated: 2022/07/25 15:43:14 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-//include
-#include "../incs/parsing.h"
+#include "../../incs/parsing.h"
 
 int	main(int argc, char **argv)
 {
-	t_cube	*cube;
+	t_cube		*cube;
+	t_memory	*mem;
 
-	if (argc != 2)
+	mem = NULL;
+	(void)argc;
+	cube = NULL;
+	if (ft_initcube(cube, mem) == -1)
 	{
-		write(2, "Error, please use only one argument\n", 37);
-		return (0);
+		ft_freemem(mem);
+		return (-1);
 	}
-	if (ft_parsefull(cube, argv) == -1)
-		return (0);
-	//la suite plus tard
+	if (ft_fullparse(cube, argv) == -1)
+	{
+		ft_freemem(mem);
+		return (-1);
+	}
 }

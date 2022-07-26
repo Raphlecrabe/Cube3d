@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:20:07 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/21 17:05:36 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 14:13:42 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_findf(t_cube *cube, char *line, int i)
 		return (-1);
 	cube->floor = ft_create_trgb(0, ft_atoi(numbers[0]),
 			ft_atoi(numbers[1]), ft_atoi(numbers[2]));
+	return (0);
 }
 
 int	ft_findc(t_cube *cube, char *line, int i)
@@ -48,6 +49,7 @@ int	ft_findc(t_cube *cube, char *line, int i)
 		return (-1);
 	cube->ceiling = ft_create_trgb(0, ft_atoi(numbers[0]),
 			ft_atoi(numbers[1]), ft_atoi(numbers[2]));
+	return (0);
 }
 
 int	ft_findcolour(t_cube *cube, char *line)
@@ -71,4 +73,5 @@ int	ft_findcolour(t_cube *cube, char *line)
 			return (-1);
 		cube->check.pceil = 1;
 	}
+	return (0);
 }

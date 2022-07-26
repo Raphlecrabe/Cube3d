@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:46:39 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/22 16:42:43 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 14:25:58 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_ismap(char *line, int i)
 	return (1);
 }
 
-int	ft_testline(char **line)
+int	ft_testline(char *line)
 {
 	int	i;
 

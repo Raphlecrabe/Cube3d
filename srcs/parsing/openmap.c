@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   openmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/25 15:07:30 by rmonacho         ###   ########lyon.fr   */
+/*   Created: 2022/07/25 14:26:40 by rmonacho          #+#    #+#             */
+/*   Updated: 2022/07/25 15:11:35 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-//include
-#include "../incs/parsing.h"
+#include "../../incs/parsing.h"
 
-int	main(int argc, char **argv)
+int	ft_openmap(char **argv)
 {
-	t_cube	*cube;
+	int		i;
+	char	line[1];
 
-	if (argc != 2)
-	{
-		write(2, "Error, please use only one argument\n", 37);
-		return (0);
-	}
-	if (ft_parsefull(cube, argv) == -1)
-		return (0);
-	//la suite plus tard
+	i = open(argv[1], O_RDONLY);
+	if (i < 0)
+		return (-1);
+	if (read(i, line, 1) < 0)
+		return (-1);
+	close(i);
+	i = open(argv[1], O_RDONLY);
+	if (i < 0)
+		return (-1);
+	return (i);
 }
