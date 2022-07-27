@@ -45,17 +45,17 @@ void	key_affect(int keycode, t_display *display)
 	float movespeed = 10;
 	t_vector2 pos = display->player_pos;
 
-	if (keycode == Q_KEY_LIN)
+	if (keycode == Q_KEY_MAC)
 		rotate_left(display, rotate_speed);
-	else if (keycode == D_KEY_LIN)
+	else if (keycode == D_KEY_MAC)
 		rotate_right(display, rotate_speed);
-	else if (keycode == UP_KEY_LIN && pos.y > 0)
+	else if (keycode == UP_KEY_MAC && pos.y > 0)
 		pos.y -= movespeed;
-	else if (keycode == DOWN_KEY_LIN && pos.y < 23)
+	else if (keycode == DOWN_KEY_MAC && pos.y < 23)
 		pos.y += movespeed;
-	else if (keycode == LEFT_KEY_LIN && pos.x > 0)
+	else if (keycode == LEFT_KEY_MAC && pos.x > 0)
 		pos.x -= movespeed;
-	else if (keycode == RIGHT_KEY_LIN && pos.x < 23)
+	else if (keycode == RIGHT_KEY_MAC && pos.x < 23)
 		pos.x += movespeed;
 
 	display->player_pos = pos;
