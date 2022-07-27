@@ -89,7 +89,7 @@ static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 		hit->side = 1;
 	}
 
-	if (map->map[(int)ray->mappos.x][(int)ray->mappos.y] > 0)
+	if (map->lines[(int)ray->mappos.x][(int)ray->mappos.y] == '1')
 	{
 		hit->pos = ray->mappos;
 		hit->hit = 1;

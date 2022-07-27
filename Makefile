@@ -10,6 +10,8 @@ RAYCAST = raycast/
 
 DISPLAY = display/
 
+MINIMAP = minimap/
+
 DEBUG = debug/
 
 SRCS = main.c
@@ -48,6 +50,8 @@ SRCS_DISPLAY = 	display.c \
 				move.c \
 				mlx_utils.c \
 
+SRCS_MINIMAP = minimap.c \
+
 SRCS_DEBUG = debug_raycast.c \
 
 #OBJS
@@ -71,6 +75,8 @@ SRCS_RAYCAST_ABS = ${SRCS_RAYCAST:%.c=${RAYCAST}%.c}
 
 SRCS_DISPLAY_ABS = ${SRCS_DISPLAY:%.c=${DISPLAY}%.c}
 
+SRCS_MINIMAP_ABS = ${SRCS_MINIMAP:%.c=${MINIMAP}%.c}
+
 SRCS_PARSING_ABS = ${SRCS_PARSING:%.c=${PARSING}%.c}
 
 
@@ -79,6 +85,7 @@ OBJS_DEBUG = ${SRCS_DEBUG_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_GNL_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_RAYCAST_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_DISPLAY_ABS:%.c=${OBJ_DIR}%.o} \
+			${SRCS_MINIMAP_ABS:%.c=${OBJ_DIR}%.o} \
 
 OBJS_DEBPARSE = ${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
 				${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
@@ -105,6 +112,7 @@ INC_FILES = garbage.h \
 			raycast.h \
 			events.h \
 			mlx_utils.h \
+			minimap.h \
 
 INCLUDES =	mlx/mlx.h \
 			${INC_FILES:%.h=${INC_DIR}/%.h} \
@@ -122,12 +130,12 @@ FLAGS= -Wall -Wextra -Werror
 LEAKS= -fsanitize=address -g3
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
-				${CC} ${FLAGS} ${IMLX_MACOS} -c $< -o $@
+				${CC} ${FLAGS} ${IMLX_LINUX} -c $< -o $@
 
 all: Makefile makelib makemlx makedirs ${NAME}
 
 ${NAME}:	Makefile ${OBJS}
-			${CC} ${FLAGS} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${FLAGS} ${OBJS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
@@ -142,6 +150,7 @@ makedirs:
 			mkdir -p ${OBJ_DIR}${DEBUG}
 			mkdir -p ${OBJ_DIR}${DISPLAY}
 			mkdir -p ${OBJ_DIR}${PARSING}
+			mkdir -p ${OBJ_DIR}${MINIMAP}
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
@@ -154,7 +163,7 @@ fclean:		clean
 re:			fclean all
 
 debug:		 Makefile makelib makemlx makedirs ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LEAKS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${OBJS_DEBUG} ${LEAKS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 debugparsing: Makefile makelib makedirs ${OBJS_DEBPARSE}
 			${CC} ${OBJS_DEBPARSE} ${LEAKS} ${LIBFT_PATH}/libft.a -o ${NAME}
