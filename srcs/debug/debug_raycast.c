@@ -91,7 +91,7 @@ t_display init_displaydatas(t_cube *cube, t_memory *mem)
 	display.player_pos = cube->player->coord;
 	display.player_dir = vector2(0, 1);
 	display.plane = vector2(0.66f, 0);
-	display.screen_width = 100;
+	display.screen_width = 50;
 	display.mem = mem;
 
 	return (display);

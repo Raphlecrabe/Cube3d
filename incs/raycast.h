@@ -20,6 +20,7 @@
 typedef struct s_hit
 {
 	t_vector2 pos;
+	float	height;
 	float	distance;
 	int	side;
 	int	hit;
@@ -32,7 +33,6 @@ typedef struct	s_raycast
 	t_vector2	mappos;
 	t_vector2	side_dist;
 	t_vector2	delta_dist;
-	float		perpWall_dist;
 	t_vector2	step;
 }				t_raycast;
 
@@ -40,7 +40,7 @@ typedef struct 	s_stripe
 {
 	int		x;
 	t_vector2 pos;
-	float 	distance;
+	float 	height;
 	void	*sprite;
 }				t_stripe;
 

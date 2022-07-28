@@ -31,8 +31,7 @@ static void trace_raycast(t_display *display, t_vector2 hitpos)
 
 static void	display_stripe(t_stripe stripe)
 {
-	printf("|%.1f", stripe.distance);
-	//printf("Displaying stripe n°%d, raycast hit a wall at position %d, %d\n", stripe.x, (int)stripe.pos.x, (int)stripe.pos.y);
+	stripe.height += 0;
 }
 
 void	display_screen(t_display *display)
@@ -48,8 +47,4 @@ void	display_screen(t_display *display)
 		trace_raycast(display, stripe.pos);
 		x++;
 	}
-
-	//trace_raycast(display, stripe.pos);
-
-	printf("|\n");
 }

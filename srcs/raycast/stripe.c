@@ -43,7 +43,7 @@ t_stripe	get_stripe(int x, t_display *display)
 	hit = raycast_hit(x, display);
 
 	stripe.x = x;
-	stripe.distance = hit.distance;
+	stripe.height = hit.height;
 	stripe.sprite = get_sprite(hit.side, display->mem);
 	stripe.pos = hit.pos;
 

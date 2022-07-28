@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../incs/vectors.h"
+#include <math.h>
 
 t_vector2	vector2(float x, float y)
 {
@@ -48,4 +49,16 @@ t_vector2 vector2_multiply(t_vector2 v, float m)
 	v.y *= m;
 
 	return (v);
+}
+
+float vector2_magnitude(t_vector2 v)
+{
+	return (sqrtf(pow(v.x, 2) + pow(v.y, 2)));
+}
+
+t_vector2 vector2_normalize(t_vector2 v)
+{
+	float m = vector2_magnitude(v);
+
+	return (vector2(v.x / m, v.y / m));
 }

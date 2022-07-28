@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/07/27 16:23:08 by marvin           ###   ########.fr       */
+/*   Updated: 2022/07/28 23:22:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	rotate_right(t_display *display, float angle)
 void	key_affect(int keycode, t_display *display)
 {
 	float rotate_speed = 0.1f;
-	float movespeed = 1.0f;
+	float movespeed = 0.1f;
 	t_vector2 pos = display->player_pos;
 
 	if (keycode == Q_KEY_LIN)
