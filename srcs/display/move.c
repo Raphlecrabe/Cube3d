@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/07/28 23:22:21 by marvin           ###   ########.fr       */
+/*   Updated: 2022/07/29 12:24:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,64 +18,63 @@
 #include <mlx.h>
 #include <math.h>
 
-static void	rotate_left(t_display *display, float angle)
+static void	rotate(t_display *display, float angle)
 {
-	float oldDirX = display->player_dir.x;
-	display->player_dir.x = display->player_dir.x * cos(angle) - display->player_dir.y * sin(angle);
-	display->player_dir.y = oldDirX * sin(angle) + display->player_dir.y * cos(angle);
+	float	old_dir_x;
+	float	old_plane_x;
 
-	float oldPlaneX = display->plane.x;
-	display->plane.x = display->plane.x * cos(angle) - display->plane.y * sin(angle);
-	display->plane.y = oldPlaneX * sin(angle) + display->plane.y * cos(angle);
+	old_dir_x = display->player_dir.x;
+	display->player_dir.x = display->player_dir.x * cos(angle)
+		- display->player_dir.y * sin(angle);
+	display->player_dir.y = old_dir_x * sin(angle)
+		+ display->player_dir.y * cos(angle);
+	old_plane_x = display->plane.x;
+	display->plane.x = display->plane.x * cos(angle)
+		- display->plane.y * sin(angle);
+	display->plane.y = old_plane_x * sin(angle)
+		+ display->plane.y * cos(angle);
 }
 
-static void	rotate_right(t_display *display, float angle)
+int	col(float x, float y, t_map *map)
 {
-	float oldDirX = display->player_dir.x;
-	display->player_dir.x = display->player_dir.x * cos(-angle) - display->player_dir.y * sin(-angle);
-	display->player_dir.y = oldDirX * sin(-angle) + display->player_dir.y * cos(-angle);
-
-	float oldPlaneX = display->plane.x;
-	display->plane.x = display->plane.x * cos(-angle) - display->plane.y * sin(-angle);
-	display->plane.y = oldPlaneX * sin(-angle) + display->plane.y * cos(-angle);
+	if (map->lines[(int)x][(int)y] == '1')
+		return (1);
+	else
+		return (0);
 }
 
 void	key_affect(int keycode, t_display *display)
 {
-	float rotate_speed = 0.1f;
-	float movespeed = 0.1f;
-	t_vector2 pos = display->player_pos;
+	float		rotate_speed;
+	float		movespeed;
+	t_vector2	pos;
+	t_map		*map;
 
+	rotate_speed = ROTATE_SPEED;
+	movespeed = MOVE_SPEED;
+	pos = display->player_pos;
+	map = display->map;
 	if (keycode == Q_KEY_LIN)
-		rotate_left(display, rotate_speed);
+		rotate(display, -rotate_speed);
 	else if (keycode == D_KEY_LIN)
-		rotate_right(display, rotate_speed);
-	else if (keycode == UP_KEY_LIN && pos.y > 0)
+		rotate(display, rotate_speed);
+	else if (keycode == UP_KEY_LIN && !col(pos.x, pos.y - movespeed, map))
 		pos.y -= movespeed;
-	else if (keycode == DOWN_KEY_LIN && pos.y < 23)
+	else if (keycode == DOWN_KEY_LIN && !col(pos.x, pos.y + movespeed, map))
 		pos.y += movespeed;
-	else if (keycode == LEFT_KEY_LIN && pos.x > 0)
+	else if (keycode == LEFT_KEY_LIN && !col(pos.x - movespeed, pos.y, map))
 		pos.x -= movespeed;
-	else if (keycode == RIGHT_KEY_LIN && pos.x < 23)
+	else if (keycode == RIGHT_KEY_LIN && !col(pos.x + movespeed, pos.y, map))
 		pos.x += movespeed;
-
 	display->player_pos = pos;
 }
 
-int key_hook(int keycode, t_display *display)
+int	key_hook(int keycode, t_display *display)
 {
 	key_affect(keycode, display);
-
-	mlx_destroy_image(display->mlx, display->datas->img);
-
-	display->datas->img = mlx_new_image(display->mlx, display->datas->win_size.x, display->datas->win_size.y);
-	display->datas->addr = mlx_get_data_addr(display->datas->img, &display->datas->bits_per_pixel, &display->datas->line_length, &display->datas->endian);
-
+	if (!display_screen(display))
+		return (0);
 	minimap_display(display);
-
-	display_screen(display);
-
-	mlx_put_image_to_window(display->mlx, display->mlx_win, display->datas->img, 0, 0);
-
-	return (0);
+	ft_freetemp(display->mem);
+	return (1);
 }

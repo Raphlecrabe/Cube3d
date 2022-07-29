@@ -15,50 +15,47 @@
 
 t_vector2	vector2(float x, float y)
 {
-	t_vector2 vector;
+	t_vector2	vector;
 
 	vector.x = x;
 	vector.y = y;
-
 	return (vector);
 }
 
-t_vector2 vector2_add(t_vector2 vector_1, t_vector2 vector_2)
+t_vector2	vector2_add(t_vector2 vector_1, t_vector2 vector_2)
 {
-	t_vector2 result;
+	t_vector2	result;
 
 	result.x = vector_1.x + vector_2.x;
 	result.y = vector_1.y + vector_2.y;
-
 	return (result);
 }
 
-t_vector2 vector2_substract(t_vector2 vector_1, t_vector2 vector_2)
+t_vector2	vector2_substract(t_vector2 vector_1, t_vector2 vector_2)
 {
-	t_vector2 result;
+	t_vector2	result;
 
 	result.x = vector_1.x - vector_2.x;
 	result.y = vector_1.y - vector_2.y;
-
 	return (result);
 }
 
-t_vector2 vector2_multiply(t_vector2 v, float m)
+t_vector2	vector2_multiply(t_vector2 v, float m)
 {
 	v.x *= m;
 	v.y *= m;
-
 	return (v);
 }
 
-float vector2_magnitude(t_vector2 v)
+float	vector2_magnitude(t_vector2 v)
 {
 	return (sqrtf(pow(v.x, 2) + pow(v.y, 2)));
 }
 
-t_vector2 vector2_normalize(t_vector2 v)
+t_vector2	vector2_normalize(t_vector2 v)
 {
-	float m = vector2_magnitude(v);
+	float	m;
 
+	m = vector2_magnitude(v);
 	return (vector2(v.x / m, v.y / m));
 }

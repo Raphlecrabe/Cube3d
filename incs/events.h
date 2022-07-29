@@ -4,6 +4,9 @@
 # include "cube3d.h"
 # include "display.h"
 
+# define MOVE_SPEED 0.1f
+# define ROTATE_SPEED 0.2f
+
 # define A_KEY_MAC 0
 # define B_KEY_MAC 11
 # define C_KEY_MAC 8

@@ -25,9 +25,9 @@ static float	get_height(int side, t_raycast ray)
 		return (ray.side_dist.y - ray.delta_dist.y);
 }
 
-static t_vector2 get_step(t_raycast ray)
+static t_vector2	get_step(t_raycast ray)
 {
-	t_vector2 step;
+	t_vector2	step;
 
 	if (ray.dir.x < 0)
 		step.x = -1;
@@ -37,13 +37,12 @@ static t_vector2 get_step(t_raycast ray)
 		step.y = -1;
 	else
 		step.y = 1;
-
 	return (step);
 }
 
-static t_vector2 get_side(t_raycast ray, t_vector2 pos)
+static t_vector2	get_side(t_raycast ray, t_vector2 pos)
 {
-	t_vector2 side;
+	t_vector2	side;
 
 	if (ray.dir.x < 0)
 		side.x = (pos.x - ray.mappos.x) * ray.delta_dist.x;
@@ -53,7 +52,6 @@ static t_vector2 get_side(t_raycast ray, t_vector2 pos)
 		side.y = (pos.y - ray.mappos.y) * ray.delta_dist.y;
 	else
 		side.y = (ray.mappos.y + 1 - pos.y) * ray.delta_dist.y;
-
 	return (side);
 }
 
@@ -64,12 +62,18 @@ static t_raycast	init_ray(int x, t_display *display)
 	ray.cameraX = (float)(2 * x) / (float)display->screen_width - 1;
 	ray.dir.x = display->player_dir.x + display->plane.x * ray.cameraX;
 	ray.dir.y = display->player_dir.y + display->plane.y * ray.cameraX;
-	ray.delta_dist.x = (ray.dir.x == 0) ? 2147483647 : fabs(1 / ray.dir.x);
-	ray.delta_dist.y = (ray.dir.y == 0) ? 2147483647 : fabs(1 / ray.dir.y);
-	ray.mappos = vector2((int)display->player_pos.x, (int)display->player_pos.y);
+	if (ray.dir.x == 0)
+		ray.delta_dist.x = 2147483647;
+	else
+		ray.delta_dist.x = fabs(1 / ray.dir.x);
+	if (ray.dir.y == 0)
+		ray.delta_dist.y = 2147483647;
+	else
+		ray.delta_dist.y = fabs(1 / ray.dir.y);
+	ray.mappos = vector2((int)display->player_pos.x,
+			(int)display->player_pos.y);
 	ray.step = get_step(ray);
 	ray.side_dist = get_side(ray, display->player_pos);
-
 	return (ray);
 }
 
@@ -87,7 +91,6 @@ static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 		ray->mappos.y += ray->step.y;
 		hit->side = 1;
 	}
-
 	if (map->lines[(int)ray->mappos.x][(int)ray->mappos.y] == '1')
 		hit->hit = 1;
 }
@@ -98,16 +101,12 @@ t_hit	raycast_hit(int x, t_display *display)
 	t_raycast	ray;
 
 	ray = init_ray(x, display);
-
 	hit.hit = 0;
-
 	while (hit.hit == 0)
 		check_hit(&hit, display->map, &ray);
-
 	hit.height = get_height(hit.side, ray);
-
 	hit.distance = hit.height * vector2_magnitude(ray.dir);
-	hit.pos = vector2_add(vector2_multiply(ray.dir, hit.height), display->player_pos);
-
+	hit.pos = vector2_add(vector2_multiply(ray.dir, hit.height),
+			display->player_pos);
 	return (hit);
 }

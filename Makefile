@@ -10,8 +10,6 @@ RAYCAST = raycast/
 
 DISPLAY = display/
 
-MINIMAP = minimap/
-
 DEBUG = debug/
 
 SRCS = main.c
@@ -47,10 +45,10 @@ SRCS_RAYCAST = 	vectors.c \
 				stripe.c \
 
 SRCS_DISPLAY = 	display.c \
+				display_utils.c \
 				move.c \
 				mlx_utils.c \
-
-SRCS_MINIMAP = minimap.c \
+				minimap.c \
 
 SRCS_DEBUG = debug_raycast.c \
 
@@ -75,8 +73,6 @@ SRCS_RAYCAST_ABS = ${SRCS_RAYCAST:%.c=${RAYCAST}%.c}
 
 SRCS_DISPLAY_ABS = ${SRCS_DISPLAY:%.c=${DISPLAY}%.c}
 
-SRCS_MINIMAP_ABS = ${SRCS_MINIMAP:%.c=${MINIMAP}%.c}
-
 SRCS_PARSING_ABS = ${SRCS_PARSING:%.c=${PARSING}%.c}
 
 
@@ -85,7 +81,6 @@ OBJS_DEBUG = ${SRCS_DEBUG_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_GNL_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_RAYCAST_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_DISPLAY_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS_MINIMAP_ABS:%.c=${OBJ_DIR}%.o} \
 
 OBJS_DEBPARSE = ${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
 				${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
@@ -113,6 +108,7 @@ INC_FILES = garbage.h \
 			events.h \
 			mlx_utils.h \
 			minimap.h \
+			display.h \
 
 INCLUDES =	mlx/mlx.h \
 			${INC_FILES:%.h=${INC_DIR}/%.h} \
@@ -150,7 +146,6 @@ makedirs:
 			mkdir -p ${OBJ_DIR}${DEBUG}
 			mkdir -p ${OBJ_DIR}${DISPLAY}
 			mkdir -p ${OBJ_DIR}${PARSING}
-			mkdir -p ${OBJ_DIR}${MINIMAP}
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean

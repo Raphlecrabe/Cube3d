@@ -10,7 +10,10 @@ typedef struct s_display
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_mlx_datas	*datas;
+	t_vector2	win_size;
+	t_mlx_datas	*view;
+	t_mlx_datas	*minimap;
+	t_vector2	*hitpos;
 	t_map		*map;
 	t_vector2	player_pos;
 	t_vector2	player_dir;
@@ -20,6 +23,8 @@ typedef struct s_display
 
 }				t_display;
 
-void	display_screen(t_display *display);
+int		display_screen(t_display *display);
+void	img_clean(void *mlx, t_mlx_datas *datas);
+void 	fill_img(t_mlx_datas *datas, int color);
 
 #endif
