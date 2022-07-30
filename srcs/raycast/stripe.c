@@ -18,7 +18,7 @@
 
 static void	*get_sprite(int side, t_memory *mem)
 {
-	t_wallcolor *wall;
+	t_wallcolor	*wall;
 
 	wall = ft_malloc_temp(1, sizeof(t_wallcolor), mem);
 	if (wall == NULL)
@@ -31,21 +31,18 @@ static void	*get_sprite(int side, t_memory *mem)
 		wall->color = COLOR_GREEN;
 	if (side == 3)
 		wall->color = COLOR_RED;
-	
 	return (wall);
 }
 
 t_stripe	get_stripe(int x, t_display *display)
 {
-	t_stripe 	stripe;
+	t_stripe	stripe;
 	t_hit		hit;
 
 	hit = raycast_hit(x, display);
-
 	stripe.x = x;
-	stripe.distance = hit.distance;
+	stripe.height = hit.height;
 	stripe.sprite = get_sprite(hit.side, display->mem);
 	stripe.pos = hit.pos;
-
 	return (stripe);
 }

@@ -14,41 +14,35 @@
 #include "../../incs/raycast.h"
 #include "../../incs/mlx_utils.h"
 #include "../../incs/vectors.h"
+#include "../../incs/minimap.h"
 #include <mlx.h>
 #include <stdio.h>
 
-static void trace_raycast(t_display *display, t_vector2 hitpos)
+static void	display_stripe(t_stripe stripe, t_mlx_datas *datas)
 {
-	t_vector2 offset = vector2(250, 250);
-
-	t_vector2 player2screen = vector2_add(display->player_pos, offset);
-	t_vector2 ray2screen = vector2_add(hitpos, offset);
-
-	draw_line(display->datas, player2screen, ray2screen, 0x00FF0000);
-	mlx_put_image_to_window(display->mlx, display->mlx_win, display->datas->img, 0, 0);
+	stripe.height += 0;
+	fill_img(datas, 0x000000FF);
 }
 
-static void	display_stripe(t_stripe stripe)
+int	display_screen(t_display *display)
 {
-	printf("|%.1f", stripe.distance);
-
-	//printf("Displaying stripe n°%d, raycast hit a wall at position %d, %d\n", stripe.x, (int)stripe.pos.x, (int)stripe.pos.y);
-}
-
-void	display_screen(t_display *display)
-{
-	t_stripe 	stripe;
+	t_stripe	stripe;
 	int			x;
 
 	x = 0;
+	img_clean(display->mlx, display->view);
+	display->hitpos = ft_malloc_temp(sizeof(t_vector2),
+			display->screen_width, display->mem);
+	if (display->hitpos == NULL)
+		return (0);
 	while (x < display->screen_width)
 	{
 		stripe = get_stripe(x, display);
-		display_stripe(stripe);
+		display_stripe(stripe, display->view);
+		display->hitpos[x] = stripe.pos;
 		x++;
 	}
-
-	trace_raycast(display, stripe.pos);
-
-	printf("|\n");
+	mlx_put_image_to_window(display->mlx, display->mlx_win,
+		display->view->img, 0, 0);
+	return (1);
 }

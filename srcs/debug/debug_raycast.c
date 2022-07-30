@@ -6,26 +6,31 @@
 #include "../../incs/events.h"
 #include "../../incs/mlx_utils.h"
 #include "../../incs/vectors.h"
+#include "../../incs/minimap.h"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <mlx.h>
 
-int	**create_map(char *mapfile, t_memory *mem)
+char	**create_map(char *mapfile, t_memory *mem)
 {
 	char	*line;
-	int		**map;
+	char	**lines;
 	int		i;
 	int		j;
 	int		fd;
 
 	fd = open(mapfile, O_RDONLY);
 
-	map = ft_malloc_const(24, sizeof(int*), mem);
+	lines = ft_malloc_const(25, sizeof(char *), mem);
+	lines[24] = NULL;
 
 	i = -1;
-	while (++i < 24)	
-		map[i] = ft_malloc_const(24, sizeof(int), mem);
+	while (++i < 24)
+	{
+		lines[i] = ft_malloc_const(25, sizeof(char), mem);
+		lines[i][24] = '\0';
+	}	
 	
 	i = 0;
 	line = get_next_line(fd);
@@ -33,13 +38,13 @@ int	**create_map(char *mapfile, t_memory *mem)
 	{
 		j = -1;
 		while (++j < 24)
-			map[j][i] = line[j] - '0';
+			lines[j][i] = line[j];
 		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
 
-	return (map);
+	return (lines);
 }
 
 void display_map(t_map *map)
@@ -52,7 +57,7 @@ void display_map(t_map *map)
 	{	
 		x = -1;
 		while (++x < map->width)
-			printf("%d", map->map[x][y]);
+			printf("%c", map->lines[x][y]);
 		printf("\n");
 	}
 }
@@ -64,16 +69,15 @@ t_cube	init_cubdatas(char *mapfile, t_memory *mem)
 	t_player	*player;
 
 	map = ft_malloc_const(1, sizeof(t_map), mem);
-	map->map = create_map(mapfile, mem);
+	map->lines = create_map(mapfile, mem);
 	map->heigth = 24;
 	map->width = 24;
 
 	player = ft_malloc_const(1, sizeof(t_player), mem);
-	player->x = 12;
-	player->y = 12;
+	player->coord = vector2(15.5f, 15.5f);
 	player->angle = 0.0f;
 
-	map->map[(int)player->x][(int)player->y] = 7;
+	map->lines[(int)player->coord.x][(int)player->coord.y] = 7;
 
 	cube.player = player;
 	cube.map = map;
@@ -88,21 +92,22 @@ t_display init_displaydatas(t_cube *cube, t_memory *mem)
 	t_display display;
 
 	display.map = cube->map;
-	display.player_pos = vector2(cube->player->x, cube->player->y);
+	display.player_pos = cube->player->coord;
 	display.player_dir = vector2(0, 1);
 	display.plane = vector2(0.66f, 0);
-	display.screen_width = 30;
+	display.screen_width = 50;
+	display.win_size = vector2(800, 800);
 	display.mem = mem;
 
 	return (display);
 }
 
-t_mlx_datas init_mlxdatas(void *mlx)
+t_mlx_datas init_mlxdatas(void *mlx, t_vector2 img_size)
 {
 	t_mlx_datas datas;
 
-	datas.win_size = vector2(500, 500);
-	datas.img = mlx_new_image(mlx, datas.win_size.x, datas.win_size.y);
+	datas.img_size = img_size;
+	datas.img = mlx_new_image(mlx, datas.img_size.x, datas.img_size.y);
 	datas.addr = mlx_get_data_addr(datas.img, &datas.bits_per_pixel, &datas.line_length, &datas.endian);
 
 	return (datas);
@@ -113,7 +118,8 @@ int main(int argc, char **argv)
 	t_cube 		cube;
 	t_display 	display;
 	t_memory	mem;
-	t_mlx_datas datas;
+	t_mlx_datas view;
+	t_mlx_datas	minimap;
 
 	void	*mlx;
 	void	*mlx_win;
@@ -129,15 +135,19 @@ int main(int argc, char **argv)
 
 	mlx = mlx_init();
 
-	datas = init_mlxdatas(mlx);
+	view = init_mlxdatas(mlx, display.win_size);
+	minimap = init_mlxdatas(mlx, vector2(300, 300));
 
-	mlx_win = mlx_new_window(mlx, datas.win_size.x, datas.win_size.y, "cub3d");
+	mlx_win = mlx_new_window(mlx, display.win_size.x, display.win_size.y, "cub3d");
 
 	display.mlx = mlx;
 	display.mlx_win = mlx_win;
-	display.datas = &datas;
+	display.view = &view;
+	display.minimap = &minimap;
 
 	display_screen(&display);
+
+	minimap_display(&display);
 
 	mlx_key_hook(mlx_win, key_hook, &display);
 	mlx_loop(mlx);

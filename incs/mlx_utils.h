@@ -6,7 +6,7 @@
 typedef struct	s_mlx_datas{
 	void		*img;
 	char		*addr;
-	t_vector2	win_size;
+	t_vector2	img_size;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
