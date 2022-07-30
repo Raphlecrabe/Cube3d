@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:46:53 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/25 15:44:29 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 14:09:58 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 // Checkholes.c
 
@@ -44,7 +45,7 @@ int		ft_findpath(t_cube *cube, char *line, int i);
 
 // Initcube.c
 
-int		ft_initcube(t_cube *cube, t_memory *mem);
+int		ft_initcube(t_cube **cube, t_memory *mem);
 
 // Map.c
 
@@ -57,7 +58,7 @@ int		ft_parsefloor(char *line, int i);
 
 // Parsemap.c
 
-int		ft_addline(t_cube *cube, char *line, t_list *mapping);
+int		ft_addline(t_cube *cube, char *line, t_list **mapping);
 int		ft_parseline(t_cube *cube, char *l);
 int		ft_islast(t_cube *cube);
 
@@ -101,8 +102,10 @@ int		ft_parsewest(char *line, int i);
 
 int		ft_openmap(char **argv);
 
-// Initcube.c
+// Debugparsing.c
 
-int		ft_initcube(t_cube *cube, t_memory *mem);
+void	ft_printallcheck(t_cube *cube);
+void	ft_printdoublechar(char **table);
+void	ft_printtextures(t_cube *cube);
 
 #endif

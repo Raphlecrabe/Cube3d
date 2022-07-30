@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/07/25 15:41:09 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 14:09:35 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_parseline(t_cube *cube, char *l)
 	i = 0;
 	while (l[i] != '\0')
 	{
-		while (l[i] != '\0' && ((l[i] >= 9 && l[i] <= 13) || l[i] == 32))
+		while (l[i] != '\0' && l[i] != '\n'
+			&& ((l[i] >= 9 && l[i] <= 13) || l[i] == 32))
 			i = i + 1;
 		if (l[i] == 'W' || l[i] == 'E' || l[i] == 'N' || l[i] == 'S')
 		{
@@ -42,24 +43,22 @@ int	ft_parseline(t_cube *cube, char *l)
 			}
 			cube->check.player = 1;
 		}
-		if (l[i] != '0' || l[i] != '1' || l[i] != 'W'
-			|| l[i] != 'E' || l[i] != 'S' || l[i] != 'N')
-		{
-			write(2, "Error, wrong format map\n", 24);
-			return (-1);
-		}
+		if (l[i] != '0' && l[i] != '1' && l[i] != 'W'
+			&& l[i] != 'E' && l[i] != 'S' && l[i] != 'N' && l[i] != '\n'
+			&& l[i] != '\0')
+			return (ft_message("Error, wrong format map\n", -1));
 		i++;
 	}
 	return (0);
 }
 
-int	ft_addline(t_cube *cube, char *line, t_list *mapping)
+int	ft_addline(t_cube *cube, char *line, t_list **mapping)
 {
 	t_list	*lista;
 
 	lista = ft_lstnew_temp(line, cube->mem);
 	if (lista == NULL)
 		return (-1);
-	ft_lstadd_back(&mapping, lista);
+	ft_lstadd_back(mapping, lista);
 	return (0);
 }

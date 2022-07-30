@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:46:39 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/25 14:25:58 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/27 15:02:03 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_testline(char *line)
 			|| line[i] == 'N' || line[i] == 'S') && ft_ismap(line, i) == 0)
 		return (0);
 	if (line[i] == 'F' || line[i] == 'C')
-		return (1);
+		return (0);
 	if ((line[i] == '1' || line[i] == '0') || ((line[i] == 'W' || line[i] == 'E'
 				|| line[i] == 'N' || line[i] == 'S')
 			&& ft_ismap(line, i) == 1))
@@ -95,7 +95,8 @@ int	ft_fullparse(t_cube *cube, char **argv)
 			free(line);
 			return (-1);
 		}
-		free(line);
+		if (cube->parsed == 0)
+			free(line);
 	}
 	return (0);
 }

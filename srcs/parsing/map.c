@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:53:33 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/25 15:41:33 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 15:00:24 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_convertholes(char **lines)
 	while (lines[i] != NULL)
 	{
 		ft_miniholes(lines, &i, &j);
+		i++;
 	}
 }
 
@@ -69,6 +70,9 @@ int	ft_convertchar(t_cube *cube, t_list *mapping)
 	i = 0;
 	j = 0;
 	mapmalloc = mapping;
+	cube->map = ft_malloc_const(sizeof(t_map), 1, cube->mem);
+	if (cube->map == NULL)
+		return (-1);
 	cube->map->heigth = ft_lstsize(mapping);
 	cube->map->width = ft_maxlines(mapping);
 	cube->map->lines = ft_malloc_const(sizeof(char *),
@@ -97,23 +101,26 @@ int	ft_parsemap(t_cube *cube, char *line, int fd)
 		return (-1);
 	if (ft_parseline(cube, line) == -1)
 		return (-1);
-	if (ft_addline(cube, line, mapping) == -1)
+	if (ft_addline(cube, line, &mapping) == -1)
 		return (-1);
 	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(fd);
 		if (line == NULL)
-			return (0);
+			break ;
 		if (ft_parseline(cube, line) == -1)
 			return (-1);
-		if (ft_addline(cube, line, mapping) == -1)
+		if (ft_addline(cube, line, &mapping) == -1)
 			return (-1);
 	}
 	if (ft_convertchar(cube, mapping) == -1)
 		return (-1);
+	printf("infinite\n");
 	ft_convertholes(cube->map->lines);
+	printf("infinite\n");
 	if (ft_parseopen(cube) == -1)
 		return (-1);
+	cube->parsed = 1;
 	return (0);
 }

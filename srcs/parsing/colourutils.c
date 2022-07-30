@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 15:31:43 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/21 17:05:12 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/07/27 13:56:36 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,19 @@ void	ft_fullwhole(char *whole, char *line, int i)
 	j = 0;
 	while (line[i] != '\0')
 	{
-		while (line[i] != '\0' && line[i] != ',')
+		while (line[i] != '\0' && line[i] != ',' && line[i] != '\n')
 		{
 			whole[j] = line[i];
 			i++;
 			j++;
 		}
-		if (line[i] == '\0')
+		if (line[i] == '\0' || line[i] == '\n')
 			break ;
 		else
 		{
 			whole[j] = line[i];
 			i++;
+			j++;
 		}
 	}
 }
@@ -68,15 +69,15 @@ char	*ft_getwhole(char *line, int i, t_memory *mem)
 	j = 0;
 	while (line[i] != '\0')
 	{
-		while (line[i] != '\0' && line[i] != ',')
+		while (line[i] != '\0' && line[i] != ',' && line[i] != '\n')
 		{
 			i++;
 			j++;
 		}
-		if (line[i] == '\0')
+		if (line[i] == '\0' || line[i] == '\n')
 			break ;
-		else
-			i++;
+		i++;
+		j++;
 	}
 	whole = ft_malloc_temp(sizeof(char), j + 1, mem);
 	if (whole == NULL)

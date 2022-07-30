@@ -36,6 +36,7 @@ SRCS_PARSING = 	colourutils.c \
 				main.c \
 				openmap.c \
 				initcube.c \
+				debugparsing.c \
 
 SRCS_GNL = 	get_next_line.c \
 			get_next_line_utils.c \
