@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbagecoll.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:23:04 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/30 18:59:49 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/08/02 15:30:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*ft_malloc_temp(size_t memory, size_t size, t_memory *mem)
 	if (p == NULL)
 		return (NULL);
 	p = (void *)TAG(p);
-	lst = ft_lstnew(p);
+	lst = ft_lstnew(TAG(p));
 	if (lst == NULL)
 	{
 		free(p);
