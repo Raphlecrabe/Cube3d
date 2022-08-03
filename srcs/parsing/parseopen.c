@@ -17,10 +17,15 @@ int	ft_initparseonec(int j, char **lines, int *i)
 	*i = 0;
 	while (lines[*i] != NULL && ft_checkspacec(lines, j, *i) == 1)
 			*i = *i + 1;
-	if (lines[*i][j] == '0')
+	if (lines[*i] != NULL && (lines[*i][j] == '0' || lines[*i][j] == 'W'
+			|| lines[*i][j] == 'E' || lines[*i][j] == 'N' || lines[*i][j] == 'S'))
 		return (-1);
 	while (lines[*i] != NULL && ft_checknumbersc(lines, j, *i) == 1)
 		*i = *i + 1;
+	if (lines[*i - 1][j] == '0' || lines[*i - 1][j] == 'W'
+			|| lines[*i - 1][j] == 'E'
+			|| lines[*i - 1][j] == 'N' || lines[*i - 1][j] == 'S')
+		return (-1);
 	return (0);
 }
 
@@ -32,13 +37,17 @@ int	ft_parseonec(int j, char **lines)
 		return (-1);
 	while (lines[i] != NULL)
 	{
-		while (lines[i] && ft_checkspacec(lines, j, i) == 1)
+		while (lines[i] != NULL && ft_checkspacec(lines, j, i) == 1)
 			i++;
-		if (lines[i][j] == '0' || lines[i][j] == 'W'
-			|| lines[i][j] == 'E' || lines[i][j] == 'N' || lines[i][j] == 'S')
+		if (lines[i] != NULL && (lines[i][j] == '0' || lines[i][j] == 'W'
+			|| lines[i][j] == 'E' || lines[i][j] == 'N' || lines[i][j] == 'S'))
 			return (-1);
 		while (lines[i] && ft_checknumbersc(lines, j, i))
 			i++;
+		if (lines[i - 1][j] == '0' || lines[i - 1][j] == 'W'
+			|| lines[i - 1][j] == 'E'
+			|| lines[i - 1][j] == 'N' || lines[i - 1][j] == 'S')
+			return (-1);
 	}
 	return (0);
 }

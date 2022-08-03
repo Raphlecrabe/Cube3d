@@ -56,16 +56,16 @@ int	ft_testline(char *line)
 	return (-1);
 }
 
-int	ft_processline(t_cube *cube, char *line, int fd)
+int	ft_processline(t_cube *cube, char **line, int fd)
 {
 	int	i;
 
-	i = ft_testline(line);
+	i = ft_testline(*line);
 	if (i == -1)
 		return (-1);
 	if (i == 0)
 	{
-		if (ft_addtexture(cube, line) == -1)
+		if (ft_addtexture(cube, *line) == -1)
 			return (-1);
 	}
 	if (i == 2)
@@ -90,7 +90,7 @@ int	ft_fullparse(t_cube *cube, char **argv)
 		line = get_next_line(fd);
 		if (line == NULL)
 			return (0);
-		if (ft_processline(cube, line, fd) == -1)
+		if (ft_processline(cube, &line, fd) == -1)
 		{
 			free(line);
 			return (-1);

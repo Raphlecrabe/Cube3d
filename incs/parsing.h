@@ -49,7 +49,7 @@ int		ft_initcube(t_cube **cube, t_memory *mem);
 
 // Map.c
 
-int		ft_parsemap(t_cube *cube, char *line, int fd);
+int		ft_parsemap(t_cube *cube, char **line, int fd);
 
 // Parsefc.c
 
@@ -107,5 +107,6 @@ int		ft_openmap(char **argv);
 void	ft_printallcheck(t_cube *cube);
 void	ft_printdoublechar(char **table);
 void	ft_printtextures(t_cube *cube);
+void	ft_printlist(t_list *list);
 
 #endif

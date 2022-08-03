@@ -42,6 +42,7 @@ void	ft_convertholes(char **lines)
 	j = 0;
 	while (lines[i] != NULL)
 	{
+		j = 0;
 		ft_miniholes(lines, &i, &j);
 		i++;
 	}
@@ -92,35 +93,36 @@ int	ft_convertchar(t_cube *cube, t_list *mapping)
 	return (0);
 }
 
-int	ft_parsemap(t_cube *cube, char *line, int fd)
+int	ft_parsemap(t_cube *cube, char **line, int fd)
 {
 	t_list	*mapping;
 
 	mapping = NULL;
 	if (ft_islast(cube) == -1)
 		return (-1);
-	if (ft_parseline(cube, line) == -1)
+	if (ft_parseline(cube, *line) == -1)
 		return (-1);
-	if (ft_addline(cube, line, &mapping) == -1)
+	if (ft_addline(cube, *line, &mapping) == -1)
 		return (-1);
-	while (line != NULL)
+	while (*line != NULL)
 	{
-		free(line);
-		line = get_next_line(fd);
-		if (line == NULL)
+		free(*line);
+		*line = get_next_line(fd);
+		if (*line == NULL)
 			break ;
-		if (ft_parseline(cube, line) == -1)
+		if (ft_parseline(cube, *line) == -1)
 			return (-1);
-		if (ft_addline(cube, line, &mapping) == -1)
+		if (ft_addline(cube, *line, &mapping) == -1)
 			return (-1);
 	}
 	if (ft_convertchar(cube, mapping) == -1)
 		return (-1);
-	printf("infinite\n");
 	ft_convertholes(cube->map->lines);
-	printf("infinite\n");
+	ft_printdoublechar(cube->map->lines);
 	if (ft_parseopen(cube) == -1)
 		return (-1);
+	if (cube->check.player != 1)
+		return (ft_message("Error, player not found on the map\n", -1));
 	cube->parsed = 1;
 	return (0);
 }

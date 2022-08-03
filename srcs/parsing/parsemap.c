@@ -55,8 +55,10 @@ int	ft_parseline(t_cube *cube, char *l)
 int	ft_addline(t_cube *cube, char *line, t_list **mapping)
 {
 	t_list	*lista;
+	char	*temp;
 
-	lista = ft_lstnew_temp(line, cube->mem);
+	temp = ft_strdup_temp(line, cube->mem);
+	lista = ft_lstnew_temp(temp, cube->mem);
 	if (lista == NULL)
 		return (-1);
 	ft_lstadd_back(mapping, lista);

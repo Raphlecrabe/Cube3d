@@ -33,7 +33,6 @@ SRCS_PARSING = 	colourutils.c \
 				parseopen.c \
 				parseopen2.c \
 				parseopenutils.c \
-				main.c \
 				openmap.c \
 				initcube.c \
 				debugparsing.c \
@@ -122,7 +121,7 @@ NAME= cub3d
 
 CC= gcc
 
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra
 
 LEAKS= -fsanitize=address -g3
 

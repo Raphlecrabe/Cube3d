@@ -32,6 +32,7 @@ void	ft_printdoublechar(char **table)
 	j = 0;
 	while (table[i] != NULL)
 	{
+		j = 0;
 		printf("---------TABLE[%d]---------\n", i);
 		while (table[i][j] != '\0')
 		{
@@ -51,4 +52,13 @@ void	ft_printtextures(t_cube *cube)
 	printf("south = %s\n", cube->south);
 	printf("floor = %d\n", cube->floor);
 	printf("ceiling = %d\n", cube->ceiling);
+}
+
+void	ft_printlist(t_list *list)
+{
+	while (list)
+	{
+		printf("list = %s\n", list->content);
+		list = list->next;
+	}
 }

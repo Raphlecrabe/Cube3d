@@ -43,7 +43,7 @@ int	ft_checkcol_hole(char **lines, int i, int j)
 	if (lines[i] == NULL)
 		return (0);
 	i = mem;
-	while (i >= 0 && ft_isspace(lines[i][j]) == 1)
+	while (i > 0 && ft_isspace(lines[i][j]) == 1)
 		i--;
 	if (i == 0 && ft_isnumbers(lines[i][j]) == 0)
 		return (0);
