@@ -20,7 +20,7 @@
 typedef struct s_hit
 {
 	t_vector2 pos;
-	float	height;
+	float	distance_adapted;
 	float	distance;
 	int	side;
 	int	hit;
@@ -40,7 +40,7 @@ typedef struct 	s_stripe
 {
 	int		x;
 	t_vector2 pos;
-	float 	height;
+	int 	height;
 	void	*sprite;
 }				t_stripe;
 
