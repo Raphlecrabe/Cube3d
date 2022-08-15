@@ -33,6 +33,7 @@ int	display_screen(t_display *display)
 	img_clean(display->mlx, display->view);
 	display->hitpos = ft_malloc_temp(sizeof(t_vector2),
 			display->screen_width, display->mem);
+	ft_drawcf(display);
 	if (display->hitpos == NULL)
 		return (0);
 	while (x < display->screen_width)
@@ -45,4 +46,15 @@ int	display_screen(t_display *display)
 	mlx_put_image_to_window(display->mlx, display->mlx_win,
 		display->view->img, 0, 0);
 	return (1);
+}
+
+int	ft_maindisplay(t_cube *cube)
+{
+	t_display	*display;
+
+	if (ft_initdisplay(&display, cube) == -1)
+		return (-1);
+	if (ft_display_screen(display) == -1)
+		return (-1);
+	
 }

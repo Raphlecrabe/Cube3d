@@ -19,8 +19,8 @@ int	ft_initcube(t_cube **cube, t_memory *mem)
 		return (-1);
 	(*cube)->mem = mem;
 	(*cube)->map = NULL;
-	(*cube)->player = ft_malloc_const(1, sizeof(t_player), mem);
-	if ((*cube)->player == NULL)
+	(*cube)->playerinit = ft_malloc_const(1, sizeof(t_playerinit), mem);
+	if ((*cube)->playerinit == NULL)
 		return (-1);
 	(*cube)->west = NULL;
 	(*cube)->east = NULL;

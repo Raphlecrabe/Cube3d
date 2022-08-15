@@ -39,6 +39,8 @@ int	ft_testline(char *line)
 	int	i;
 
 	i = 0;
+	if (ft_isempty(line) == 1)
+		return (3);
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i++;
 	if ((line[i] == 'W' || line[i] == 'E'
@@ -50,8 +52,6 @@ int	ft_testline(char *line)
 				|| line[i] == 'N' || line[i] == 'S')
 			&& ft_ismap(line, i) == 1))
 		return (2);
-	if (ft_isempty(line) == 1)
-		return (3);
 	write(2, "Error, one line or more is not well configured\n", 40);
 	return (-1);
 }

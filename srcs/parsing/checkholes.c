@@ -12,7 +12,7 @@
 
 #include "../../incs/parsing.h"
 
-int	ft_checkline_hole(char **lines, int i, int j)
+/*int	ft_checkline_hole(char **lines, int i, int j)
 {
 	int	mem;
 
@@ -58,3 +58,4 @@ int	ft_ishole(char **lines, int i, int j)
 		return (0);
 	return (1);
 }
+*/

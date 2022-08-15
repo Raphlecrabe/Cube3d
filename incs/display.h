@@ -6,6 +6,16 @@
 #include "garbage.h"
 #include "mlx_utils.h"
 
+typedef struct s_texture
+{
+	char	*west;
+	char	*east;
+	char	*north;
+	char	*south;
+	int		ceiling;
+	int		floor;
+}
+
 typedef struct s_display
 {
 	void		*mlx;
@@ -19,6 +29,7 @@ typedef struct s_display
 	t_vector2	player_dir;
 	t_vector2	plane;
 	t_memory	*mem;
+	t_texture	*textures;
 	int			screen_width;
 
 }				t_display;

@@ -59,7 +59,7 @@ int		ft_parsefloor(char *line, int i);
 // Parsemap.c
 
 int		ft_addline(t_cube *cube, char *line, t_list **mapping);
-int		ft_parseline(t_cube *cube, char *l);
+int		ft_parseline(t_cube *cube, char *l, int j);
 int		ft_islast(t_cube *cube);
 
 // Parseopen.c

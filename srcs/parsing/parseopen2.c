@@ -17,17 +17,20 @@ int	ft_parseonel(char **lines, int i)
 	int	j;
 
 	j = 0;
-	while (lines[i][j] && ft_isspace(lines[i][j]) == 1)
-		j++;
-	if (lines[i][j] == '0' || lines[i][j] == 'W'
-		|| lines[i][j] == 'E' || lines[i][j] == 'N' || lines[i][j] == 'S')
-		return (-1);
-	while (lines[i][j] && ft_isnumbers(lines[i][j]) == 1)
-		j++;
-	j--;
-	if (lines[i][j] == '0' || lines[i][j] == 'W'
-		|| lines[i][j] == 'E' || lines[i][j] == 'N' || lines[i][j] == 'S')
-		return (-1);
+	while (lines[i][j] != '\0')
+	{
+		while (lines[i][j] && ft_isspace(lines[i][j]) == 1)
+			j++;
+		if (lines[i][j] == '0' || lines[i][j] == 'W'
+			|| lines[i][j] == 'E' || lines[i][j] == 'N' || lines[i][j] == 'S')
+			return (-1);
+		while (lines[i][j] && ft_isnumbers(lines[i][j]) == 1)
+			j++;
+		if (lines[i][j - 1] == '0' || lines[i][j - 1] == 'W'
+			|| lines[i][j - 1] == 'E'
+			|| lines[i][j - 1] == 'N' || lines[i][j - 1] == 'S')
+			return (-1);
+	}
 	return (0);
 }
 
