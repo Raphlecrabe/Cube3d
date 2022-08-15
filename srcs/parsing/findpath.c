@@ -132,6 +132,8 @@ int	ft_findpath(t_cube *cube, char *line, int i)
 {
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i = i + 1;
+	if (line[i] == '\0' || line[i + 1] == '\0' || line[i + 2] == '\0')
+		return (ft_message("Error, Wrong texture format\n", -1));
 	if (line[i] == 'W')
 	{
 		if (ft_pathwest(cube, line, i + 2) == -1)

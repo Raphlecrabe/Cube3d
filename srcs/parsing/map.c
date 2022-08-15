@@ -12,7 +12,7 @@
 
 #include "../../incs/parsing.h"
 
-void	ft_miniholes(char **lines, int *i, int *j)
+/*void	ft_miniholes(char **lines, int *i, int *j)
 {
 	while (lines[*i][*j] != '\0' && ft_isspace(lines[*i][*j]) == 1)
 			*j = *j + 1;
@@ -46,7 +46,7 @@ void	ft_convertholes(char **lines)
 		ft_miniholes(lines, &i, &j);
 		i++;
 	}
-}
+}*/
 
 size_t	ft_maxlines(t_list *mapping)
 {
@@ -96,28 +96,30 @@ int	ft_convertchar(t_cube *cube, t_list *mapping)
 int	ft_parsemap(t_cube *cube, char **line, int fd)
 {
 	t_list	*mapping;
+	int		j;
 
 	mapping = NULL;
+	j = 0;
 	if (ft_islast(cube) == -1)
 		return (-1);
-	if (ft_parseline(cube, *line) == -1)
+	if (ft_parseline(cube, *line, j) == -1)
 		return (-1);
 	if (ft_addline(cube, *line, &mapping) == -1)
 		return (-1);
 	while (*line != NULL)
 	{
 		free(*line);
+		j++;
 		*line = get_next_line(fd);
 		if (*line == NULL)
 			break ;
-		if (ft_parseline(cube, *line) == -1)
+		if (ft_parseline(cube, *line, j) == -1)
 			return (-1);
 		if (ft_addline(cube, *line, &mapping) == -1)
 			return (-1);
 	}
 	if (ft_convertchar(cube, mapping) == -1)
 		return (-1);
-	ft_convertholes(cube->map->lines);
 	ft_printdoublechar(cube->map->lines);
 	if (ft_parseopen(cube) == -1)
 		return (-1);

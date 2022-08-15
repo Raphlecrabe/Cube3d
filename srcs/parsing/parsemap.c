@@ -12,6 +12,33 @@
 
 #include "../../incs/parsing.h"
 
+void	ft_fullplayer(t_cube *cube, int j, int i, char c)
+{
+	cube->check.player = 1;
+	cube->playerinit->coord.x = j;
+	cube->playerinit->coord.y = i;
+	if (c == 'W')
+	{
+		cube->playerinit->angle.x = -1;
+		cube->playerinit->angle.y = 0;
+	}
+	if (c == 'E')
+	{
+		cube->playerinit->angle.x = 1;
+		cube->playerinit->angle.y = 0;
+	}
+	if (c == 'N')
+	{
+		cube->playerinit->angle.x = 0;
+		cube->playerinit->angle.y = -1;
+	}
+	if (c == 'S')
+	{
+		cube->playerinit->angle.x = 0;
+		cube->playerinit->angle.y = 1;
+	}
+}
+
 int	ft_islast(t_cube *cube)
 {
 	if (cube->check.pfloor != 1 || cube->check.pceil != 1
@@ -24,7 +51,7 @@ int	ft_islast(t_cube *cube)
 	return (0);
 }
 
-int	ft_parseline(t_cube *cube, char *l)
+int	ft_parseline(t_cube *cube, char *l, int j)
 {
 	int	i;
 
@@ -41,7 +68,8 @@ int	ft_parseline(t_cube *cube, char *l)
 				write(2, "Error, second player found on the map\n", 38);
 				return (-1);
 			}
-			cube->check.player = 1;
+			ft_fullplayer(cube, j, i, l[i]);
+
 		}
 		if (l[i] != '0' && l[i] != '1' && l[i] != 'W'
 			&& l[i] != 'E' && l[i] != 'S' && l[i] != 'N' && l[i] != '\n'

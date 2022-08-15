@@ -16,11 +16,11 @@
 # include "garbage.h"
 # include "vectors.h"
 
-typedef struct s_player
+typedef struct s_playerinit
 {
 	t_vector2	coord;
-	float		angle;
-}	t_player;
+	t_vector2	angle;
+}	t_playerinit;
 
 typedef struct s_map
 {
@@ -42,19 +42,19 @@ typedef struct s_check
 
 typedef struct s_cube
 {
-	int			fd;
-	int			ceiling;
-	int			floor;
-	t_map		*map;
-	t_player	*player;
-	char		*west;
-	char		*east;
-	char		*north;
-	char		*south;
-	t_check		check;
-	int			parsed;
-	char		*path;
-	t_memory	*mem;
+	int				fd;
+	int				ceiling;
+	int				floor;
+	t_map			*map;
+	t_playerinit	*playerinit;
+	char			*west;
+	char			*east;
+	char			*north;
+	char			*south;
+	t_check			check;
+	int				parsed;
+	char			*path;
+	t_memory		*mem;
 }	t_cube;
 
 #endif
