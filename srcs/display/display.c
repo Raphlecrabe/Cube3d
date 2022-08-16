@@ -20,7 +20,7 @@ static void	display_stripe(t_stripe stripe, t_mlx_datas *datas, float size)
 
 	i = 0;
 	y = (int)size / 2 + (int)size % 2 - 1;
-	while (i <= stripe.height / 2 + stripe.height % 2)
+	while (i < stripe.height / 2 + stripe.height % 2)
 	{
 		my_mlx_pixel_put(datas, stripe.x, y - i, 0x00FF0000);
 		i++;
