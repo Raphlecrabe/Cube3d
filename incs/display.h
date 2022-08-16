@@ -29,7 +29,7 @@ typedef struct s_texture
 	char	*south;
 	int		ceiling;
 	int		floor;
-}	t_texture;
+}				t_texture;
 
 typedef struct s_display
 {
@@ -46,18 +46,16 @@ typedef struct s_display
 	t_memory	*mem;
 	t_texture	*textures;
 	int			screen_width;
+	t_vector2	mousePos;
+}				t_display;
 
-}		t_display;
-
-int			display_screen(t_display *display);
-void		img_clean(void *mlx, t_mlx_datas *datas);
-void		fill_img(t_mlx_datas *datas, int color);
-void		ft_drawcf(t_display *display);
-int			ft_initdisplay(t_display **display, t_cube *cube);
-void		init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas);
-int			ft_maindisplay(t_cube *cube);
+int		display_all(t_display *display);
+int		display_screen(t_display *display);
+void	img_clean(void *mlx, t_mlx_datas *datas);
+void 	fill_img(t_mlx_datas *datas, int color);
 
 # include "raycast.h"
+# include "events.h"
 # include "minimap.h"
 # include "events.h"
 

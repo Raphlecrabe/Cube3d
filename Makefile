@@ -50,6 +50,7 @@ SRCS_DISPLAY = 	display.c \
 				mlx_utils.c \
 				minimap.c \
 				initdisplay.c \
+				loop.c \
 
 SRCS_DEBUG = debug_raycast.c \
 

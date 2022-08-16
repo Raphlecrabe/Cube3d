@@ -5,7 +5,8 @@
 # include "mlx_utils.h"
 
 # define TILE_SIZE 12
+# define MINIMAP_RAY_NB 20
 
-void 	minimap_display(t_display *display);
+int 	display_minimap(t_display *display);
 
 #endif
