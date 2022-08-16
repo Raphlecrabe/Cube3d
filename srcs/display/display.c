@@ -65,9 +65,9 @@ int	ft_maindisplay(t_cube *cube)
 
 	if (ft_initdisplay(&display, cube) == -1)
 		return (-1);
-	//my_mlx_pixel_put(display->view, 1, 1, 0x00FF0000);
 	if (display_screen(display) == -1)
 		return (-1);
+	mlx_key_hook(display->mlx_win, key_hook, display);
 	mlx_loop(display->mlx);
 	return (0);
 }

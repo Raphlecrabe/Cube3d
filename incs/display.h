@@ -59,5 +59,6 @@ int			ft_maindisplay(t_cube *cube);
 
 # include "raycast.h"
 # include "minimap.h"
+# include "events.h"
 
 #endif

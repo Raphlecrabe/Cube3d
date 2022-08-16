@@ -6,7 +6,7 @@
 /*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/08/16 12:32:11 by raphael          ###   ########.fr       */
+/*   Updated: 2022/08/16 14:59:21 by raphael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 
 
 	(*display)->plane = vector2(0.66f, 0);
-	(*display)->screen_width = 50;
+	(*display)->screen_width = 800;
 	(*display)->win_size = vector2(800, 800);
 
 	(*display)->mlx = mlx_init();

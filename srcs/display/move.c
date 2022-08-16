@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/07/29 12:24:36 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/16 14:58:23 by raphael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int	key_hook(int keycode, t_display *display)
 	if (!display_screen(display))
 		return (0);
 	minimap_display(display);
-	ft_freetemp(display->mem);
+	//ft_freetemp(display->mem);
 	return (1);
 }
