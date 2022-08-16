@@ -13,20 +13,22 @@
 #include "../../incs/display.h"
 
 
-static void	display_stripe(t_stripe stripe, t_mlx_datas *datas)
+static void	display_stripe(t_stripe stripe, t_mlx_datas *datas, float size)
 {
 	int	i;
+	int	y;
 
 	i = 0;
-	while (i < stripe.height / 2 + stripe.height % 2)
+	y = (int)size / 2 + (int)size % 2 - 1;
+	while (i <= stripe.height / 2 + stripe.height % 2)
 	{
-		my_mlx_pixel_put(datas, stripe.pos.x, stripe.pos.y + i, 0x00FF0000);
+		my_mlx_pixel_put(datas, stripe.x, y - i, 0x00FF0000);
 		i++;
 	}
 	i = 1;
-	while (i <= stripe.height / 2)
+	while (i < stripe.height / 2 + stripe.height % 2)
 	{
-		my_mlx_pixel_put(datas, stripe.pos.x, stripe.pos.y - i, 0x00FF0000);
+		my_mlx_pixel_put(datas, stripe.x, y + i, 0x00FF0000);
 		i++;
 	}
 }
@@ -48,7 +50,7 @@ int	display_screen(t_display *display)
 		stripe = get_stripe(x, display);
 		if (stripe.height > display->win_size.y)
 			stripe.height = display->win_size.y;
-		display_stripe(stripe, display->view);
+		display_stripe(stripe, display->view, display->win_size.y);
 		display->hitpos[x] = stripe.pos;
 		x++;
 	}
@@ -63,7 +65,9 @@ int	ft_maindisplay(t_cube *cube)
 
 	if (ft_initdisplay(&display, cube) == -1)
 		return (-1);
+	//my_mlx_pixel_put(display->view, 1, 1, 0x00FF0000);
 	if (display_screen(display) == -1)
 		return (-1);
+	mlx_loop(display->mlx);
 	return (0);
 }

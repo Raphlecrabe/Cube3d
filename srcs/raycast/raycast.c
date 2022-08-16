@@ -97,7 +97,6 @@ t_hit	raycast_hit(int x, t_display *display)
 	t_hit		hit;
 	t_raycast	ray;
 
-	printf("lol\n");
 	ray = init_ray(x, display);
 	hit.hit = 0;
 	while (hit.hit == 0)

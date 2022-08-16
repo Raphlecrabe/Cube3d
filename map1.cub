@@ -4,8 +4,8 @@ SO ./path_to_the_south_texture
 WE ./path_to_the_west_texture     
 EA ./path_to_the_east_texture
 
-F 220,100,0
-C 225,30,0
+F 100,100,100
+C 50,30,50
 
 11111111     11111111111111111                   
 1000000011   11000000000001

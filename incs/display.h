@@ -54,7 +54,7 @@ void		img_clean(void *mlx, t_mlx_datas *datas);
 void		fill_img(t_mlx_datas *datas, int color);
 void		ft_drawcf(t_display *display);
 int			ft_initdisplay(t_display **display, t_cube *cube);
-t_mlx_datas	init_mlxdatas(void *mlx, t_vector2 img_size);
+void		init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas);
 int			ft_maindisplay(t_cube *cube);
 
 # include "raycast.h"

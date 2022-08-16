@@ -30,8 +30,7 @@ char	**create_map(char *mapfile, t_memory *mem)
 	{
 		lines[i] = ft_malloc_const(25, sizeof(char), mem);
 		lines[i][24] = '\0';
-	}	
-	
+	}
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
