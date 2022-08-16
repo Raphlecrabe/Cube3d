@@ -12,7 +12,6 @@
 
 #include "../../incs/display.h"
 
-
 static void	display_stripe(t_stripe stripe, t_mlx_datas *datas, float size)
 {
 	int	i;
@@ -70,4 +69,14 @@ int	ft_maindisplay(t_cube *cube)
 	mlx_key_hook(display->mlx_win, key_hook, display);
 	mlx_loop(display->mlx);
 	return (0);
+}
+
+int	display_all(t_display *display)
+{
+	if (!display_screen(display))
+		return (0);
+	if (!display_minimap(display))
+		return (0);
+	ft_freetemp(display->mem);
+	return (1);
 }

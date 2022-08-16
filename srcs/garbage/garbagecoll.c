@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:23:04 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/02 15:31:00 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/03 10:36:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*ft_malloc_temp(size_t memory, size_t size, t_memory *mem)
 	p = ft_calloc(memory, size);
 	if (p == NULL)
 		return (NULL);
-	lst = ft_lstnew(TAG(p));
+	lst = ft_lstnew((void *)TAG(p));
 	if (lst == NULL)
 	{
 		free(p);

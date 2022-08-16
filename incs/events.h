@@ -4,8 +4,17 @@
 # include "cube3d.h"
 # include "display.h"
 
+typedef struct s_collision
+{
+	t_vector2	player_pos;
+	float		movespeed;
+	float		screenplane_width;
+	t_map		*map;
+}				t_collision;
+
 # define MOVE_SPEED 0.1f
 # define ROTATE_SPEED 0.2f
+# define MOUSE_ROTATE_SPEED 0.002f
 
 # define A_KEY_MAC 0
 # define B_KEY_MAC 11
@@ -70,6 +79,9 @@
 # define DOWN_KEY_LIN 65364
 
 
-int	key_hook(int keycode, t_display *display);
+int		key_hook(int keycode, t_display *display);
+int		loop_hook(t_display *display);
+void	rotate(t_display *display, float angle);
+
 
 #endif
