@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/raycast.h"
-#include "../../incs/vectors.h"
 #include "../../incs/display.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -100,6 +97,7 @@ t_hit	raycast_hit(int x, t_display *display)
 	t_hit		hit;
 	t_raycast	ray;
 
+	printf("lol\n");
 	ray = init_ray(x, display);
 	hit.hit = 0;
 	while (hit.hit == 0)

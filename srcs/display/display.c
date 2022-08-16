@@ -11,17 +11,24 @@
 /* ************************************************************************** */
 
 #include "../../incs/display.h"
-#include "../../incs/raycast.h"
-#include "../../incs/mlx_utils.h"
-#include "../../incs/vectors.h"
-#include "../../incs/minimap.h"
-#include <mlx.h>
-#include <stdio.h>
+
 
 static void	display_stripe(t_stripe stripe, t_mlx_datas *datas)
 {
-	stripe.height += 0;
-	fill_img(datas, 0x000000FF);
+	int	i;
+
+	i = 0;
+	while (i < stripe.height / 2 + stripe.height % 2)
+	{
+		my_mlx_pixel_put(datas, stripe.pos.x, stripe.pos.y + i, 0x00FF0000);
+		i++;
+	}
+	i = 1;
+	while (i <= stripe.height / 2)
+	{
+		my_mlx_pixel_put(datas, stripe.pos.x, stripe.pos.y - i, 0x00FF0000);
+		i++;
+	}
 }
 
 int	display_screen(t_display *display)
@@ -39,6 +46,8 @@ int	display_screen(t_display *display)
 	while (x < display->screen_width)
 	{
 		stripe = get_stripe(x, display);
+		if (stripe.height > display->win_size.y)
+			stripe.height = display->win_size.y;
 		display_stripe(stripe, display->view);
 		display->hitpos[x] = stripe.pos;
 		x++;
@@ -54,7 +63,7 @@ int	ft_maindisplay(t_cube *cube)
 
 	if (ft_initdisplay(&display, cube) == -1)
 		return (-1);
-	if (ft_display_screen(display) == -1)
+	if (display_screen(display) == -1)
 		return (-1);
-	
+	return (0);
 }

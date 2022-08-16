@@ -49,6 +49,7 @@ SRCS_DISPLAY = 	display.c \
 				move.c \
 				mlx_utils.c \
 				minimap.c \
+				initdisplay.c \
 
 SRCS_DEBUG = debug_raycast.c \
 
@@ -76,11 +77,12 @@ SRCS_DISPLAY_ABS = ${SRCS_DISPLAY:%.c=${DISPLAY}%.c}
 SRCS_PARSING_ABS = ${SRCS_PARSING:%.c=${PARSING}%.c}
 
 
-OBJS_DEBUG = ${SRCS_DEBUG_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
+OBJS_DEBUG = ${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_GNL_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_RAYCAST_ABS:%.c=${OBJ_DIR}%.o} \
 			${SRCS_DISPLAY_ABS:%.c=${OBJ_DIR}%.o} \
+			${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
+			${SRCS:%.c=${OBJ_DIR}%.o} \
 
 OBJS_DEBPARSE = ${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
 				${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
