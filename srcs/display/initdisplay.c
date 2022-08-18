@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initdisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/08/16 14:59:21 by raphael          ###   ########.fr       */
+/*   Updated: 2022/08/16 15:42:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	(*display)->plane = vector2(0.66f, 0);
 	(*display)->screen_width = 800;
 	(*display)->win_size = vector2(800, 800);
+	(*display)->mousePos = vector2((*display)->screen_width / 2, 0);
 
 	(*display)->mlx = mlx_init();
 	(*display)->view = ft_malloc_temp(sizeof(t_mlx_datas), 1, (*display)->mem);
