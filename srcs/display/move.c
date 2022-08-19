@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/08/16 15:22:10 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/17 11:10:35 by raphael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../incs/cube3d.h"
 #include "../../incs/display.h"

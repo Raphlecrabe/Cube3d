@@ -1,8 +1,8 @@
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture     
-EA ./path_to_the_east_texture
+NO ./wallnorth.xpm
+SO ./wallsouth.xpm
+WE ./wallwest.xpm    
+EA ./walleast.xpm
 
 F 100,100,100
 C 50,30,50

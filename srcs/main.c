@@ -6,7 +6,7 @@
 /*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/16 10:50:14 by raphael          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:58:58 by raphael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,7 @@ int	main(int argc, char **argv)
 	if (ft_maindisplay(cube) == -1)
 		return (0);
 	//free le t memory et le garbage
+	//détruire les img des textures
+	//détruire l'img de l'affichage + minimap
+	//détruire la window + mlx
 }

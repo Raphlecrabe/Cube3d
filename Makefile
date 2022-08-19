@@ -51,6 +51,9 @@ SRCS_DISPLAY = 	display.c \
 				minimap.c \
 				initdisplay.c \
 				loop.c \
+				openspritewall.c \
+				spritewall.c \
+				spritewallutils.c \
 
 SRCS_DEBUG = debug_raycast.c \
 
