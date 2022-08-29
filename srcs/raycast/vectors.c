@@ -47,6 +47,16 @@ t_vector2	vector2_multiply(t_vector2 v, float m)
 	return (v);
 }
 
+t_vector2	vector2_rotate(t_vector2 v, float angle)
+{
+	t_vector2 result;
+
+	result.x = v.x * cos(angle) - v.y * sin(angle);
+	result.y = v.x * sin(angle) + v.y * cos(angle);
+
+	return (result);
+}
+
 float	vector2_magnitude(t_vector2 v)
 {
 	return (sqrtf(pow(v.x, 2) + pow(v.y, 2)));
@@ -58,4 +68,9 @@ t_vector2	vector2_normalize(t_vector2 v)
 
 	m = vector2_magnitude(v);
 	return (vector2(v.x / m, v.y / m));
+}
+
+int		vector2_equals(t_vector2 v1, t_vector2 v2)
+{
+	return (v1.x == v2.x && v1.y == v2.y);
 }

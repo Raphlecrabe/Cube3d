@@ -26,6 +26,6 @@ int loop_hook(t_display *display)
 		return (1);
 	offset = x - display->mousePos.x;
 	display->mousePos.x = x;
-	rotate(display, offset * MOUSE_ROTATE_SPEED);
+	rotate_player(display, offset * MOUSE_ROTATE_SPEED);
 	return (display_all(display));
 }

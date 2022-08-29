@@ -81,7 +81,7 @@ typedef struct s_collision
 
 int		key_hook(int keycode, t_display *display);
 int		loop_hook(t_display *display);
-void	rotate(t_display *display, float angle);
+void	rotate_player(t_display *display, float angle);
 
 
 #endif
