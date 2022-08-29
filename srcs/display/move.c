@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/08/29 11:30:53 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/29 15:23:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,12 @@ void	key_affect(int keycode, t_display *display)
 int	key_hook(int keycode, t_display *display)
 {
 	key_affect(keycode, display);
-	if (!display_screen(display))
-		return (0);
-	display_minimap(display);
+	
+	display_all(display);
+	
 	//ft_freetemp(display->mem);
+	// if (!display_screen(display))
+	// 	return (0);
+	// display_minimap(display);
 	return (1);
 }

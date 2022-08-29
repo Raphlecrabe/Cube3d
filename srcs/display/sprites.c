@@ -60,11 +60,11 @@ static void	calc_sprite_height(int screen_height, t_sprite *sprite)
 	int			drawStartY;
 	int			drawEndY;
 
-	height = (int)fabs(screen_height / sprite->transform.y);
-	drawStartY = - height / 2 + screen_height / 2;
+	height = (int)fabs(screen_height / sprite->transform.y) / VDIV;
+	drawStartY = - height / 2 + screen_height / 2 + sprite->vMoveScreen;
 	if (drawStartY < 0)
 		drawStartY = 0;
-	drawEndY = height / 2 + screen_height / 2;
+	drawEndY = height / 2 + screen_height / 2 + sprite->vMoveScreen;
 	if (drawEndY >= screen_height)
 		drawEndY = screen_height - 1;
 	sprite->onScreenHeight = height;
@@ -78,7 +78,7 @@ static void calc_sprite_width(int screen_height, int screen_width, t_sprite *spr
 	int			drawStartX;
 	int			drawEndX;
 
-	width = (int)fabs(screen_height / sprite->transform.y);
+	width = (int)fabs(screen_height / sprite->transform.y) / UDIV;
 	drawStartX = - width / 2 + sprite->screenX;
 	if (drawStartX < 0)
 		drawStartX = 0;
@@ -107,6 +107,7 @@ static void draw_sprite(t_display *display, t_sprite sprite)
 {
 	int			x;
 	int			y;
+	int			d;
 
 	x = sprite.drawStart.x - 1;
 	while (++x < sprite.drawEnd.x)
@@ -118,6 +119,8 @@ static void draw_sprite(t_display *display, t_sprite sprite)
 			y = sprite.drawStart.y - 1;
 			while (++y < sprite.drawEnd.y)
 			{
+				d = (y - sprite.vMoveScreen) * 256 - display->win_size.y * 128 + sprite.onScreenHeight * 128;
+				sprite.tex.y = ((d * sprite.tex.height) / sprite.onScreenHeight) / 256;
 				//draw
 			}
 		}
@@ -137,6 +140,7 @@ static void	project(t_display *display, t_sprite *sprites)
 		sprites[i].transform = get_transform(display, invDet, sprites[i]);
 		sprites[i].screenX = (int)((display->screen_width / 2)
 								* (1 + sprites[i].transform.x / sprites[i].transform.y));
+		sprites[i].vMoveScreen = VMOVE / sprites[i].transform.y;
 		calc_sprite_height(display->win_size.y, &sprites[i]);
 		calc_sprite_width(display->win_size.y, display->win_size.x, &sprites[i]);
 		draw_sprite(display, sprites[i]);

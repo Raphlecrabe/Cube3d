@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/08/29 13:51:38 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/29 15:22:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	(*display)->mousePos = vector2((*display)->screen_width / 2, 0);
 
 	(*display)->mlx = mlx_init();
-	(*display)->view = ft_malloc_temp(sizeof(t_mlx_datas), 1, (*display)->mem);
+	(*display)->view = ft_malloc_const(sizeof(t_mlx_datas), 1, (*display)->mem);
 	if ((*display)->view == NULL)
 		return (-1);
 	init_mlxdatas((*display)->mlx, (*display)->win_size, (*display)->view);
@@ -55,4 +55,6 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	return (0);
 
 	(*display)->z_buffer = ft_malloc_const(sizeof(int), (*display)->screen_width, (*display)->mem);
+
+	(*display)->startTime = gettime();
 }

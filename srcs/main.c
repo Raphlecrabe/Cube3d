@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/16 10:50:14 by raphael          ###   ########.fr       */
+/*   Updated: 2022/08/29 15:21:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	main(int argc, char **argv)
 		write(2, "Error, please use only one argument\n", 37);
 		return (0);
 	}
-	mem = NULL;
+	mem = malloc(sizeof(t_memory) * 1);
+	if (mem == NULL)
+		return (0);
+	mem->used = NULL;
 	if (ft_initcube(&cube, mem) == -1)
 		return (0);
 	if (ft_fullparse(cube, argv) == -1)

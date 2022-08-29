@@ -51,7 +51,7 @@ int	display_screen(t_display *display)
 			stripe.height = display->win_size.y;
 		display_stripe(stripe, display->view, display->win_size.y);
 		display->hitpos[x] = stripe.pos;
-		display->z_buffer[x] = stripe.perpWallDist;
+		//display->z_buffer[x] = stripe.perpWallDist;
 		x++;
 	}
 	mlx_put_image_to_window(display->mlx, display->mlx_win,
@@ -68,17 +68,17 @@ int	ft_maindisplay(t_cube *cube)
 	if (display_screen(display) == -1)
 		return (-1);
 	mlx_key_hook(display->mlx_win, key_hook, display);
-	mlx_loop_hook(display->mlx_win, loop_hook, display);
+	mlx_loop_hook(display->mlx, loop_hook, display);
 	mlx_loop(display->mlx);
 	return (0);
 }
 
 int	display_all(t_display *display)
 {
+	ft_freetemp(display->mem);
 	if (!display_screen(display))
 		return (0);
 	if (!display_minimap(display))
 		return (0);
-	ft_freetemp(display->mem);
 	return (1);
 }
