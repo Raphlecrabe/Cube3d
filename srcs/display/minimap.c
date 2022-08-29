@@ -22,9 +22,9 @@ static void	print_tile(t_mlx_datas *datas, t_vector2 point_ul, char tile)
 	t_vector2	point_ur;
 
 	i = 0;
-	color = 0x0000FF00;
+	color = TILE_COLOR;
 	if (tile != '1')
-		color = 0x00FFFFFF;
+		color = BACKGROUND_COLOR;
 	point_ur = vector2(point_ul.x + TILE_SIZE, point_ul.y);
 	while (i < TILE_SIZE)
 	{
@@ -42,13 +42,13 @@ static void	print_map(t_mlx_datas *datas, t_map *map)
 	t_vector2	tile_coord;
 
 	i = 0;
-	fill_img(datas, create_trgb(1, 0, 0, 0));
+	fill_img(datas, TRANSPARENT);
 	while (map->lines[i])
 	{
 		j = 0;
 		while (map->lines[i][j])
 		{
-			tile_coord = vector2(i * TILE_SIZE, j * TILE_SIZE);
+			tile_coord = vector2(j * TILE_SIZE, i * TILE_SIZE);
 			print_tile(datas, tile_coord, map->lines[i][j]);
 			j++;
 		}
@@ -90,6 +90,16 @@ static void	print_raycasts(t_mlx_datas *datas, t_display *display)
 			n--;
 		i++;
 	}
+}
+
+t_vector2 minimap_size(t_map *map)
+{
+	t_vector2 size;
+
+	size.x = map->width * TILE_SIZE;
+	size.y = map->heigth * TILE_SIZE;
+
+	return (size);
 }
 
 int	display_minimap(t_display *display)

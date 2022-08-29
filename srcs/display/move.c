@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/08/29 10:46:49 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/29 11:30:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ static int col(t_collision collision, t_vector2 direction)
 	t_vector2 buffer;
 	float right_angle;
 
-	right_angle = 1.571f;
+	right_angle = 90.0f;
 	buffer = vector2_multiply(vector2_normalize(direction), collision.screenplane_width / 3);
 	direction = vector2_add(direction, buffer);
-	orthog_vector = vector2_rotate(direction, right_angle);
+	orthog_vector = vector2_rotate(direction, right_angle * DEG_TO_RAD);
 	final_pos = vector2_add(collision.player_pos, direction);
 
 	point = final_pos;
-	if (is_wall(collision.map->lines[(int)point.x][(int)point.y]))
+	if (is_wall(collision.map->lines[(int)point.y][(int)point.x]))
 		return (1);
 	point = vector2_add(final_pos, orthog_vector);
-	if (is_wall(collision.map->lines[(int)point.x][(int)point.y]))
+	if (is_wall(collision.map->lines[(int)point.y][(int)point.x]))
 		return (1);
 	point = vector2_substract(final_pos, orthog_vector);
-	if (is_wall(collision.map->lines[(int)point.x][(int)point.y]))
+	if (is_wall(collision.map->lines[(int)point.y][(int)point.x]))
 		return (1);
 	return (0);
 }
@@ -86,9 +86,9 @@ void	key_affect(int keycode, t_display *display)
 	direction = null;
 	collision = init_collision(display, MOVE_SPEED);
 	if (keycode == Q_KEY_LIN)
-		rotate_player(display, -ROTATE_SPEED);
+		rotate_player(display, -ROTATE_SPEED * DEG_TO_RAD);
 	else if (keycode == D_KEY_LIN)
-		rotate_player(display, ROTATE_SPEED);
+		rotate_player(display, ROTATE_SPEED * DEG_TO_RAD);
 	else if (keycode == UP_KEY_LIN || keycode == Z_KEY_LIN)
 		direction = vector2_multiply(display->player_dir, MOVE_SPEED);
 	else if (keycode == DOWN_KEY_LIN || keycode == S_KEY_LIN)
