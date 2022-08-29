@@ -51,6 +51,7 @@ int	display_screen(t_display *display)
 			stripe.height = display->win_size.y;
 		display_stripe(stripe, display->view, display->win_size.y);
 		display->hitpos[x] = stripe.pos;
+		display->z_buffer[x] = stripe.perpWallDist;
 		x++;
 	}
 	mlx_put_image_to_window(display->mlx, display->mlx_win,

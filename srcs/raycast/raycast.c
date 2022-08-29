@@ -102,7 +102,7 @@ t_hit	raycast_hit(int x, t_display *display)
 	while (hit.hit == 0)
 		check_hit(&hit, display->map, &ray);
 	hit.distance_adapted = get_distance(hit.side, ray);
-	hit.distance = hit.distance_adapted * vector2_magnitude(ray.dir);
+	hit.true_distance = hit.distance_adapted * vector2_magnitude(ray.dir);
 	hit.pos = vector2_add(vector2_multiply(ray.dir, hit.distance_adapted),
 			display->player_pos);
 	return (hit);

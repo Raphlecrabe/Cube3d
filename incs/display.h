@@ -18,6 +18,7 @@
 # include "vectors.h"
 # include "garbage.h"
 # include "mlx_utils.h"
+# include "sprites.h"
 # include <mlx.h>
 # include <stdio.h>
 
@@ -30,6 +31,12 @@ typedef struct s_texture
 	int		ceiling;
 	int		floor;
 }				t_texture;
+
+typedef struct 	s_sprite_datas
+{
+	t_sprite	*sprites;
+	int			number;
+}				t_sprite_datas;
 
 typedef struct s_display
 {
@@ -47,6 +54,8 @@ typedef struct s_display
 	t_texture	*textures;
 	int			screen_width;
 	t_vector2	mousePos;
+	float		*z_buffer;
+	t_sprite_datas *spriteDatas;
 }				t_display;
 
 int		display_all(t_display *display);

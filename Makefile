@@ -51,6 +51,7 @@ SRCS_DISPLAY = 	display.c \
 				minimap.c \
 				initdisplay.c \
 				loop.c \
+				sprites.c \
 
 SRCS_DEBUG = debug_raycast.c \
 
@@ -112,6 +113,7 @@ INC_FILES = garbage.h \
 			mlx_utils.h \
 			minimap.h \
 			display.h \
+			sprites.h \
 
 INCLUDES =	mlx/mlx.h \
 			${INC_FILES:%.h=${INC_DIR}/%.h} \
