@@ -18,12 +18,6 @@
 
 static int handle_time(t_display *display)
 {
-	// long int deltaTime;
-
-	// deltaTime = deltatime(display->lastFrameTime);
-	// if (deltaTime == -1)
-	// 	return (0);
-
 	display->timeSinceStarted = getTimeSinceStarted(display->startTime);
 	if (display->timeSinceStarted == -1)
 		return (0);
