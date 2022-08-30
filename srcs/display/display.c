@@ -56,5 +56,4 @@ int	ft_maindisplay(t_cube *cube)
 		return (-1);
 	if (ft_display_screen(display) == -1)
 		return (-1);
-	
 }
