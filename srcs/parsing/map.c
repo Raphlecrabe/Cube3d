@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:53:33 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/28 15:00:24 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/08/16 10:51:36 by raphael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ size_t	ft_maxlines(t_list *mapping)
 int	ft_convertchar(t_cube *cube, t_list *mapping)
 {
 	int		i;
-	int		j;
 	t_list	*mapmalloc;
 
 	i = 0;
-	j = 0;
 	mapmalloc = mapping;
 	cube->map = ft_malloc_const(sizeof(t_map), 1, cube->mem);
 	if (cube->map == NULL)
@@ -82,7 +80,7 @@ int	ft_convertchar(t_cube *cube, t_list *mapping)
 		return (-1);
 	while (mapmalloc)
 	{
-		j = ft_strlen((char *)mapmalloc->content);
+		ft_strlen((char *)mapmalloc->content);
 		cube->map->lines[i] = ft_strncopy_const((char *)mapmalloc->content,
 				cube->map->width, ' ', cube->mem);
 		if (cube->map->lines[i] == NULL)
@@ -120,7 +118,6 @@ int	ft_parsemap(t_cube *cube, char **line, int fd)
 	}
 	if (ft_convertchar(cube, mapping) == -1)
 		return (-1);
-	ft_printdoublechar(cube->map->lines);
 	if (ft_parseopen(cube) == -1)
 		return (-1);
 	if (cube->check.player != 1)

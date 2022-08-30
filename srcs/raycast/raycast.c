@@ -10,14 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/raycast.h"
-#include "../../incs/vectors.h"
 #include "../../incs/display.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-static float	get_height(int side, t_raycast ray)
+static float	get_distance(int side, t_raycast ray)
 {
 	if (side == 0)
 		return (ray.side_dist.x - ray.delta_dist.x);
@@ -104,9 +101,9 @@ t_hit	raycast_hit(int x, t_display *display)
 	hit.hit = 0;
 	while (hit.hit == 0)
 		check_hit(&hit, display->map, &ray);
-	hit.height = get_height(hit.side, ray);
-	hit.distance = hit.height * vector2_magnitude(ray.dir);
-	hit.pos = vector2_add(vector2_multiply(ray.dir, hit.height),
+	hit.distance_adapted = get_distance(hit.side, ray);
+	hit.distance = hit.distance_adapted * vector2_magnitude(ray.dir);
+	hit.pos = vector2_add(vector2_multiply(ray.dir, hit.distance_adapted),
 			display->player_pos);
 	return (hit);
 }

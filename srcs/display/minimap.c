@@ -67,24 +67,37 @@ static void	trace_raycast(t_mlx_datas *datas,
 	draw_line(datas, player2screen, ray2screen, 0x00FF0000);
 }
 
-static void	print_raycasts(t_mlx_datas *datas,
-						t_vector2 player_pos, t_vector2 *hitpos)
+static void	print_raycasts(t_mlx_datas *datas, t_display *display)
 {
-	int	i;
+	int		i;
+	float	imax;
+	float	factor;
+	int		n;
 
 	i = 0;
-	while (i < 50)
+	imax = MINIMAP_RAY_NB;
+	if (MINIMAP_RAY_NB > display->screen_width)
+		imax = display->screen_width;
+	factor = display->screen_width / (imax - 1);
+	n = 0;
+	if (imax == 1)
+		n = display->screen_width / 2;
+	while (i < (int)imax)
 	{
-		trace_raycast(datas, player_pos, hitpos[i]);
+		trace_raycast(datas, display->player_pos, display->hitpos[n]);
+		n = (i + 1) * factor;
+		if (i + 2 == imax)
+			n--;
 		i++;
 	}
 }
 
-void	minimap_display(t_display *display)
+int	display_minimap(t_display *display)
 {
 	img_clean(display->mlx, display->minimap);
 	print_map(display->minimap, display->map);
-	print_raycasts(display->minimap, display->player_pos, display->hitpos);
+	print_raycasts(display->minimap, display);
 	mlx_put_image_to_window(display->mlx, display->mlx_win,
 		display->minimap->img, 0, 0);
+	return (1);
 }
