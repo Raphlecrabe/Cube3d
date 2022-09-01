@@ -21,7 +21,6 @@ static int handle_time(t_display *display)
 	display->timeSinceStarted = getTimeSinceStarted(display->startTime);
 	if (display->timeSinceStarted == -1)
 		return (0);
-	printf("timeSinceStarted: %ld\n", display->timeSinceStarted);
 	return (1);
 }
 

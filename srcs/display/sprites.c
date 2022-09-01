@@ -110,14 +110,14 @@ static void draw_sprite(t_display *display, t_sprite sprite)
 	int			d;
 
 	x = sprite.drawStart.x - 1;
-	while (++x < sprite.drawEnd.x)
+	while (++x < sprite.drawEnd.x) // for each stripe in sprite
 	{
 		sprite.tex.x = (int)(256 * (x - (-sprite.onScreenWidth / 2 + sprite.screenX))
 						* sprite.tex.width / sprite.onScreenWidth) / 256;
-		if (isDrawable(display, sprite, x))
+		if (isDrawable(display, sprite, x)) // if you can draw it
 		{
 			y = sprite.drawStart.y - 1;
-			while (++y < sprite.drawEnd.y)
+			while (++y < sprite.drawEnd.y) // for each pixel in stripe
 			{
 				d = (y - sprite.vMoveScreen) * 256 - display->win_size.y * 128 + sprite.onScreenHeight * 128;
 				sprite.tex.y = ((d * sprite.tex.height) / sprite.onScreenHeight) / 256;

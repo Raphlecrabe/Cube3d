@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/29 15:21:07 by marvin           ###   ########.fr       */
+/*   Updated: 2022/08/31 14:41:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ int	main(int argc, char **argv)
 	if (mem == NULL)
 		return (0);
 	mem->used = NULL;
-	if (ft_initcube(&cube, mem) == -1)
-		return (0);
-	if (ft_fullparse(cube, argv) == -1)
-		return (0);
-	if (ft_maindisplay(cube) == -1)
-		return (0);
-	//free le t memory et le garbage
+	if (ft_initcube(&cube, mem) != -1)
+		if (ft_fullparse(cube, argv) != -1)
+			if (ft_maindisplay(cube) == -1)
+				return (0);
+	ft_freemem(mem);
+	free(mem);
 }
