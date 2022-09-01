@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
 /*   Updated: 2022/08/31 14:41:05 by marvin           ###   ########.fr       */
+=======
+/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
+/*   Updated: 2022/09/01 14:03:54 by rafy             ###   ########.fr       */
+>>>>>>> BranchRaph
 /*                                                                            */
 /* ************************************************************************** */
 
 //include
 #include "../incs/parsing.h"
 #include "../incs/display.h"
+#include <limits.h>
 
 int	main(int argc, char **argv)
 {
@@ -30,8 +38,11 @@ int	main(int argc, char **argv)
 	mem->used = NULL;
 	if (ft_initcube(&cube, mem) != -1)
 		if (ft_fullparse(cube, argv) != -1)
-			if (ft_maindisplay(cube) == -1)
-				return (0);
+			ft_maindisplay(cube);
 	ft_freemem(mem);
 	free(mem);
+	//free le t memory et le garbage
+	//détruire les img des textures
+	//détruire l'img de l'affichage + minimap
+	//détruire la window + mlx
 }

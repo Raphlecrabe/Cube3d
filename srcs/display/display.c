@@ -12,26 +12,6 @@
 
 #include "../../incs/display.h"
 
-static void	display_stripe(t_stripe stripe, t_mlx_datas *datas, float size)
-{
-	int	i;
-	int	y;
-
-	i = 0;
-	y = (int)size / 2 + (int)size % 2 - 1;
-	while (i < stripe.height / 2 + stripe.height % 2)
-	{
-		my_mlx_pixel_put(datas, stripe.x, y - i, 0x00FF0000);
-		i++;
-	}
-	i = 1;
-	while (i < stripe.height / 2 + stripe.height % 2)
-	{
-		my_mlx_pixel_put(datas, stripe.x, y + i, 0x00FF0000);
-		i++;
-	}
-}
-
 int	display_screen(t_display *display)
 {
 	t_stripe	stripe;
@@ -49,7 +29,7 @@ int	display_screen(t_display *display)
 		stripe = get_stripe(x, display);
 		if (stripe.height > display->win_size.y)
 			stripe.height = display->win_size.y;
-		display_stripe(stripe, display->view, display->win_size.y);
+		ft_drawwalls(stripe, display);
 		display->hitpos[x] = stripe.pos;
 		//display->z_buffer[x] = stripe.perpWallDist;
 		x++;
@@ -64,6 +44,8 @@ int	ft_maindisplay(t_cube *cube)
 	t_display	*display;
 
 	if (ft_initdisplay(&display, cube) == -1)
+		return (-1);
+	if (ft_opentextures(display, display->textures) == -1)
 		return (-1);
 	if (display_screen(display) == -1)
 		return (-1);

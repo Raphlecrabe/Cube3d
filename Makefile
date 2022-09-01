@@ -27,7 +27,6 @@ SRCS_PARSING = 	colourutils.c \
 				testcolours.c \
 				texture.c \
 				textureutils.c \
-				checkholes.c \
 				error.c \
 				parsemap.c \
 				parseopen.c \
@@ -53,6 +52,12 @@ SRCS_DISPLAY = 	display.c \
 				loop.c \
 				sprites.c \
 				time.c \
+				openspritewall.c \
+				spritewall.c \
+				spritewallutils.c \
+				shading.c \
+				drawcf.c \
+				drawcf_utils.c \
 
 SRCS_DEBUG = debug_raycast.c \
 
