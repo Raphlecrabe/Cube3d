@@ -40,10 +40,14 @@ typedef struct s_texture
 	char		*south;
 	int			ceiling;
 	int			floor;
+	int			shade;
 	t_mlx_datas	*wtext;
 	t_mlx_datas	*etext;
 	t_mlx_datas	*ntext;
 	t_mlx_datas	*stext;
+	t_mlx_datas *first;
+	t_mlx_datas *second;
+	t_mlx_datas *third;
 }				t_texture;
 
 typedef struct s_display
@@ -74,6 +78,11 @@ void	ft_drawcf(t_display *display);
 float	ft_decimal(float x);
 void	ft_drawwalls(struct s_stripe stripe, t_display *display);
 int		ft_opentextures(t_display *display, t_texture *textures);
+void	ft_addshading(int *color, float dist);
+void	ft_putblackimg(t_display *display);
+void	ft_andrescircle(int xc, int yc, int r, t_display *display);
+void	ft_andrescircleceiling(int xc, int yc, int r, t_display *display);
+float	ft_getthird(char c, int color);
 
 # include "raycast.h"
 # include "events.h"

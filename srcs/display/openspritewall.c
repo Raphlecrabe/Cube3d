@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openspritewall.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:49:42 by raphael           #+#    #+#             */
-/*   Updated: 2022/08/18 17:11:09 by raphael          ###   ########.fr       */
+/*   Updated: 2022/08/31 18:43:06 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ int	ft_parsepng(char *path)
 		&& path[i - 3] == 'x' && path[i - 4] == '.')
 		return (0);
 	return (ft_message("Error, wrong format texture\n", -1));
+}
+
+int	ft_open_utils(t_mlx_datas **imgpoint, int sizes[2])
+{
+	/*if (i == 1)
+	{
+		imgpoint->img = mlx_png_file_to_image(display->mlx,
+				path, &imgpoint->img_size.x, &imgpoint->img_size.y);
+		if (imgpoint->img == NULL)
+			return (ft_message("Error, can't open one of the texture\n", -1));
+		(*imgpoint)->addr = mlx_get_data_addr((*imgpoint)->img,
+				&(*imgpoint)->bits_per_pixel,
+				&(*imgpoint)->line_length, &(*imgpoint)->endian);
+	}*/
+	(*imgpoint)->img_size.x = sizes[0];
+	(*imgpoint)->img_size.y = sizes[1];
+	return (0);
 }
 
 int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
@@ -49,18 +66,8 @@ int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
 				&(*imgpoint)->bits_per_pixel,
 				&(*imgpoint)->line_length, &(*imgpoint)->endian);
 	}
-	/*if (i == 1)
-	{
-		imgpoint->img = mlx_png_file_to_image(display->mlx,
-				path, &imgpoint->img_size.x, &imgpoint->img_size.y);
-		if (imgpoint->img == NULL)
-			return (ft_message("Error, can't open one of the texture\n", -1));
-		(*imgpoint)->addr = mlx_get_data_addr((*imgpoint)->img,
-				&(*imgpoint)->bits_per_pixel,
-				&(*imgpoint)->line_length, &(*imgpoint)->endian);
-	}*/
-	(*imgpoint)->img_size.x = sizes[0];
-	(*imgpoint)->img_size.y = sizes[1];
+	if (ft_open_utils(imgpoint, sizes) == -1)
+		return (-1);
 	return (0);
 }
 

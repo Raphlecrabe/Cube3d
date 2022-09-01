@@ -42,6 +42,7 @@ typedef struct 	s_stripe
 	t_vector2 pos;
 	int 	height;
 	int		side;
+	float	dist;
 	void	*sprite;
 }				t_stripe;
 
