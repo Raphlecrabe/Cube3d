@@ -52,5 +52,6 @@ t_stripe	get_stripe(int x, t_display *display)
 	stripe.height = get_height(hit.distance_adapted, display->win_size.y);
 	stripe.sprite = get_sprite(hit.side, display->mem);
 	stripe.pos = hit.pos;
+	stripe.dist = hit.true_distance;
 	return (stripe);
 }
