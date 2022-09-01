@@ -81,7 +81,7 @@ static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 		ray->side_dist.x += ray->delta_dist.x;
 		ray->mappos.x += ray->step.x;
 		hit->side = 0;
-		if (ray->delta_dist.x < 0)
+		if (ray->step.x < 0)
 			hit->side = 2;
 	}
 	else
@@ -89,7 +89,7 @@ static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 		ray->side_dist.y += ray->delta_dist.y;
 		ray->mappos.y += ray->step.y;
 		hit->side = 1;
-		if (ray->delta_dist.y < 0)
+		if (ray->step.y < 0)
 			hit->side = 3;
 	}
 	if (map->lines[(int)ray->mappos.y][(int)ray->mappos.x] == '1') // reversed

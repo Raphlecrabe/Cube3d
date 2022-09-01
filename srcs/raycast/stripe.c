@@ -34,11 +34,11 @@ static void	*get_sprite(int side, t_memory *mem)
 	return (wall);
 }
 
-static int get_height(float height, float screen_height)
+static float get_height(float height, float screen_height)
 {
 	float factor = 1.0f;
 
-	return ((int) (factor * screen_height) / height);
+	return ((factor * screen_height) / height);
 }
 
 t_stripe	get_stripe(int x, t_display *display)
