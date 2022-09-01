@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spritewall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/01 17:03:43 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/01 16:12:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ void	ft_drawwall(t_stripe stripe,
 	t_display *display, t_mlx_datas *texture)
 {
 	t_calc	calc;
-
-	calc.relativepos = ft_decimal(stripe.pos.x) + ft_decimal(stripe.pos.y);
+	
+	calc.relativepos = ft_decimal(stripe.pos.x);
+	if (stripe.side % 2)
+		calc.relativepos = ft_decimal(stripe.pos.y);
 	calc.widthwall = (int)(calc.relativepos * texture->img_size.x);
 	calc.height = stripe.height;
 	ft_drawone(stripe, display, &calc, texture);
