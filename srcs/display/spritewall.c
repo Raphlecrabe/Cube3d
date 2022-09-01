@@ -6,7 +6,7 @@
 /*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/01 16:27:27 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/01 17:03:43 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,11 @@ void	ft_drawwall(t_stripe stripe,
 void	ft_drawwalls(t_stripe stripe, t_display *display)
 {
 	//ne pas oublier d'enlever la side
-	stripe.side = 0;
 	if (stripe.side == 0)
 		ft_drawwall(stripe, display, display->textures->wtext);
-	if (stripe.side == 1)
-		ft_drawwall(stripe, display, display->textures->etext);
 	if (stripe.side == 2)
+		ft_drawwall(stripe, display, display->textures->etext);
+	if (stripe.side == 1)
 		ft_drawwall(stripe, display, display->textures->stext);
 	if (stripe.side == 3)
 		ft_drawwall(stripe, display, display->textures->ntext);
