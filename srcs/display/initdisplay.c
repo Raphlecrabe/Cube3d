@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/01 14:06:46 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/01 14:49:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ int	ft_init_map(t_display **display, t_cube *cube)
 	return (0);
 }
 
+static int	ft_initminimap(t_display **display, t_cube *cube)
+{
+	(*display)->minimap = ft_malloc_temp(sizeof(t_mlx_datas),
+			1, (*display)->mem);
+	if ((*display)->minimap == NULL)
+		return (-1);
+	init_mlxdatas((*display)->mlx, minimap_size(cube->map),
+		(*display)->minimap);
+}
+
 int	ft_initdisplay(t_display **display, t_cube *cube)
 {
 	if (ft_init_map(display, cube) == -1)
@@ -57,18 +67,11 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	if ((*display)->view == NULL)
 		return (-1);
 	init_mlxdatas((*display)->mlx, (*display)->win_size, (*display)->view);
-	
 	(*display)->minimap = (*display)->view;
-	// (*display)->minimap = ft_malloc_temp(sizeof(t_mlx_datas),
-	// 		1, (*display)->mem);
-	// if ((*display)->minimap == NULL)
-	// 	return (-1);
-	//init_mlxdatas((*display)->mlx, minimap_size(cube->map), (*display)->minimap);
 	(*display)->mlx_win = mlx_new_window((*display)->mlx,
 			(*display)->win_size.x, (*display)->win_size.y, "cub3d");
-
-	(*display)->z_buffer = ft_malloc_const(sizeof(int), (*display)->screen_width, (*display)->mem);
-
+	(*display)->z_buffer = ft_malloc_const(sizeof(int),
+			(*display)->screen_width, (*display)->mem);
 	(*display)->startTime = gettime();
 	if ((*display)->startTime.sec == -1)
 		return (-1);

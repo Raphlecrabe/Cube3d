@@ -16,7 +16,7 @@
 #include "../../incs/time.h"
 #include <mlx.h>
 
-static int handle_time(t_display *display)
+static int	handle_time(t_display *display)
 {
 	display->timeSinceStarted = getTimeSinceStarted(display->startTime);
 	if (display->timeSinceStarted == -1)
@@ -24,7 +24,7 @@ static int handle_time(t_display *display)
 	return (1);
 }
 
-static int handle_mouse(t_display *display)
+static int	handle_mouse(t_display *display)
 {
 	int	x;
 	int	y;
@@ -39,7 +39,7 @@ static int handle_mouse(t_display *display)
 	return (display_all(display));
 }
 
-int loop_hook(t_display *display)
+int	loop_hook(t_display *display)
 {
 	if (handle_mouse(display) == 0)
 		return (0);

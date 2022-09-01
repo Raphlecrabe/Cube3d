@@ -59,7 +59,7 @@ SRCS_DISPLAY = 	display.c \
 				drawcf.c \
 				drawcf_utils.c \
 
-SRCS_DEBUG = debug_raycast.c \
+SRCS_DEBUG = 
 
 #OBJS
 
