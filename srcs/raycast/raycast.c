@@ -16,7 +16,7 @@
 
 static float	get_distance(int side, t_raycast ray)
 {
-	if (side == 0)
+	if (side == 0 || side == 2)
 		return (ray.side_dist.x - ray.delta_dist.x);
 	else
 		return (ray.side_dist.y - ray.delta_dist.y);
@@ -81,12 +81,16 @@ static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 		ray->side_dist.x += ray->delta_dist.x;
 		ray->mappos.x += ray->step.x;
 		hit->side = 0;
+		if (ray->delta_dist.x < 0)
+			hit->side = 2;
 	}
 	else
 	{
 		ray->side_dist.y += ray->delta_dist.y;
 		ray->mappos.y += ray->step.y;
 		hit->side = 1;
+		if (ray->delta_dist.y < 0)
+			hit->side = 3;
 	}
 	if (map->lines[(int)ray->mappos.y][(int)ray->mappos.x] == '1') // reversed
 		hit->hit = 1;
