@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/01 16:12:10 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/01 16:12:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_drawwall(t_stripe stripe,
 	t_calc	calc;
 	
 	calc.relativepos = ft_decimal(stripe.pos.x);
-	if (stripe.side % 2)
+	if (stripe.side % 2 == 0)
 		calc.relativepos = ft_decimal(stripe.pos.y);
 	calc.widthwall = (int)(calc.relativepos * texture->img_size.x);
 	calc.height = stripe.height;
