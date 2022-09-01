@@ -18,17 +18,38 @@
 # include "vectors.h"
 # include "garbage.h"
 # include "mlx_utils.h"
+# include "sprites.h"
+# include "time.h"
 # include <mlx.h>
 # include <stdio.h>
 
+struct	s_stripe;
+
+typedef	struct	s_calc
+{
+	int		widthwall;
+	float	relativepos;
+	int		ytext;
+	int		height;
+	int		color;
+}	t_calc;
+
 typedef struct s_texture
 {
-	char	*west;
-	char	*east;
-	char	*north;
-	char	*south;
-	int		ceiling;
-	int		floor;
+	char		*west;
+	char		*east;
+	char		*north;
+	char		*south;
+	int			ceiling;
+	int			floor;
+	int			shade;
+	t_mlx_datas	*wtext;
+	t_mlx_datas	*etext;
+	t_mlx_datas	*ntext;
+	t_mlx_datas	*stext;
+	t_mlx_datas *first;
+	t_mlx_datas *second;
+	t_mlx_datas *third;
 }				t_texture;
 
 typedef struct s_display
@@ -47,12 +68,27 @@ typedef struct s_display
 	t_texture	*textures;
 	int			screen_width;
 	t_vector2	mousePos;
+	float		*z_buffer;
+	t_sprite_datas *spriteDatas;
+	long int		timeSinceStarted;
+	t_time		startTime;
 }				t_display;
 
 int		display_all(t_display *display);
 int		display_screen(t_display *display);
 void	img_clean(void *mlx, t_mlx_datas *datas);
 void 	fill_img(t_mlx_datas *datas, int color);
+int		ft_message(char *line, int i);
+int		ft_initdisplay(t_display **display, t_cube *cube);
+void	ft_drawcf(t_display *display);
+float	ft_decimal(float x);
+void	ft_drawwalls(struct s_stripe stripe, t_display *display);
+int		ft_opentextures(t_display *display, t_texture *textures);
+void	ft_addshading(int *color, float dist);
+void	ft_putblackimg(t_display *display);
+void	ft_andrescircle(int xc, int yc, int r, t_display *display);
+void	ft_andrescircleceiling(int xc, int yc, int r, t_display *display);
+float	ft_getthird(char c, int color);
 
 # include "raycast.h"
 # include "events.h"

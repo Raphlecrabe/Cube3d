@@ -48,6 +48,7 @@ t_stripe	get_stripe(int x, t_display *display)
 
 	hit = raycast_hit(x, display);
 	stripe.x = x;
+	stripe.perpWallDist = hit.distance_adapted;
 	stripe.height = get_height(hit.distance_adapted, display->win_size.y);
 	stripe.sprite = get_sprite(hit.side, display->mem);
 	stripe.pos = hit.pos;

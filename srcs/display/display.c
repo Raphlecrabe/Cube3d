@@ -12,26 +12,6 @@
 
 #include "../../incs/display.h"
 
-static void	display_stripe(t_stripe stripe, t_mlx_datas *datas, float size)
-{
-	int	i;
-	int	y;
-
-	i = 0;
-	y = (int)size / 2 + (int)size % 2 - 1;
-	while (i < stripe.height / 2 + stripe.height % 2)
-	{
-		my_mlx_pixel_put(datas, stripe.x, y - i, 0x00FF0000);
-		i++;
-	}
-	i = 1;
-	while (i < stripe.height / 2 + stripe.height % 2)
-	{
-		my_mlx_pixel_put(datas, stripe.x, y + i, 0x00FF0000);
-		i++;
-	}
-}
-
 int	display_screen(t_display *display)
 {
 	t_stripe	stripe;
@@ -49,8 +29,9 @@ int	display_screen(t_display *display)
 		stripe = get_stripe(x, display);
 		if (stripe.height > display->win_size.y)
 			stripe.height = display->win_size.y;
-		display_stripe(stripe, display->view, display->win_size.y);
+		ft_drawwalls(stripe, display);
 		display->hitpos[x] = stripe.pos;
+		//display->z_buffer[x] = stripe.perpWallDist;
 		x++;
 	}
 	mlx_put_image_to_window(display->mlx, display->mlx_win,
@@ -64,19 +45,22 @@ int	ft_maindisplay(t_cube *cube)
 
 	if (ft_initdisplay(&display, cube) == -1)
 		return (-1);
+	if (ft_opentextures(display, display->textures) == -1)
+		return (-1);
 	if (display_screen(display) == -1)
 		return (-1);
 	mlx_key_hook(display->mlx_win, key_hook, display);
+	mlx_loop_hook(display->mlx, loop_hook, display);
 	mlx_loop(display->mlx);
 	return (0);
 }
 
 int	display_all(t_display *display)
 {
+	ft_freetemp(display->mem);
 	if (!display_screen(display))
 		return (0);
 	if (!display_minimap(display))
 		return (0);
-	ft_freetemp(display->mem);
 	return (1);
 }

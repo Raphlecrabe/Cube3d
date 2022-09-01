@@ -12,9 +12,10 @@ typedef struct s_collision
 	t_map		*map;
 }				t_collision;
 
+# define DEG_TO_RAD 0.01745f
 # define MOVE_SPEED 0.1f
-# define ROTATE_SPEED 0.2f
-# define MOUSE_ROTATE_SPEED 0.002f
+# define ROTATE_SPEED 10.0f
+# define MOUSE_ROTATE_SPEED 1.0f
 
 # define A_KEY_MAC 0
 # define B_KEY_MAC 11
@@ -81,7 +82,7 @@ typedef struct s_collision
 
 int		key_hook(int keycode, t_display *display);
 int		loop_hook(t_display *display);
-void	rotate(t_display *display, float angle);
+void	rotate_player(t_display *display, float angle);
 
 
 #endif

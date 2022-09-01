@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/07/28 14:09:35 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/09/01 14:02:46 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   Updated: 2022/08/31 17:27:30 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +19,8 @@
 void	ft_fullplayer(t_cube *cube, int j, int i, char c)
 {
 	cube->check.player = 1;
-	cube->playerinit->coord.x = j;
-	cube->playerinit->coord.y = i;
+	cube->playerinit->coord.x = i;
+	cube->playerinit->coord.y = j;
 	if (c == 'W')
 	{
 		cube->playerinit->angle.x = -1;
@@ -73,7 +77,7 @@ int	ft_parseline(t_cube *cube, char *l, int j)
 		}
 		if (l[i] != '0' && l[i] != '1' && l[i] != 'W'
 			&& l[i] != 'E' && l[i] != 'S' && l[i] != 'N' && l[i] != '\n'
-			&& l[i] != '\0')
+			&& l[i] != '\0' && l[i] != '2' && l[i] != '3' && l[i] != '4')
 			return (ft_message("Error, wrong format map\n", -1));
 		i++;
 	}

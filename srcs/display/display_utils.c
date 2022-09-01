@@ -16,39 +16,6 @@
 #include <mlx.h>
 #include <stdio.h>
 
-void	ft_drawcf(t_display *display)
-{
-	int	i;
-	int	j;
-	int	middle;
-
-	i = 0;
-	j = 0;
-	middle = (int)display->win_size.y / 2 + (int)display->win_size.y % 2;
-	while (i < display->win_size.x - 1)
-	{
-		while (j < middle - 1)
-		{
-			my_mlx_pixel_put(display->view, i, j, display->textures->ceiling);
-			j++;
-		}
-		i++;
-		j = 0;
-	}
-	i = 0;
-	j = middle;
-	while (i < display->win_size.x - 1)
-	{
-		while (j < display->win_size.y - 1)
-		{
-			my_mlx_pixel_put(display->view, i, j, display->textures->floor);
-			j++;
-		}
-		i++;
-		j = middle;
-	}
-}
-
 void	img_clean(void *mlx, t_mlx_datas *datas)
 {
 	mlx_destroy_image(mlx, datas->img);

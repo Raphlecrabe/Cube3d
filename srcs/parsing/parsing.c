@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:46:39 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/27 15:02:03 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/08/31 17:11:46 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,16 @@ int	ft_ismap(char *line, int i)
 	i++;
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i++;
-	if (line[i] != '1' && line[i] != '0' && line[i] != '\n')
-		return (0);
+	while (line[i])
+	{
+		if (line[i] != '1' && line[i] != '0' && line[i] != '\n'
+			&& line[i] != 'W' && line[i] != 'E' && line[i] != 'S'
+			&& line[i] != 'N' && line[i] != '2' && line[i] != '3'
+			&& line[i] != '4'
+			&& ((line[i] < 9 || line[i] > 13) && line[i] != 32))
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
@@ -48,11 +56,12 @@ int	ft_testline(char *line)
 		return (0);
 	if (line[i] == 'F' || line[i] == 'C')
 		return (0);
-	if ((line[i] == '1' || line[i] == '0') || ((line[i] == 'W' || line[i] == 'E'
-				|| line[i] == 'N' || line[i] == 'S')
-			&& ft_ismap(line, i) == 1))
+	if ((line[i] == '1' || line[i] == '0' || line[i] == 'W' || line[i] == 'E'
+			|| line[i] == 'N' || line[i] == 'S' || line[i] == '2'
+			|| line[i] == '3' || line[i] == '4')
+		&& ft_ismap(line, i) == 1)
 		return (2);
-	write(2, "Error, one line or more is not well configured\n", 40);
+	write(2, "Error, one line or more is not well configured\n", 47);
 	return (-1);
 }
 

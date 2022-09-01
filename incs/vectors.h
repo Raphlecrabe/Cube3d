@@ -11,7 +11,9 @@ t_vector2	vector2(float x, float y);
 t_vector2	vector2_add(t_vector2 v1, t_vector2 v2);
 t_vector2	vector2_substract(t_vector2 v1, t_vector2 v2);
 t_vector2	vector2_multiply(t_vector2 v, float m);
+t_vector2	vector2_rotate(t_vector2 v, float angle);
 t_vector2	vector2_normalize(t_vector2 v);
 float		vector2_magnitude(t_vector2 v);
+int			vector2_equals(t_vector2 v1, t_vector2 v2);
 
 #endif

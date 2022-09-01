@@ -22,10 +22,8 @@ char	**create_map(char *mapfile, t_memory *mem)
 	int		fd;
 
 	fd = open(mapfile, O_RDONLY);
-
 	lines = ft_malloc_const(25, sizeof(char *), mem);
 	lines[24] = NULL;
-
 	i = -1;
 	while (++i < 24)
 	{
