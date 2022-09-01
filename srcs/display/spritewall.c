@@ -6,7 +6,7 @@
 /*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/01 14:04:04 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/01 16:27:27 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	{
 		ft_getcolor1(texture, calc, i);
 		//ne pas oublier d'enlever la ligne des dists
-		stripe.dist = 6.5f;
 		ft_addshading(&calc->color, stripe.dist);
 		my_mlx_pixel_put(display->view, stripe.x, y - i, calc->color);
 		i++;
@@ -60,7 +59,6 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	{
 		ft_getcolor2(texture, calc, i);
 		//ne pas oublier d'enlever la ligne des shadings
-		stripe.dist = 6.5f;
 		ft_addshading(&calc->color, stripe.dist);
 		my_mlx_pixel_put(display->view, stripe.x, y + i, calc->color);
 		i++;
