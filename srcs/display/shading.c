@@ -6,7 +6,7 @@
 /*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:17:46 by rafy              #+#    #+#             */
-/*   Updated: 2022/08/31 13:03:05 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/01 16:45:58 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	ft_addshading(int *color, float dist)
 		return ;
 	}
 	dist = dist;
-	r = ft_getthird('r', *color) * (1.0f - (0.10f * dist));
-	g = ft_getthird('g', *color) * (1.0f - (0.10f * dist));
-	b = ft_getthird('b', *color) * (1.0f - (0.10f * dist));
+	r = ft_getthird('r', *color) * (1.0f / dist);
+	g = ft_getthird('g', *color) * (1.0f / dist);
+	b = ft_getthird('b', *color) * (1.0f / dist);
 	*color = create_trgb(0, r, g, b);
 }

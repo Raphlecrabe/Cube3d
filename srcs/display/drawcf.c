@@ -6,7 +6,7 @@
 /*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:36:56 by rafy              #+#    #+#             */
-/*   Updated: 2022/08/31 18:24:04 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/01 16:39:21 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ void	ft_drawfloor(t_display *display)
 	r = 0;
 	while (r < display->win_size.y / 2)
 	{
-		if (r > 540)
+		if (r > 400)
 			display->textures->shade = 0x00000000;
-		if (r <= 540)
+		if (r <= 400)
 			display->textures->shade = create_trgb(0,
 					ft_getthird('r', display->textures->floor)
-					* 0.018 * (540 - r) / 10,
+					* 0.025 * (400 - r) / 10,
 					ft_getthird('g', display->textures->floor)
-					* 0.018 * (540 - r) / 10,
+					* 0.025 * (400 - r) / 10,
 					ft_getthird('b', display->textures->floor)
-					* 0.018 * (540 - r) / 10);
+					* 0.025 * (400 - r) / 10);
 		ft_andrescirclefloor(x, y, r, display);
 		r++;
 	}
