@@ -22,43 +22,13 @@ static float	get_distance(int side, t_raycast ray)
 		return (ray.side_dist.y - ray.delta_dist.y);
 }
 
-static t_vector2	get_step(t_raycast ray)
-{
-	t_vector2	step;
-
-	if (ray.dir.x < 0)
-		step.x = -1;
-	else
-		step.x = 1;
-	if (ray.dir.y < 0)
-		step.y = -1;
-	else
-		step.y = 1;
-	return (step);
-}
-
-static t_vector2	get_side(t_raycast ray, t_vector2 pos)
-{
-	t_vector2	side;
-
-	if (ray.dir.x < 0)
-		side.x = (pos.x - ray.mappos.x) * ray.delta_dist.x;
-	else
-		side.x = (ray.mappos.x + 1 - pos.x) * ray.delta_dist.x;
-	if (ray.dir.y < 0)
-		side.y = (pos.y - ray.mappos.y) * ray.delta_dist.y;
-	else
-		side.y = (ray.mappos.y + 1 - pos.y) * ray.delta_dist.y;
-	return (side);
-}
-
 static t_raycast	init_ray(int x, t_display *display)
 {
 	t_raycast	ray;
 
-	ray.cameraX = (float)(2 * x) / (float)display->screen_width - 1;
-	ray.dir.x = display->player_dir.x + display->plane.x * ray.cameraX;
-	ray.dir.y = display->player_dir.y + display->plane.y * ray.cameraX;
+	ray.camera_x = (float)(2 * x) / (float)display->screen_width - 1;
+	ray.dir.x = display->player_dir.x + display->plane.x * ray.camera_x;
+	ray.dir.y = display->player_dir.y + display->plane.y * ray.camera_x;
 	if (ray.dir.x == 0)
 		ray.delta_dist.x = 2147483647;
 	else

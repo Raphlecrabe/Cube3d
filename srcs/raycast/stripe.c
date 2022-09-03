@@ -34,10 +34,11 @@ static void	*get_sprite(int side, t_memory *mem)
 	return (wall);
 }
 
-static float get_height(float height, float screen_height)
+static float	get_height(float height, float screen_height)
 {
-	float factor = 1.0f;
+	float	factor;
 
+	factor = 1.0f;
 	return ((factor * screen_height) / height);
 }
 
@@ -48,7 +49,7 @@ t_stripe	get_stripe(int x, t_display *display)
 
 	hit = raycast_hit(x, display);
 	stripe.x = x;
-	stripe.perpWallDist = hit.distance_adapted;
+	stripe.perp_wall_dist = hit.distance_adapted;
 	stripe.height = get_height(hit.distance_adapted, display->win_size.y);
 	stripe.side = hit.side;
 	stripe.pos = hit.pos;

@@ -18,7 +18,7 @@
 
 static int	handle_time(t_display *display)
 {
-	display->timeSinceStarted = getTimeSinceStarted(display->startTime);
+	display->timeSinceStarted = get_time_since_started(display->startTime);
 	if (display->timeSinceStarted == -1)
 		return (0);
 	return (1);

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vectors.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/03 10:16:27 by marvin            #+#    #+#             */
+/*   Updated: 2022/09/03 10:16:27 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VECTORS_H
 # define VECTORS_H
 
-typedef struct 	s_vector2
+typedef struct s_vector2
 {
-	float x;
-	float y;
+	float	x;
+	float	y;
 }				t_vector2;
 
 t_vector2	vector2(float x, float y);

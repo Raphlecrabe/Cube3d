@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   move_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 10:12:17 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/03 10:12:17 by marvin           ###   ########.fr       */
+/*   Created: 2022/09/03 09:30:41 by marvin            #+#    #+#             */
+/*   Updated: 2022/09/03 09:30:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include "../../incs/display.h"
+#include "../../incs/events.h"
 
-# include "display.h"
-# include "mlx_utils.h"
+void	rotate_player(t_display *display, float angle)
+{
+	display->player_dir = vector2_rotate(display->player_dir, angle);
+	display->plane = vector2_rotate(display->plane, angle);
+}
 
-# define TILE_SIZE 12
-# define MINIMAP_RAY_NB 20
-# define TRANSPARENT 0xFF000000
-# define BACKGROUND_COLOR 0x00AA80AA
-# define TILE_COLOR 0x00880000
-
-int			display_minimap(t_display *display);
-t_vector2	minimap_size(t_map *map);
-
-#endif
+void	move(t_display *display, t_vector2 direction)
+{
+	display->player_pos.x += direction.x;
+	display->player_pos.y += direction.y;
+}

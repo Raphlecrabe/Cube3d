@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
+/*   Updated: 2022/09/03 10:11:15 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EVENTS_H
 # define EVENTS_H
 
@@ -79,10 +91,9 @@ typedef struct s_collision
 # define RIGHT_KEY_LIN 65363
 # define DOWN_KEY_LIN 65364
 
-
 int		key_hook(int keycode, t_display *display);
 int		loop_hook(t_display *display);
 void	rotate_player(t_display *display, float angle);
-
+void	move(t_display *display, t_vector2 direction);
 
 #endif

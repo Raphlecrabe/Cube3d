@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   garbage_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 10:12:17 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/03 10:12:17 by marvin           ###   ########.fr       */
+/*   Created: 2022/09/03 10:00:18 by marvin            #+#    #+#             */
+/*   Updated: 2022/09/03 10:00:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include "../../incs/garbage.h"
 
-# include "display.h"
-# include "mlx_utils.h"
+unsigned long long int	tag(void *p)
+{
+	return ((unsigned long long int)(p) + 1);
+}
 
-# define TILE_SIZE 12
-# define MINIMAP_RAY_NB 20
-# define TRANSPARENT 0xFF000000
-# define BACKGROUND_COLOR 0x00AA80AA
-# define TILE_COLOR 0x00880000
+unsigned long long int	untag(void *p)
+{
+	return (((unsigned long long int)(p)) - 1);
+}
 
-int			display_minimap(t_display *display);
-t_vector2	minimap_size(t_map *map);
+int	tagged(void *p)
+{
+	return ((unsigned long long int)(p) & 1);
+}
 
-#endif
+void	ft_lstdel(void *content)
+{
+	free(content);
+}

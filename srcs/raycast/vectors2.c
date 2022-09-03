@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   vectors2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 10:12:17 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/03 10:12:17 by marvin           ###   ########.fr       */
+/*   Created: 2022/09/03 10:08:08 by marvin            #+#    #+#             */
+/*   Updated: 2022/09/03 10:08:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#include "../../incs/vectors.h"
+#include <math.h>
 
-# include "display.h"
-# include "mlx_utils.h"
+float	vector2_magnitude(t_vector2 v)
+{
+	return (sqrtf(pow(v.x, 2) + pow(v.y, 2)));
+}
 
-# define TILE_SIZE 12
-# define MINIMAP_RAY_NB 20
-# define TRANSPARENT 0xFF000000
-# define BACKGROUND_COLOR 0x00AA80AA
-# define TILE_COLOR 0x00880000
+t_vector2	vector2_normalize(t_vector2 v)
+{
+	float	m;
 
-int			display_minimap(t_display *display);
-t_vector2	minimap_size(t_map *map);
+	m = vector2_magnitude(v);
+	return (vector2(v.x / m, v.y / m));
+}
 
-#endif
+int	vector2_equals(t_vector2 v1, t_vector2 v2)
+{
+	return (v1.x == v2.x && v1.y == v2.y);
+}

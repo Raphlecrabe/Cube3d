@@ -15,6 +15,7 @@ DEBUG = debug/
 SRCS = main.c
 
 SRCS_GARBAGE = 	garbagecoll.c \
+				garbage_utils.c \
 				garbageutils.c \
 				garbagesplittemp.c \
 
@@ -40,17 +41,22 @@ SRCS_GNL = 	get_next_line.c \
 			get_next_line_utils.c \
 
 SRCS_RAYCAST = 	vectors.c \
+				vectors2.c \
 				raycast.c \
+				raycast_utils.c \
 				stripe.c \
 
 SRCS_DISPLAY = 	display.c \
 				display_utils.c \
 				move.c \
+				move_utils.c \
 				mlx_utils.c \
 				minimap.c \
+				minimap_utils.c \
 				initdisplay.c \
 				loop.c \
 				sprites.c \
+				sprites_utils.c \
 				time.c \
 				openspritewall.c \
 				spritewall.c \

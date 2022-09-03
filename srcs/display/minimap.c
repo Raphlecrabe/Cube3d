@@ -42,7 +42,6 @@ static void	print_map(t_mlx_datas *datas, t_map *map)
 	t_vector2	tile_coord;
 
 	i = 0;
-	//fill_img(datas, TRANSPARENT);
 	while (map->lines[i])
 	{
 		j = 0;
@@ -92,19 +91,8 @@ static void	print_raycasts(t_mlx_datas *datas, t_display *display)
 	}
 }
 
-t_vector2 minimap_size(t_map *map)
-{
-	t_vector2 size;
-
-	size.x = map->width * TILE_SIZE;
-	size.y = map->heigth * TILE_SIZE;
-
-	return (size);
-}
-
 int	display_minimap(t_display *display)
 {
-	//img_clean(display->mlx, display->minimap);
 	print_map(display->minimap, display->map);
 	print_raycasts(display->minimap, display);
 	mlx_put_image_to_window(display->mlx, display->mlx_win,

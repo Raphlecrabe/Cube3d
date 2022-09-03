@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/03 09:55:07 by marvin            #+#    #+#             */
+/*   Updated: 2022/09/03 09:55:07 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../incs/time.h"
 
 t_time	gettime(void)
@@ -14,14 +26,14 @@ t_time	gettime(void)
 	return (time);
 }
 
-long int	getTimeSinceStarted(t_time startTime)
+long int	get_time_since_started(t_time start_time)
 {
 	struct timeval	tv;
-	long int	time;
+	long int		time;
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (-1);
-	time = (tv.tv_usec - startTime.usec) / 1000
-		+ ((tv.tv_sec - startTime.sec) * 1000);
+	time = (tv.tv_usec - start_time.usec) / 1000
+		+ ((tv.tv_sec - start_time.sec) * 1000);
 	return (time);
 }
