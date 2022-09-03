@@ -16,9 +16,7 @@
 void	init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas)
 {
 	(*datas).img_size = img_size;
-	(*datas).img = mlx_new_image(mlx, datas->img_size.x, datas->img_size.y);
-	(*datas).addr = mlx_get_data_addr(datas->img, &datas->bits_per_pixel,
-			&datas->line_length, &datas->endian);
+	(*datas).img = NULL;
 }
 
 int	create_trgb(int t, int r, int g, int b)

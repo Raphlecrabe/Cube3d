@@ -36,14 +36,14 @@ static int	handle_mouse(t_display *display)
 	offset = x - display->mousePos.x;
 	display->mousePos.x = x;
 	rotate_player(display, offset * MOUSE_ROTATE_SPEED * DEG_TO_RAD);
-	return (display_all(display));
+	return (1);
 }
 
 int	loop_hook(t_display *display)
 {
-	if (handle_mouse(display) == 0)
-		return (0);
-	if (handle_time(display) == 0)
-		return (0);
+	if (handle_mouse(display))
+		if (handle_time(display))
+			return (display_all(display));
+	exit_cub(display);
 	return (1);
 }

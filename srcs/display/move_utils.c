@@ -24,3 +24,10 @@ void	move(t_display *display, t_vector2 direction)
 	display->player_pos.x += direction.x;
 	display->player_pos.y += direction.y;
 }
+
+int	is_wall(char c)
+{
+	if (ft_inbase(c, "1"))
+		return (1);
+	return (0);
+}

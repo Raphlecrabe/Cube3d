@@ -93,9 +93,7 @@ static void	print_raycasts(t_mlx_datas *datas, t_display *display)
 
 int	display_minimap(t_display *display)
 {
-	print_map(display->minimap, display->map);
-	print_raycasts(display->minimap, display);
-	mlx_put_image_to_window(display->mlx, display->mlx_win,
-		display->minimap->img, 0, 0);
+	print_map(display->view, display->map);
+	print_raycasts(display->view, display);
 	return (1);
 }

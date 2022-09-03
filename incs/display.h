@@ -76,7 +76,7 @@ typedef struct s_display
 
 int		display_all(t_display *display);
 int		display_screen(t_display *display);
-void	img_clean(void *mlx, t_mlx_datas *datas);
+int		img_clean(void *mlx, t_mlx_datas *datas);
 void 	fill_img(t_mlx_datas *datas, int color);
 int		ft_message(char *line, int i);
 int		ft_initdisplay(t_display **display, t_cube *cube);
@@ -89,6 +89,7 @@ void	ft_putblackimg(t_display *display);
 void	ft_andrescircle(int xc, int yc, int r, t_display *display);
 void	ft_andrescircleceiling(int xc, int yc, int r, t_display *display);
 float	ft_getthird(char c, int color);
+void	exit_cub(t_display *display);
 
 # include "raycast.h"
 # include "events.h"

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/09/03 09:37:46 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/03 10:38:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 #include <mlx.h>
 #include <math.h>
 
-static int	is_wall(char c)
+static int	other_key(int keycode, t_display *display)
 {
-	if (ft_inbase(c, "1"))
-		return (1);
-	return (0);
+	if (keycode == ESCAPE_KEY_LIN)
+		return (0);
+	return (1);
 }
 
 static int	col(t_collision collision, t_vector2 direction)
@@ -62,7 +62,7 @@ static t_collision	init_collision(t_display *display, float movespeed)
 	return (collision);
 }
 
-static void	key_affect(int keycode, t_display *display)
+static int	key_affect(int keycode, t_display *display)
 {
 	t_vector2	direction;
 	t_vector2	null;
@@ -84,14 +84,17 @@ static void	key_affect(int keycode, t_display *display)
 	else if (keycode == D_KEY_LIN)
 		direction = vector2_multiply(display->plane, MOVE_SPEED);
 	else
-		return ;
+		return (other_key(keycode, display));
 	if (!vector2_equals(direction, null) && !col(collision, direction))
 		move(display, direction);
+	return (1);
 }
 
 int	key_hook(int keycode, t_display *display)
 {
-	key_affect(keycode, display);
-	display_all(display);
-	return (1);
+	if (key_affect(keycode, display))
+		if (display_all(display))
+			return (1);
+	exit_cub(display);
+	return (0);
 }

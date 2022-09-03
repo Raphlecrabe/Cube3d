@@ -107,6 +107,6 @@ void	display_sprites(t_display *display)
 	bubble_sort_sprite(display->spriteDatas->sprites,
 		display->spriteDatas->number);
 	project(display, display->spriteDatas->sprites);
-	mlx_put_image_to_window(display->mlx, display->mlx_win,
-		display->view->img, 0, 0);
+	// mlx_put_image_to_window(display->mlx, display->mlx_win,
+	// 	display->view->img, 0, 0);
 }

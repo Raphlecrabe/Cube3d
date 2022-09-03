@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/01 14:49:44 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/03 11:15:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static int	ft_initminimap(t_display **display, t_cube *cube)
 			1, (*display)->mem);
 	if ((*display)->minimap == NULL)
 		return (-1);
-	init_mlxdatas((*display)->mlx, minimap_size(cube->map),
-		(*display)->minimap);
+	//init_mlxdatas((*display)->mlx, minimap_size(cube->map),
+	// 	(*display)->minimap);
 }
 
 int	ft_initdisplay(t_display **display, t_cube *cube)

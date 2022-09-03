@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/03 10:11:15 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/03 10:44:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_collision
 # define DEG_TO_RAD 0.01745f
 # define MOVE_SPEED 0.1f
 # define ROTATE_SPEED 10.0f
-# define MOUSE_ROTATE_SPEED 1.0f
+# define MOUSE_ROTATE_SPEED 0.5f
 
 # define A_KEY_MAC 0
 # define B_KEY_MAC 11
@@ -59,6 +59,7 @@ typedef struct s_collision
 # define LEFT_KEY_MAC 123
 # define RIGHT_KEY_MAC 125
 # define DOWN_KEY_MAC 124
+# define ESCAPE_KEY_MAX -1
 
 # define A_KEY_LIN 97
 # define B_KEY_LIN 98
@@ -90,10 +91,12 @@ typedef struct s_collision
 # define LEFT_KEY_LIN 65361
 # define RIGHT_KEY_LIN 65363
 # define DOWN_KEY_LIN 65364
+# define ESCAPE_KEY_LIN 65307
 
 int		key_hook(int keycode, t_display *display);
 int		loop_hook(t_display *display);
 void	rotate_player(t_display *display, float angle);
 void	move(t_display *display, t_vector2 direction);
+int		is_wall(char c);
 
 #endif

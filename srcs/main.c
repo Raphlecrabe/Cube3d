@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/01 16:22:24 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/03 11:08:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 #include "../incs/parsing.h"
 #include "../incs/display.h"
 #include <limits.h>
+
+void	exit_cub(t_display *display)
+{
+	mlx_destroy_image(display->mlx, display->view->img);
+	mlx_destroy_window(display->mlx, display->mlx_win);
+	ft_freemem(display->mem);
+	free(display->mem);
+	//free le t memory et le garbage
+	//détruire les img des textures
+	//détruire l'img de l'affichage + minimap
+	//détruire la window + mlx
+	exit(EXIT_SUCCESS);
+}
 
 int	main(int argc, char **argv)
 {
@@ -36,8 +49,4 @@ int	main(int argc, char **argv)
 			ft_maindisplay(cube);
 	ft_freemem(mem);
 	free(mem);
-	//free le t memory et le garbage
-	//détruire les img des textures
-	//détruire l'img de l'affichage + minimap
-	//détruire la window + mlx
 }
