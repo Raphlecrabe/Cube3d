@@ -67,13 +67,14 @@ typedef struct s_display
 int		display_all(t_display *display);
 int		display_screen(t_display *display);
 void	img_clean(void *mlx, t_mlx_datas *datas);
-void 	fill_img(t_mlx_datas *datas, int color);
+void	fill_img(t_mlx_datas *datas, int color);
 int		ft_message(char *line, int i);
 int		ft_initdisplay(t_display **display, t_cube *cube);
 void	ft_drawcf(t_display *display);
 float	ft_decimal(float x);
 void	ft_drawwalls(struct s_stripe stripe, t_display *display);
 int		ft_opentextures(t_display *display, t_texture *textures);
+int		ft_maindisplay(t_cube *cube);
 
 # include "raycast.h"
 # include "events.h"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spritewall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/08/18 17:12:06 by raphael          ###   ########.fr       */
+/*   Updated: 2022/08/23 15:19:18 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_getcolor1(t_mlx_datas *texture, t_calc *calc, int i)
 	color = texture->addr + (ycalc * texture->line_length
 			+ calc->widthwall * (texture->bits_per_pixel / 8));
 	calc->color = *(unsigned int *)color;
-
 }
 
 void	ft_drawone(t_stripe stripe, t_display *display,

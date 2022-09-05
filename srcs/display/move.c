@@ -79,17 +79,17 @@ void	key_affect(int keycode, t_display *display)
 	rotate_speed = ROTATE_SPEED;
 	movespeed = MOVE_SPEED;
 	collision = init_collision(display, movespeed);
-	if (keycode == Q_KEY_LIN)
+	if (keycode == Q_KEY_MAC)
 		rotate(display, -rotate_speed);
-	else if (keycode == D_KEY_LIN)
+	else if (keycode == D_KEY_MAC)
 		rotate(display, rotate_speed);
-	else if (keycode == UP_KEY_LIN && !col(collision, vector2(0, -1), vector2(1, 0)))
+	else if (keycode == UP_KEY_MAC && !col(collision, vector2(0, -1), vector2(1, 0)))
 		display->player_pos.y -= movespeed;
-	else if (keycode == DOWN_KEY_LIN && !col(collision, vector2(0, 1), vector2(1, 0)))
+	else if (keycode == DOWN_KEY_MAC && !col(collision, vector2(0, 1), vector2(1, 0)))
 		display->player_pos.y += movespeed;
-	else if (keycode == LEFT_KEY_LIN && !col(collision, vector2(-1, 0), vector2(0, 1)))
+	else if (keycode == LEFT_KEY_MAC && !col(collision, vector2(-1, 0), vector2(0, 1)))
 		display->player_pos.x -= movespeed;
-	else if (keycode == RIGHT_KEY_LIN && !col(collision, vector2(1, 0), vector2(0, 1)))
+	else if (keycode == RIGHT_KEY_MAC && !col(collision, vector2(1, 0), vector2(0, 1)))
 		display->player_pos.x += movespeed;
 }
 
