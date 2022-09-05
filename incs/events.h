@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/03 10:44:56 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/05 10:35:39 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ typedef struct s_collision
 # define Z_KEY_MAC 6
 # define UP_KEY_MAC 126
 # define LEFT_KEY_MAC 123
-# define RIGHT_KEY_MAC 125
-# define DOWN_KEY_MAC 124
-# define ESCAPE_KEY_MAX -1
+# define RIGHT_KEY_MAC 124
+# define DOWN_KEY_MAC 125
+# define ESCAPE_KEY_MAC 53
 
 # define A_KEY_LIN 97
 # define B_KEY_LIN 98

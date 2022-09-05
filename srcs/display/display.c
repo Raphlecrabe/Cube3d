@@ -46,10 +46,10 @@ int	ft_maindisplay(t_cube *cube)
 		return (0);
 	if (ft_opentextures(display, display->textures) == -1)
 		return (0);
-	if (display_screen(display) == -1)
+	if (display_all(display) == 0)
 		return (0);
 	mlx_key_hook(display->mlx_win, key_hook, display);
-	mlx_loop_hook(display->mlx, loop_hook, display);
+	//mlx_loop_hook(display->mlx, loop_hook, display);
 	mlx_loop(display->mlx);
 	return (1);
 }

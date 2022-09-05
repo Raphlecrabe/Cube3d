@@ -30,7 +30,7 @@ static int	handle_mouse(t_display *display)
 	int	y;
 	int	offset;
 
-	mlx_mouse_get_pos(display->mlx, display->mlx_win, &x, &y);
+	mlx_mouse_get_pos(display->mlx, &x, &y);
 	if (x == display->mousePos.x)
 		return (1);
 	offset = x - display->mousePos.x;

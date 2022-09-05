@@ -24,7 +24,7 @@ static void	print_tile(t_mlx_datas *datas, t_vector2 point_ul, char tile)
 	i = 0;
 	color = TILE_COLOR;
 	if (tile != '1')
-		color = BACKGROUND_COLOR;
+		return; //color = BACKGROUND_COLOR;
 	point_ur = vector2(point_ul.x + TILE_SIZE, point_ul.y);
 	while (i < TILE_SIZE)
 	{
@@ -47,7 +47,7 @@ static void	print_map(t_mlx_datas *datas, t_map *map)
 		j = 0;
 		while (map->lines[i][j])
 		{
-			tile_coord = vector2(j * TILE_SIZE, i * TILE_SIZE);
+			tile_coord = vector2(j * TILE_SIZE + MAP_OFFSET, i * TILE_SIZE + MAP_OFFSET);
 			print_tile(datas, tile_coord, map->lines[i][j]);
 			j++;
 		}
@@ -60,9 +60,13 @@ static void	trace_raycast(t_mlx_datas *datas,
 {
 	t_vector2	player2screen;
 	t_vector2	ray2screen;
+	t_vector2	offset;
 
+	offset = vector2(MAP_OFFSET, MAP_OFFSET);
 	player2screen = vector2_multiply(player_pos, TILE_SIZE);
+	player2screen = vector2_add(player2screen, offset);
 	ray2screen = vector2_multiply(hitpos, TILE_SIZE);
+	ray2screen = vector2_add(ray2screen, offset);
 	draw_line(datas, player2screen, ray2screen, 0x00FF0000);
 }
 

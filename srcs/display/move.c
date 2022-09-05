@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/09/03 10:38:38 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/05 10:46:05 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 
 static int	other_key(int keycode, t_display *display)
 {
-	if (keycode == ESCAPE_KEY_LIN)
+	//printf("%d\n", keycode);
+	if (keycode == ESCAPE_KEY_MAC)
 		return (0);
 	return (1);
 }
@@ -71,17 +72,17 @@ static int	key_affect(int keycode, t_display *display)
 	null = vector2(0, 0);
 	direction = null;
 	collision = init_collision(display, MOVE_SPEED);
-	if (keycode == LEFT_KEY_LIN)
+	if (keycode == LEFT_KEY_MAC)
 		rotate_player(display, -ROTATE_SPEED * DEG_TO_RAD);
-	else if (keycode == RIGHT_KEY_LIN)
+	else if (keycode == RIGHT_KEY_MAC)
 		rotate_player(display, ROTATE_SPEED * DEG_TO_RAD);
-	else if (keycode == W_KEY_LIN || keycode == Z_KEY_LIN)
+	else if (keycode == W_KEY_MAC || keycode == Z_KEY_MAC)
 		direction = vector2_multiply(display->player_dir, MOVE_SPEED);
-	else if (keycode == S_KEY_LIN)
+	else if (keycode == S_KEY_MAC)
 		direction = vector2_multiply(display->player_dir, -MOVE_SPEED);
-	else if (keycode == Q_KEY_LIN || keycode == A_KEY_LIN)
+	else if (keycode == Q_KEY_MAC || keycode == A_KEY_MAC)
 		direction = vector2_multiply(display->plane, -MOVE_SPEED);
-	else if (keycode == D_KEY_LIN)
+	else if (keycode == D_KEY_MAC)
 		direction = vector2_multiply(display->plane, MOVE_SPEED);
 	else
 		return (other_key(keycode, display));
