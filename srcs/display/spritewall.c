@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/08/23 15:19:18 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/09/05 11:30:13 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	int		y;
 
 	i = 0;
-	calc->height = stripe.height;
 	y = (int)display->view->img_size.y / 2
 		+ (int)display->view->img_size.y % 2 - 1;
 	calc->ytext = (int)texture->img_size.y / 2
@@ -49,6 +48,9 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	while (i < stripe.height / 2 + stripe.height % 2)
 	{
 		ft_getcolor1(texture, calc, i);
+		//ne pas oublier d'enlever la ligne des dists
+		stripe.dist = 6.5f;
+		ft_addshading(&calc->color, stripe.dist);
 		my_mlx_pixel_put(display->view, stripe.x, y - i, calc->color);
 		i++;
 	}
@@ -56,6 +58,9 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	while (i < stripe.height / 2 + stripe.height % 2)
 	{
 		ft_getcolor2(texture, calc, i);
+		//ne pas oublier d'enlever la ligne des shadings
+		stripe.dist = 6.5f;
+		ft_addshading(&calc->color, stripe.dist);
 		my_mlx_pixel_put(display->view, stripe.x, y + i, calc->color);
 		i++;
 	}
@@ -68,11 +73,13 @@ void	ft_drawwall(t_stripe stripe,
 
 	calc.relativepos = ft_decimal(stripe.pos.x) + ft_decimal(stripe.pos.y);
 	calc.widthwall = (int)(calc.relativepos * texture->img_size.x);
+	calc.height = stripe.height;
 	ft_drawone(stripe, display, &calc, texture);
 }
 
 void	ft_drawwalls(t_stripe stripe, t_display *display)
 {
+	//ne pas oublier d'enlever la side
 	stripe.side = 0;
 	if (stripe.side == 0)
 		ft_drawwall(stripe, display, display->textures->wtext);

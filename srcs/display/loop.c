@@ -15,7 +15,7 @@
 #include "../../incs/minimap.h"
 #include <mlx.h>
 
-int loop_hook(t_display *display)
+int	loop_hook(t_display *display)
 {
 	int	x;
 	int	y;

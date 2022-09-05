@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/07/28 14:09:35 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/08/31 17:27:30 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_parseline(t_cube *cube, char *l, int j)
 		}
 		if (l[i] != '0' && l[i] != '1' && l[i] != 'W'
 			&& l[i] != 'E' && l[i] != 'S' && l[i] != 'N' && l[i] != '\n'
-			&& l[i] != '\0')
+			&& l[i] != '\0' && l[i] != '2' && l[i] != '3' && l[i] != '4')
 			return (ft_message("Error, wrong format map\n", -1));
 		i++;
 	}

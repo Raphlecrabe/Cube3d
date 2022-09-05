@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raphael <raphael@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/16 16:58:58 by raphael          ###   ########.fr       */
+/*   Updated: 2022/09/01 14:03:54 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //include
 #include "../incs/parsing.h"
 #include "../incs/display.h"
+#include <limits.h>
 
 int	main(int argc, char **argv)
 {

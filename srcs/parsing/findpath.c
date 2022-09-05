@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findpath.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:40:15 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/27 11:27:53 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/08/31 18:11:27 by rafy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
+	if (cube->check.pwest == 1)
+		return (ft_message("Error, second same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -33,9 +35,7 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 	j = 0;
 	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
-		cube->west[j] = line[i];
-		j++;
-		i++;
+		cube->west[j++] = line[i++];
 	}
 	cube->check.pwest = 1;
 	return (0);
@@ -46,6 +46,8 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
+	if (cube->check.peast == 1)
+		return (ft_message("Error, second same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -61,11 +63,7 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 	i = i - j;
 	j = 0;
 	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
-	{
-		cube->east[j] = line[i];
-		j++;
-		i++;
-	}
+		cube->east[j++] = line[i++];
 	cube->check.peast = 1;
 	return (0);
 }
@@ -75,6 +73,8 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
+	if (cube->check.pnorth == 1)
+		return (ft_message("Error, second same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -91,9 +91,7 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 	j = 0;
 	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
-		cube->north[j] = line[i];
-		j++;
-		i++;
+		cube->north[j++] = line[i++];
 	}
 	cube->check.pnorth = 1;
 	return (0);
@@ -104,6 +102,8 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 	int	j;
 
 	j = 0;
+	if (cube->check.psouth == 1)
+		return (ft_message("Error, second same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -120,9 +120,7 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 	j = 0;
 	while (line[i] != '\0' && ((line[i] < 9 || line[i] > 13) && line[i] != 32))
 	{
-		cube->south[j] = line[i];
-		j++;
-		i++;
+		cube->south[j++] = line[i++];
 	}
 	cube->check.psouth = 1;
 	return (0);
