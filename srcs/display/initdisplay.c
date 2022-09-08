@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initdisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/03 11:15:51 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/08 11:22:33 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 /* ************************************************************************** */
 
 #include "../../incs/display.h"
+
+void	ft_init_plane(t_display *display, t_cube *cube)
+{
+	display->plane = vector2(0.66f, 0.0f);
+	printf("lol\n");
+	if (cube->playerinit->angle.x == -1
+		&& cube->playerinit->angle.y == 0)
+	{
+		display->plane = vector2(0.0f, -0.66f);
+	}
+	if (cube->playerinit->angle.x == 1
+		&& cube->playerinit->angle.y == 0)
+	{
+		printf("lolE\n");
+		display->plane = vector2(0.0f, 0.66f);
+	}
+	if (cube->playerinit->angle.x == 0
+		&& cube->playerinit->angle.y == 1)
+	{
+		display->plane = vector2(-0.66f, 0.0f);
+	}
+}
 
 int	ft_init_textures(t_display **display, t_cube *cube)
 {
@@ -42,23 +64,13 @@ int	ft_init_map(t_display **display, t_cube *cube)
 	return (0);
 }
 
-static int	ft_initminimap(t_display **display, t_cube *cube)
-{
-	(*display)->minimap = ft_malloc_temp(sizeof(t_mlx_datas),
-			1, (*display)->mem);
-	if ((*display)->minimap == NULL)
-		return (-1);
-	//init_mlxdatas((*display)->mlx, minimap_size(cube->map),
-	// 	(*display)->minimap);
-}
-
 int	ft_initdisplay(t_display **display, t_cube *cube)
 {
 	if (ft_init_map(display, cube) == -1)
 		return (-1);
 	if (ft_init_textures(display, cube) == -1)
 		return (-1);
-	(*display)->plane = vector2(0.66f, 0);
+	ft_init_plane(*display, cube);
 	(*display)->screen_width = 1900;
 	(*display)->win_size = vector2(1900, 1080);
 	(*display)->mousePos = vector2((*display)->screen_width / 2, 0);

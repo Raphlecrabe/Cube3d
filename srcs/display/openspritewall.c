@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openspritewall.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:49:42 by raphael           #+#    #+#             */
-/*   Updated: 2022/08/31 18:43:06 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/06 13:26:22 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,6 @@ int	ft_parsepng(char *path)
 		&& path[i - 3] == 'x' && path[i - 4] == '.')
 		return (0);
 	return (ft_message("Error, wrong format texture\n", -1));
-}
-
-int	ft_open_utils(t_mlx_datas **imgpoint, int sizes[2])
-{
-	/*if (i == 1)
-	{
-		imgpoint->img = mlx_png_file_to_image(display->mlx,
-				path, &imgpoint->img_size.x, &imgpoint->img_size.y);
-		if (imgpoint->img == NULL)
-			return (ft_message("Error, can't open one of the texture\n", -1));
-		(*imgpoint)->addr = mlx_get_data_addr((*imgpoint)->img,
-				&(*imgpoint)->bits_per_pixel,
-				&(*imgpoint)->line_length, &(*imgpoint)->endian);
-	}*/
-	(*imgpoint)->img_size.x = sizes[0];
-	(*imgpoint)->img_size.y = sizes[1];
-	return (0);
 }
 
 int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
@@ -66,8 +49,10 @@ int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
 				&(*imgpoint)->bits_per_pixel,
 				&(*imgpoint)->line_length, &(*imgpoint)->endian);
 	}
-	if (ft_open_utils(imgpoint, sizes) == -1)
-		return (-1);
+	if (i == 1)
+		return (ft_message("Error, wrong texture format\n", -1));
+	(*imgpoint)->img_size.x = sizes[0];
+	(*imgpoint)->img_size.y = sizes[1];
 	return (0);
 }
 

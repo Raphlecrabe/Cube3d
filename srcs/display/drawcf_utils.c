@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawcf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:03:38 by rafy              #+#    #+#             */
-/*   Updated: 2022/08/31 18:22:15 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/05 16:04:50 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,57 @@ void	ft_andrescircleceiling(int xc, int yc, int r, t_display *display)
 		my_mlx_pixel_put(display->view, xc - y,
 			yc + x, display->textures->shade);
 		ft_andreutilsceiling(&x, &y, r, &d);
+	}
+}
+
+void	ft_drawceilingshade(t_display *display)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < display->view->img_size.x)
+	{
+		while (j < display->view->img_size.y / 2)
+		{
+			display->textures->shade = create_trgb(0,
+					ft_getthird('r', display->textures->ceiling)
+					* 0.15,
+					ft_getthird('g', display->textures->ceiling)
+					* 0.15,
+					ft_getthird('b', display->textures->ceiling)
+					* 0.15);
+			my_mlx_pixel_put(display->view, i, j, display->textures->shade);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+void	ft_drawfloorshade(t_display *display)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = display->view->img_size.y / 2;
+	while (i < display->view->img_size.x)
+	{
+		while (j < display->view->img_size.y)
+		{
+			display->textures->shade = create_trgb(0,
+					ft_getthird('r', display->textures->floor)
+					* 0.10,
+					ft_getthird('g', display->textures->floor)
+					* 0.10,
+					ft_getthird('b', display->textures->floor)
+					* 0.10);
+			my_mlx_pixel_put(display->view, i, j, display->textures->shade);
+			j++;
+		}
+		j = display->view->img_size.y / 2;
+		i++;
 	}
 }

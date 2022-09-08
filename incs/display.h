@@ -47,9 +47,9 @@ typedef struct s_texture
 	t_mlx_datas	*etext;
 	t_mlx_datas	*ntext;
 	t_mlx_datas	*stext;
-	t_mlx_datas *first;
-	t_mlx_datas *second;
-	t_mlx_datas *third;
+	t_mlx_datas	*first;
+	t_mlx_datas	*second;
+	t_mlx_datas	*third;
 }				t_texture;
 
 typedef struct s_display
@@ -77,7 +77,7 @@ typedef struct s_display
 int		display_all(t_display *display);
 int		display_screen(t_display *display);
 int		img_clean(void *mlx, t_mlx_datas *datas);
-void 	fill_img(t_mlx_datas *datas, int color);
+void	fill_img(t_mlx_datas *datas, int color);
 int		ft_message(char *line, int i);
 int		ft_initdisplay(t_display **display, t_cube *cube);
 void	ft_drawcf(t_display *display);
@@ -90,6 +90,8 @@ void	ft_andrescircle(int xc, int yc, int r, t_display *display);
 void	ft_andrescircleceiling(int xc, int yc, int r, t_display *display);
 float	ft_getthird(char c, int color);
 void	exit_cub(t_display *display);
+void	ft_drawfloorshade(t_display *display);
+void	ft_drawceilingshade(t_display *display);
 
 # include "raycast.h"
 # include "events.h"

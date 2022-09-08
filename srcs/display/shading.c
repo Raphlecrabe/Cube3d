@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:17:46 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/01 16:51:56 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/05 16:28:39 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	ft_addshading(int *color, float dist)
 	float	b;
 
 	copy = *color;
-	if (dist >= 10.0f)
+	if (dist >= 14.0f)
 	{
 		copy = 0 << 16 | 0 << 8 | 0;
 		*color = copy;
 		return ;
 	}
-	if (dist <= 1.0)
+	if (dist <= 2.0)
 	{
 		r = ft_getthird('r', *color) * (1.0f / 1.0f);
 		g = ft_getthird('g', *color) * (1.0f / 1.0f);
@@ -46,8 +46,8 @@ void	ft_addshading(int *color, float dist)
 		*color = create_trgb(0, r, g, b);
 		return ;
 	}
-	r = ft_getthird('r', *color) * (1.0f / dist);
-	g = ft_getthird('g', *color) * (1.0f / dist);
-	b = ft_getthird('b', *color) * (1.0f / dist);
+	r = ft_getthird('r', *color) * (1.0f / (dist / 1.9));
+	g = ft_getthird('g', *color) * (1.0f / (dist / 1.9));
+	b = ft_getthird('b', *color) * (1.0f / (dist / 1.9));
 	*color = create_trgb(0, r, g, b);
 }

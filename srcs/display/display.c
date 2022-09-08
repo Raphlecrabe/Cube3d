@@ -28,8 +28,6 @@ int	display_screen(t_display *display)
 	while (x < display->screen_width)
 	{
 		stripe = get_stripe(x, display);
-		if (stripe.height > display->win_size.y)
-			stripe.height = display->win_size.y;
 		ft_drawwalls(stripe, display);
 		display->hitpos[x] = stripe.pos;
 		//display->z_buffer[x] = stripe.perpWallDist;
@@ -62,9 +60,9 @@ int	display_all(t_display *display)
 	{
 		if (display_minimap(display))
 		{
-				mlx_put_image_to_window(display->mlx, display->mlx_win,
-					display->view->img, 0, 0);	
-				return (1);
+			mlx_put_image_to_window(display->mlx, display->mlx_win,
+				display->view->img, 0, 0);
+			return (1);
 		}
 	}
 	exit_cub(display);

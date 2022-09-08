@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findcolour.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:20:07 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/31 13:41:52 by rafy             ###   ########.fr       */
+/*   Updated: 2022/09/05 15:10:44 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_findf(t_cube *cube, char *line, int i)
 	colour = ft_getwhole(line, i, cube->mem);
 	if (colour == NULL)
 		return (-1);
-	numbers = ft_split(colour, ',');
+	numbers = ft_split_temp(colour, ',', cube->mem);
 	if (numbers == NULL)
 		return (-1);
 	if (ft_testnumber(numbers) == -1)

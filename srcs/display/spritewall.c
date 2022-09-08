@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spritewall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/01 16:12:48 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/05 15:13:31 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_getcolor1(t_mlx_datas *texture, t_calc *calc, int i)
 	color = texture->addr + (ycalc * texture->line_length
 			+ calc->widthwall * (texture->bits_per_pixel / 8));
 	calc->color = *(unsigned int *)color;
-
 }
 
 void	ft_drawone(t_stripe stripe, t_display *display,
@@ -46,19 +45,19 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 		+ (int)display->view->img_size.y % 2 - 1;
 	calc->ytext = (int)texture->img_size.y / 2
 		+ (int)texture->img_size.y % 2 - 1;
-	while (i < stripe.height / 2 + stripe.height % 2)
+	while (i < stripe.height / 2 + stripe.height % 2
+		&& i < display->win_size.y / 2)
 	{
 		ft_getcolor1(texture, calc, i);
-		//ne pas oublier d'enlever la ligne des dists
 		ft_addshading(&calc->color, stripe.dist);
 		my_mlx_pixel_put(display->view, stripe.x, y - i, calc->color);
 		i++;
 	}
 	i = 1;
-	while (i < stripe.height / 2 + stripe.height % 2)
+	while (i < stripe.height / 2 + stripe.height % 2
+		&& i < display->win_size.y / 2)
 	{
 		ft_getcolor2(texture, calc, i);
-		//ne pas oublier d'enlever la ligne des shadings
 		ft_addshading(&calc->color, stripe.dist);
 		my_mlx_pixel_put(display->view, stripe.x, y + i, calc->color);
 		i++;
@@ -69,7 +68,7 @@ void	ft_drawwall(t_stripe stripe,
 	t_display *display, t_mlx_datas *texture)
 {
 	t_calc	calc;
-	
+
 	calc.relativepos = ft_decimal(stripe.pos.x);
 	if (stripe.side % 2 == 0)
 		calc.relativepos = ft_decimal(stripe.pos.y);
@@ -80,7 +79,6 @@ void	ft_drawwall(t_stripe stripe,
 
 void	ft_drawwalls(t_stripe stripe, t_display *display)
 {
-	//ne pas oublier d'enlever la side
 	if (stripe.side == 0)
 		ft_drawwall(stripe, display, display->textures->wtext);
 	if (stripe.side == 2)

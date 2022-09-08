@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/05 10:56:27 by fbelthoi         ###   ########lyon.fr   */
+/*   Updated: 2022/09/05 15:03:15 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ int	main(int argc, char **argv)
 		return (0);
 	mem->used = NULL;
 	if (ft_initcube(&cube, mem) != -1)
+	{
 		if (ft_fullparse(cube, argv) != -1)
+		{
+			if (cube->parsed == 0)
+				return (ft_message("Error, map is not complete\n", -1));
 			ft_maindisplay(cube);
+		}
+	}
 	ft_freemem(mem);
 	free(mem);
 }
