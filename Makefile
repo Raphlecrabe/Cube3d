@@ -10,8 +10,6 @@ RAYCAST = raycast/
 
 DISPLAY = display/
 
-DEBUG = debug/
-
 SRCS = main.c
 
 SRCS_GARBAGE = 	garbagecoll.c \
@@ -55,9 +53,6 @@ SRCS_DISPLAY = 	display.c \
 				minimap_utils.c \
 				initdisplay.c \
 				loop.c \
-				sprites.c \
-				sprites_utils.c \
-				time.c \
 				openspritewall.c \
 				spritewall.c \
 				spritewallutils.c \
@@ -65,20 +60,21 @@ SRCS_DISPLAY = 	display.c \
 				drawcf.c \
 				drawcf_utils.c \
 
-SRCS_DEBUG = 
-
 #OBJS
 
 OBJ_DIR = objs/
 
-OBJS = 	${SRCS:%.c=${OBJ_DIR}%.o}
+OBJS = 	${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
+		${SRCS_GNL_ABS:%.c=${OBJ_DIR}%.o} \
+		${SRCS_RAYCAST_ABS:%.c=${OBJ_DIR}%.o} \
+		${SRCS_DISPLAY_ABS:%.c=${OBJ_DIR}%.o} \
+		${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
+		${SRCS:%.c=${OBJ_DIR}%.o}
 
 OTHER =	${SRCS/GARBAGE:%.c=${OBJ_DIR}/${GARBAGE}%.o} \
 		${SRCS/PARSING:%.c=${OBJ_DIR}/${PARSING}%.o} \
 		${SRCS/GNL:%.c=${OBJ_DIR}/${GNL}%.o} \
 		${SRCS/RAYCAST:%.c=${OBJ_DIR}/${RAYCAST}%.o} \
-
-SRCS_DEBUG_ABS = ${SRCS_DEBUG:%.c=${DEBUG}%.c}
 
 SRCS_GARBAGE_ABS = ${SRCS_GARBAGE:%.c=${GARBAGE}%.c}
 
@@ -89,18 +85,6 @@ SRCS_RAYCAST_ABS = ${SRCS_RAYCAST:%.c=${RAYCAST}%.c}
 SRCS_DISPLAY_ABS = ${SRCS_DISPLAY:%.c=${DISPLAY}%.c}
 
 SRCS_PARSING_ABS = ${SRCS_PARSING:%.c=${PARSING}%.c}
-
-
-OBJS_DEBUG = ${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS_GNL_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS_RAYCAST_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS_DISPLAY_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
-			${SRCS:%.c=${OBJ_DIR}%.o} \
-
-OBJS_DEBPARSE = ${SRCS_GARBAGE_ABS:%.c=${OBJ_DIR}%.o} \
-				${SRCS_PARSING_ABS:%.c=${OBJ_DIR}%.o} \
-				${SRCS_GNL_ABS:%.c=${OBJ_DIR}%.o} \
 
 #MLX
 
@@ -125,8 +109,6 @@ INC_FILES = garbage.h \
 			mlx_utils.h \
 			minimap.h \
 			display.h \
-			sprites.h \
-			time.h \
 
 INCLUDES =	mlx/mlx.h \
 			${INC_FILES:%.h=${INC_DIR}/%.h} \
@@ -148,8 +130,8 @@ ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 
 all: Makefile makelib makemlx makedirs ${NAME}
 
-${NAME}:	Makefile makelib makemlx makedirs ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+${NAME}:	${OBJS}
+			${CC} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
@@ -161,7 +143,6 @@ makedirs:
 			mkdir -p ${OBJ_DIR}${GNL}
 			mkdir -p ${OBJ_DIR}${GARBAGE}
 			mkdir -p ${OBJ_DIR}${RAYCAST}
-			mkdir -p ${OBJ_DIR}${DEBUG}
 			mkdir -p ${OBJ_DIR}${DISPLAY}
 			mkdir -p ${OBJ_DIR}${PARSING}
 
