@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/08 12:13:32 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:17:33 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	exit_cub(t_display *display)
 {
 	if (display)
 	{
-		if (display->mlx && display->view->img);
+		if (display->mlx && display->view->img)
 			mlx_destroy_image(display->mlx, display->view->img);
 		if (display->mlx && display->mlx_win)
 			mlx_destroy_window(display->mlx, display->mlx_win);
