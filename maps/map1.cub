@@ -1,8 +1,9 @@
-WE ./wallwest.xpm 
-NO ./wallnorth.xpm
-EA ./walleast.xpm
+WE ./textures/wallwest.xpm 
+NO ./textures/wallnorth.xpm
+EA ./textures/walleast.xpm
+SO ./textures/wallsouth.xpm
+
 F 190,150,190
-SO ./wallsouth.xpm
 
 C 255,255,255
 
