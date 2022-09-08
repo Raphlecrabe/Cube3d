@@ -15,6 +15,7 @@
 
 void	init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas)
 {
+	mlx += 0;
 	(*datas).img_size = img_size;
 	(*datas).img = NULL;
 }

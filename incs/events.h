@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/05 10:35:39 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:45:50 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_collision
 # define ESCAPE_KEY_LIN 65307
 
 int		key_hook(int keycode, t_display *display);
-int		loop_hook(t_display *display);
+int		handle_mouse(int x, int y, t_display *display);
 void	rotate_player(t_display *display, float angle);
 void	move(t_display *display, t_vector2 direction);
 int		is_wall(char c);

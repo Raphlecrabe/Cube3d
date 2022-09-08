@@ -22,15 +22,14 @@ int	display_screen(t_display *display)
 		return (0);
 	display->hitpos = ft_malloc_temp(sizeof(t_vector2),
 			display->screen_width, display->mem);
-	ft_drawcf(display);
 	if (display->hitpos == NULL)
 		return (0);
+	ft_drawcf(display);
 	while (x < display->screen_width)
 	{
 		stripe = get_stripe(x, display);
 		ft_drawwalls(stripe, display);
 		display->hitpos[x] = stripe.pos;
-		//display->z_buffer[x] = stripe.perpWallDist;
 		x++;
 	}
 	return (1);
@@ -41,14 +40,14 @@ int	ft_maindisplay(t_cube *cube)
 	t_display	*display;
 
 	if (ft_initdisplay(&display, cube) == -1)
-		return (0);
+		exit_cub(display);
 	if (ft_opentextures(display, display->textures) == -1)
-		return (0);
+		exit_cub(display);
 	if (display_all(display) == 0)
-		return (0);
-	mlx_key_hook(display->mlx_win, key_hook, display);
-	//mlx_loop_hook(display->mlx, loop_hook, display);
-	mlx_hook(display->mlx_win, 17, (1L<<2), exit_cub, display);
+		exit_cub(display);
+	mlx_hook(display->mlx_win, 2, 0, key_hook, display);
+	mlx_hook(display->mlx_win, 6, 0, handle_mouse, display);
+	mlx_hook(display->mlx_win, 17, (1L << 2), exit_cub, display);
 	mlx_loop(display->mlx);
 	return (1);
 }

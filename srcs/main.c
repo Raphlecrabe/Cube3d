@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/05 15:03:15 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/09/08 12:13:32 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 #include "../incs/display.h"
 #include <limits.h>
 
-void	exit_cub(t_display *display)
+int	exit_cub(t_display *display)
 {
-	mlx_destroy_image(display->mlx, display->view->img);
-	mlx_destroy_window(display->mlx, display->mlx_win);
-	ft_freemem(display->mem);
-	free(display->mem);
-	//free le t memory et le garbage
-	//détruire les img des textures
-	//détruire l'img de l'affichage + minimap
-	//détruire la window + mlx
+	if (display)
+	{
+		if (display->mlx && display->view->img);
+			mlx_destroy_image(display->mlx, display->view->img);
+		if (display->mlx && display->mlx_win)
+			mlx_destroy_window(display->mlx, display->mlx_win);
+		ft_freemem(display->mem);
+		free(display->mem);
+	}
 	exit(EXIT_SUCCESS);
 }
 

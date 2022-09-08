@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/09/05 10:46:05 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:53:02 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static int	other_key(int keycode, t_display *display)
 {
-	//printf("%d\n", keycode);
+	display += 0;
 	if (keycode == ESCAPE_KEY_MAC)
 		return (0);
 	return (1);

@@ -24,7 +24,7 @@ static void	print_tile(t_mlx_datas *datas, t_vector2 point_ul, char tile)
 	i = 0;
 	color = TILE_COLOR;
 	if (tile != '1')
-		return; //color = BACKGROUND_COLOR;
+		return ;
 	point_ur = vector2(point_ul.x + TILE_SIZE, point_ul.y);
 	while (i < TILE_SIZE)
 	{
@@ -47,7 +47,8 @@ static void	print_map(t_mlx_datas *datas, t_map *map)
 		j = 0;
 		while (map->lines[i][j])
 		{
-			tile_coord = vector2(j * TILE_SIZE + MAP_OFFSET, i * TILE_SIZE + MAP_OFFSET);
+			tile_coord = vector2(j * TILE_SIZE + MAP_OFFSET,
+					i * TILE_SIZE + MAP_OFFSET);
 			print_tile(datas, tile_coord, map->lines[i][j]);
 			j++;
 		}

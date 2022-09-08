@@ -121,7 +121,7 @@ NAME= cub3d
 
 CC= gcc
 
-FLAGS= -Wall -Wextra
+FLAGS= -Wall -Wextra -Werror
 
 LEAKS= -fsanitize=address -g3
 

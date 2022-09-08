@@ -17,6 +17,8 @@
 # include "cube3d.h"
 # include "display.h"
 
+typedef struct s_display	t_display;
+
 typedef struct s_hit
 {
 	t_vector2	pos;

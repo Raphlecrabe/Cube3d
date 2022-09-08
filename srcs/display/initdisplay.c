@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initdisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/08 11:22:33 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/09/08 12:12:57 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 void	ft_init_plane(t_display *display, t_cube *cube)
 {
 	display->plane = vector2(0.66f, 0.0f);
-	printf("lol\n");
 	if (cube->playerinit->angle.x == -1
 		&& cube->playerinit->angle.y == 0)
 	{
@@ -28,7 +27,6 @@ void	ft_init_plane(t_display *display, t_cube *cube)
 	if (cube->playerinit->angle.x == 1
 		&& cube->playerinit->angle.y == 0)
 	{
-		printf("lolE\n");
 		display->plane = vector2(0.0f, 0.66f);
 	}
 	if (cube->playerinit->angle.x == 0
@@ -73,8 +71,10 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	ft_init_plane(*display, cube);
 	(*display)->screen_width = 1900;
 	(*display)->win_size = vector2(1900, 1080);
-	(*display)->mousePos = vector2((*display)->screen_width / 2, 0);
+	(*display)->mouse_pos = vector2((*display)->screen_width / 2, 0);
 	(*display)->mlx = mlx_init();
+	if ((*display)->mlx == NULL)
+		return (-1);
 	(*display)->view = ft_malloc_const(sizeof(t_mlx_datas), 1, (*display)->mem);
 	if ((*display)->view == NULL)
 		return (-1);
@@ -82,10 +82,5 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	(*display)->minimap = (*display)->view;
 	(*display)->mlx_win = mlx_new_window((*display)->mlx,
 			(*display)->win_size.x, (*display)->win_size.y, "cub3d");
-	(*display)->z_buffer = ft_malloc_const(sizeof(int),
-			(*display)->screen_width, (*display)->mem);
-	(*display)->startTime = gettime();
-	if ((*display)->startTime.sec == -1)
-		return (-1);
 	return (0);
 }

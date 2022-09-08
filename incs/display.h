@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef DISPLAY_H
 # define DISPLAY_H
 
@@ -18,14 +17,14 @@
 # include "vectors.h"
 # include "garbage.h"
 # include "mlx_utils.h"
-# include "sprites.h"
-# include "time.h"
+# include "raycast.h"
+# include "events.h"
+# include "minimap.h"
+# include "events.h"
 # include <mlx.h>
 # include <stdio.h>
 
-struct	s_stripe;
-
-typedef	struct	s_calc
+typedef struct s_calc
 {
 	int		widthwall;
 	float	relativepos;
@@ -67,13 +66,10 @@ typedef struct s_display
 	t_memory	*mem;
 	t_texture	*textures;
 	int			screen_width;
-	t_vector2	mousePos;
-	float		*z_buffer;
-	t_sprite_datas *spriteDatas;
-	long int		timeSinceStarted;
-	t_time		startTime;
+	t_vector2	mouse_pos;
 }				t_display;
 
+int		ft_maindisplay(t_cube *cube);
 int		display_all(t_display *display);
 int		display_screen(t_display *display);
 int		img_clean(void *mlx, t_mlx_datas *datas);
@@ -89,13 +85,8 @@ void	ft_putblackimg(t_display *display);
 void	ft_andrescircle(int xc, int yc, int r, t_display *display);
 void	ft_andrescircleceiling(int xc, int yc, int r, t_display *display);
 float	ft_getthird(char c, int color);
-void	exit_cub(t_display *display);
+int		exit_cub(t_display *display);
 void	ft_drawfloorshade(t_display *display);
 void	ft_drawceilingshade(t_display *display);
-
-# include "raycast.h"
-# include "events.h"
-# include "minimap.h"
-# include "events.h"
 
 #endif

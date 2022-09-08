@@ -13,37 +13,18 @@
 #include "../../incs/events.h"
 #include "../../incs/display.h"
 #include "../../incs/minimap.h"
-#include "../../incs/time.h"
 #include <mlx.h>
 
-static int	handle_time(t_display *display)
+int	handle_mouse(int x, int y, t_display *display)
 {
-	display->timeSinceStarted = get_time_since_started(display->startTime);
-	if (display->timeSinceStarted == -1)
-		return (0);
-	return (1);
-}
-
-static int	handle_mouse(t_display *display)
-{
-	int	x;
-	int	y;
 	int	offset;
 
-	mlx_mouse_get_pos(display->mlx, &x, &y);
-	if (x == display->mousePos.x)
+	y += 0;
+	if (x == display->mouse_pos.x)
 		return (1);
-	offset = x - display->mousePos.x;
-	display->mousePos.x = x;
+	offset = x - display->mouse_pos.x;
+	display->mouse_pos.x = x;
 	rotate_player(display, offset * MOUSE_ROTATE_SPEED * DEG_TO_RAD);
-	return (1);
-}
-
-int	loop_hook(t_display *display)
-{
-	if (handle_mouse(display))
-		if (handle_time(display))
-			return (display_all(display));
-	exit_cub(display);
+	display_all(display);
 	return (1);
 }

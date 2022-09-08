@@ -16,24 +16,6 @@
 #include "../../incs/garbage.h"
 #include <stdio.h>
 
-static void	*get_sprite(int side, t_memory *mem)
-{
-	t_wallcolor	*wall;
-
-	wall = ft_malloc_temp(1, sizeof(t_wallcolor), mem);
-	if (wall == NULL)
-		return (NULL);
-	if (side == 0)
-		wall->color = COLOR_WHITE;
-	if (side == 1)
-		wall->color = COLOR_BLUE;
-	if (side == 2)
-		wall->color = COLOR_GREEN;
-	if (side == 3)
-		wall->color = COLOR_RED;
-	return (wall);
-}
-
 static float	get_height(float height, float screen_height)
 {
 	float	factor;

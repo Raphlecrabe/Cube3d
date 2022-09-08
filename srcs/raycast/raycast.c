@@ -62,7 +62,7 @@ static void	check_hit(t_hit *hit, t_map *map, t_raycast *ray)
 		if (ray->step.y < 0)
 			hit->side = 3;
 	}
-	if (map->lines[(int)ray->mappos.y][(int)ray->mappos.x] == '1') // reversed
+	if (map->lines[(int)ray->mappos.y][(int)ray->mappos.x] == '1')
 		hit->hit = 1;
 }
 
