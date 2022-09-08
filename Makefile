@@ -148,8 +148,8 @@ ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 
 all: Makefile makelib makemlx makedirs ${NAME}
 
-${NAME}:	Makefile ${OBJS}
-			${CC} ${FLAGS} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+${NAME}:	Makefile makelib makemlx makedirs ${OBJS_DEBUG}
+			${CC} ${OBJS_DEBUG} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
@@ -174,11 +174,5 @@ fclean:		clean
 			rm -f ${NAME}
 
 re:			fclean all
-
-debug:		 Makefile makelib makemlx makedirs ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
-
-debugparsing: Makefile makelib makedirs ${OBJS_DEBPARSE}
-			${CC} ${OBJS_DEBPARSE} ${LEAKS} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 PHONY= all clean fclean re
