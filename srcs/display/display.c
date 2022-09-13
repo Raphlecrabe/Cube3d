@@ -12,6 +12,14 @@
 
 #include "../../incs/display.h"
 
+int	display_loop(t_display *display)
+{
+	if (display_all(display) == 1)
+		return (1);
+	exit_cub(display);
+	return (0);
+}
+
 int	display_screen(t_display *display)
 {
 	t_stripe	stripe;
@@ -48,6 +56,7 @@ int	ft_maindisplay(t_cube *cube)
 	mlx_hook(display->mlx_win, 2, 0, key_hook, display);
 	mlx_hook(display->mlx_win, 6, 0, handle_mouse, display);
 	mlx_hook(display->mlx_win, 17, (1L << 2), exit_cub, display);
+	mlx_loop_hook(display->mlx, display_loop, display);
 	mlx_loop(display->mlx);
 	return (1);
 }

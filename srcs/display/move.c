@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/09/08 11:53:02 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:31:36 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,8 @@ static int	key_affect(int keycode, t_display *display)
 
 int	key_hook(int keycode, t_display *display)
 {
-	if (key_affect(keycode, display))
-		if (display_all(display))
-			return (1);
+	if (key_affect(keycode, display) == 1)
+		return (1);
 	exit_cub(display);
 	return (0);
 }

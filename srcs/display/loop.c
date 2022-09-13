@@ -25,6 +25,5 @@ int	handle_mouse(int x, int y, t_display *display)
 	offset = x - display->mouse_pos.x;
 	display->mouse_pos.x = x;
 	rotate_player(display, offset * MOUSE_ROTATE_SPEED * DEG_TO_RAD);
-	display_all(display);
 	return (1);
 }
