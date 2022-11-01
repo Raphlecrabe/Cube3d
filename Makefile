@@ -134,12 +134,12 @@ FLAGS= -Wall -Wextra
 LEAKS= -fsanitize=address -g3
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
-				${CC} ${FLAGS} ${IMLX_MACOS} -c $< -o $@
+				${CC} ${FLAGS} ${IMLX_LINUX} -c $< -o $@
 
 all: Makefile makelib makemlx makedirs ${NAME}
 
 ${NAME}:	Makefile ${OBJS}
-			${CC} ${FLAGS} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${FLAGS} ${OBJS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
@@ -166,7 +166,7 @@ fclean:		clean
 re:			fclean all
 
 debug:		 Makefile makelib makemlx makedirs ${OBJS_DEBUG}
-			${CC} ${OBJS_DEBUG} ${LEAKS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${OBJS_DEBUG} ${LEAKS} ${LMLX_LINUX} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 debugparsing: Makefile makelib makedirs ${OBJS_DEBPARSE}
 			${CC} ${OBJS_DEBPARSE} ${LEAKS} ${LIBFT_PATH}/libft.a -o ${NAME}
