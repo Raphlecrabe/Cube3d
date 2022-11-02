@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/08 11:45:50 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:00:46 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_collision
 # define DEG_TO_RAD 0.01745f
 # define MOVE_SPEED 0.1f
 # define ROTATE_SPEED 10.0f
-# define MOUSE_ROTATE_SPEED 0.5f
+# define MOUSE_ROTATE_SPEED 0.2f
 
 # define A_KEY_MAC 0
 # define B_KEY_MAC 11

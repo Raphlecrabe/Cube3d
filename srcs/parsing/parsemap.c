@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsemap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/08 11:17:01 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/02 10:00:13 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 void	ft_fullplayer(t_cube *cube, int j, int i, char c)
 {
 	cube->check.player = 1;
-	cube->playerinit->coord.x = i;
-	cube->playerinit->coord.y = j;
+	cube->playerinit->coord.x = i + 0.5f;
+	cube->playerinit->coord.y = j + 0.5f;
 	if (c == 'W')
 	{
 		cube->playerinit->angle.x = -1;
