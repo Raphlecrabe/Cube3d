@@ -117,7 +117,7 @@ INCLUDES =	mlx/mlx.h \
 
 LIBFT_PATH = libft
 
-NAME= cub3d
+NAME= cub3D
 
 CC= gcc
 
