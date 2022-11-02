@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/08 12:17:33 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:12:03 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 #include "../incs/parsing.h"
 #include "../incs/display.h"
 #include <limits.h>
+
+int	mapformat(char *map)
+{
+	int	len;
+
+	len = ft_strlen(map);
+	if (len >= 4 && ft_strncmp(".cub", &map[len - 4], 4) == 0)
+		return (0);
+	ft_putstr_fd("Error: wrong map format\n", 2);
+	return (-1);
+}
 
 int	exit_cub(t_display *display)
 {
@@ -41,6 +52,8 @@ int	main(int argc, char **argv)
 		write(2, "Error, please use only one argument\n", 37);
 		return (0);
 	}
+	if (mapformat(argv[1]) == -1)
+		return (0);
 	mem = malloc(sizeof(t_memory) * 1);
 	if (mem == NULL)
 		return (0);
