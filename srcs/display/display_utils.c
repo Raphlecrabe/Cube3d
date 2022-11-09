@@ -16,18 +16,6 @@
 #include <mlx.h>
 #include <stdio.h>
 
-int	img_clean(void *mlx, t_mlx_datas *datas)
-{
-	if (datas->img != NULL)
-		mlx_destroy_image(mlx, datas->img);
-	datas->img = mlx_new_image(mlx, datas->img_size.x, datas->img_size.y);
-	if (datas->img == NULL)
-		return (0);
-	datas->addr = mlx_get_data_addr(datas->img, &datas->bits_per_pixel,
-			&datas->line_length, &datas->endian);
-	return (1);
-}
-
 void	fill_img(t_mlx_datas *datas, int color)
 {
 	int	x;

@@ -6,14 +6,14 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:17:46 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/05 16:28:39 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/02 14:18:01 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/display.h"
 #include <math.h>
 
-float	ft_getthird(char c, int color)
+int	ft_getthird(char c, int color)
 {
 	if (c == 'r')
 		return ((color >> 16) & 0xFF);
@@ -31,11 +31,12 @@ void	ft_addshading(int *color, float dist)
 	float	g;
 	float	b;
 
+	if (SHADE == 0)
+		return ;
 	copy = *color;
 	if (dist >= 14.0f)
 	{
-		copy = 0 << 16 | 0 << 8 | 0;
-		*color = copy;
+		*color = 0 << 16 | 0 << 8 | 0;
 		return ;
 	}
 	if (dist <= 2.0)

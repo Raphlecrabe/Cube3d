@@ -13,11 +13,36 @@
 #include "../../incs/display.h"
 #include <math.h>
 
-void	init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas)
+void	ft_setcolourceiling(t_display *display)
+{
+	if (SHADE == 0)
+	{
+			display->textures->shade = display->textures->ceiling;
+	}
+	if (SHADE == 1)
+	{
+		display->textures->shade = create_trgb(0,
+				ft_getthird('r', display->textures->ceiling)
+				* 0.10,
+				ft_getthird('g', display->textures->ceiling)
+				* 0.10,
+				ft_getthird('b', display->textures->ceiling)
+				* 0.10);
+	}
+}
+
+int	init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas)
 {
 	mlx += 0;
 	(*datas).img_size = img_size;
-	(*datas).img = NULL;
+	(*datas).img = mlx_new_image(mlx, datas->img_size.x, datas->img_size.y);
+	if (datas->img == NULL)
+	{
+		return (-1);
+	}
+	datas->addr = mlx_get_data_addr(datas->img, &datas->bits_per_pixel,
+			&datas->line_length, &datas->endian);
+	return (0);
 }
 
 int	create_trgb(int t, int r, int g, int b)

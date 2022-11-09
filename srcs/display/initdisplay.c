@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initdisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/08 12:12:57 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:17:34 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	(*display)->view = ft_malloc_const(sizeof(t_mlx_datas), 1, (*display)->mem);
 	if ((*display)->view == NULL)
 		return (-1);
-	init_mlxdatas((*display)->mlx, (*display)->win_size, (*display)->view);
+	if (init_mlxdatas((*display)->mlx, (*display)->win_size,
+			(*display)->view) == -1)
+		return (-1);
 	(*display)->minimap = (*display)->view;
 	(*display)->mlx_win = mlx_new_window((*display)->mlx,
 			(*display)->win_size.x, (*display)->win_size.y, "cub3d");

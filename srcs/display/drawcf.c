@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:36:56 by rafy              #+#    #+#             */
-/*   Updated: 2022/09/05 12:55:44 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/02 13:44:41 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ void	ft_drawshade(t_display *display)
 void	ft_drawcf(t_display *display)
 {
 	ft_drawshade(display);
-	ft_drawfloor(display);
+	if (SHADE == 1)
+		ft_drawfloor(display);
 }

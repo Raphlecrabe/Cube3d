@@ -3,9 +3,9 @@ NO ./textures/wallnorth.xpm
 EA ./textures/walleast.xpm
 SO ./textures/wallsouth.xpm
 
-F 190,150,190
+F 20,150,77
 
-C 255,255,255
+C 200,30,100
 
 111111111111111111111111
 10000000000100000000001

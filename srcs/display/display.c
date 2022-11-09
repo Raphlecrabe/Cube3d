@@ -26,8 +26,6 @@ int	display_screen(t_display *display)
 	int			x;
 
 	x = 0;
-	if (img_clean(display->mlx, display->view) == 0)
-		return (0);
 	display->hitpos = ft_malloc_temp(sizeof(t_vector2),
 			display->screen_width, display->mem);
 	if (display->hitpos == NULL)

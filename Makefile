@@ -131,7 +131,7 @@ ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 all: Makefile makelib makemlx makedirs ${NAME}
 
 ${NAME}:	${OBJS}
-			${CC} ${OBJS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${OBJS} ${FLAGS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
