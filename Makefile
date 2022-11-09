@@ -140,14 +140,15 @@ makemlx:
 		${MAKE} -C mlx/ all
 
 makedirs:
-			mkdir -p ${OBJ_DIR}${GNL}
-			mkdir -p ${OBJ_DIR}${GARBAGE}
-			mkdir -p ${OBJ_DIR}${RAYCAST}
-			mkdir -p ${OBJ_DIR}${DISPLAY}
-			mkdir -p ${OBJ_DIR}${PARSING}
+			@mkdir -p ${OBJ_DIR}${GNL}
+			@mkdir -p ${OBJ_DIR}${GARBAGE}
+			@mkdir -p ${OBJ_DIR}${RAYCAST}
+			@mkdir -p ${OBJ_DIR}${DISPLAY}
+			@mkdir -p ${OBJ_DIR}${PARSING}
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
+			${MAKE} -C mlx/ clean
 			rm -f ${OBJS}
 			rm -rf objs
 
