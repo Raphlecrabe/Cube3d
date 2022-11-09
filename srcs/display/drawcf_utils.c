@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawcf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 19:03:38 by rafy              #+#    #+#             */
-/*   Updated: 2022/11/02 14:10:45 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 12:35:16 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	ft_setcolorfloor(t_display *display)
 {
-	if (SHADE == 0)
-	{
+	if (SHADE != 1)
 			display->textures->shade = display->textures->floor;
-	}
-	if (SHADE == 1)
+	else
 	{
 		display->textures->shade = create_trgb(0,
 				ft_getthird('r', display->textures->floor)

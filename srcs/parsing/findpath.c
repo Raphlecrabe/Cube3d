@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findpath.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:40:15 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/31 18:11:27 by rafy             ###   ########.fr       */
+/*   Updated: 2022/11/09 13:08:34 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_pathwest(t_cube *cube, char *line, int i)
 
 	j = 0;
 	if (cube->check.pwest == 1)
-		return (ft_message("Error, second same texture found\n", -1));
+		return (ft_message("Error\nSecond same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -47,7 +47,7 @@ int	ft_patheast(t_cube *cube, char *line, int i)
 
 	j = 0;
 	if (cube->check.peast == 1)
-		return (ft_message("Error, second same texture found\n", -1));
+		return (ft_message("Error\nSecond same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -74,7 +74,7 @@ int	ft_pathnorth(t_cube *cube, char *line, int i)
 
 	j = 0;
 	if (cube->check.pnorth == 1)
-		return (ft_message("Error, second same texture found\n", -1));
+		return (ft_message("Error\nSecond same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -103,7 +103,7 @@ int	ft_pathsouth(t_cube *cube, char *line, int i)
 
 	j = 0;
 	if (cube->check.psouth == 1)
-		return (ft_message("Error, second same texture found\n", -1));
+		return (ft_message("Error\nSecond same texture found\n", -1));
 	while (line[i] != '\0'
 		&& ((line[i] >= 9 && line[i] <= 13) || line[i] == 32))
 		i = i + 1;
@@ -131,7 +131,7 @@ int	ft_findpath(t_cube *cube, char *line, int i)
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i = i + 1;
 	if (line[i] == '\0' || line[i + 1] == '\0' || line[i + 2] == '\0')
-		return (ft_message("Error, Wrong texture format\n", -1));
+		return (ft_message("Error\nWrong texture format\n", -1));
 	if (line[i] == 'W')
 	{
 		if (ft_pathwest(cube, line, i + 2) == -1)

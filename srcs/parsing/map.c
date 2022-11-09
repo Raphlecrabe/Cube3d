@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:53:33 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/31 18:15:44 by rafy             ###   ########.fr       */
+/*   Updated: 2022/11/09 13:08:42 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ft_parsemap(t_cube *cube, char **line, int fd)
 	if (ft_parseopen(cube) == -1)
 		return (-1);
 	if (cube->check.player != 1)
-		return (ft_message("Error, player not found on the map\n", -1));
+		return (ft_message("Error\nPlayer not found on the map\n", -1));
 	cube->parsed = 1;
 	return (0);
 }

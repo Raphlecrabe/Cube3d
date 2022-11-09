@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/11/02 11:50:10 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:04:29 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	mapformat(char *map)
 	len = ft_strlen(map);
 	if (len >= 4 && ft_strncmp(".cub", &map[len - 4], 4) == 0)
 		return (0);
-	ft_putstr_fd("Error: wrong map format\n", 2);
+	ft_putstr_fd("Error\nWrong map format\n", 2);
 	return (-1);
 }
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "Error, please use only one argument\n", 37);
+		ft_putstr_fd("Error\nPlease use only one argument\n", 2);
 		return (0);
 	}
 	if (mapformat(argv[1]) == -1)
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 		if (ft_fullparse(cube, argv) != -1)
 		{
 			if (cube->parsed == 0)
-				return (ft_message("Error, map is not complete\n", -1));
+				return (ft_message("Error\nMap is not complete\n", -1));
 			ft_maindisplay(cube);
 		}
 	}

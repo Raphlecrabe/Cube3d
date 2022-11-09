@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openspritewall.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:49:42 by raphael           #+#    #+#             */
-/*   Updated: 2022/09/06 13:26:22 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:07:54 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_parsepng(char *path)
 	if (path[i - 1] == 'm' && path[i - 2] == 'p'
 		&& path[i - 3] == 'x' && path[i - 4] == '.')
 		return (0);
-	return (ft_message("Error, wrong format texture\n", -1));
+	return (ft_message("Error\nWrong format texture\n", -1));
 }
 
 int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
@@ -44,13 +44,13 @@ int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
 		(*imgpoint)->img = mlx_xpm_file_to_image(display->mlx,
 				path, &sizes[0], &sizes[1]);
 		if ((*imgpoint)->img == NULL)
-			return (ft_message("Error, can't open one of the texture\n", -1));
+			return (ft_message("Error\nCan't open one of the texture\n", -1));
 		(*imgpoint)->addr = mlx_get_data_addr((*imgpoint)->img,
 				&(*imgpoint)->bits_per_pixel,
 				&(*imgpoint)->line_length, &(*imgpoint)->endian);
 	}
 	if (i == 1)
-		return (ft_message("Error, wrong texture format\n", -1));
+		return (ft_message("Error\nWrong texture format\n", -1));
 	(*imgpoint)->img_size.x = sizes[0];
 	(*imgpoint)->img_size.y = sizes[1];
 	return (0);

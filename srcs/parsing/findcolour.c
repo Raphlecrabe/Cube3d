@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findcolour.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:20:07 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/05 15:10:44 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:08:10 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_findf(t_cube *cube, char *line, int i)
 	char	**numbers;
 
 	if (cube->check.pfloor == 1)
-		return (ft_message("Error, found a second same texture\n", -1));
+		return (ft_message("Error\nFound a second same texture\n", -1));
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i = i + 1;
 	colour = ft_getwhole(line, i, cube->mem);
@@ -40,7 +40,7 @@ int	ft_findc(t_cube *cube, char *line, int i)
 	char	**numbers;
 
 	if (cube->check.pceil == 1)
-		return (ft_message("Error, found a second same texture\n", -1));
+		return (ft_message("Error\nFound a second same texture\n", -1));
 	while ((line[i] >= 9 && line[i] <= 13) || line[i] == 32)
 		i = i + 1;
 	colour = ft_getwhole(line, i, cube->mem);

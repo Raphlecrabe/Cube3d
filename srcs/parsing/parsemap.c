@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:33:49 by raphael           #+#    #+#             */
-/*   Updated: 2022/11/02 10:00:13 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:09:40 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_islast(t_cube *cube)
 		|| cube->check.pwest != 1 || cube->check.peast != 1
 		|| cube->check.psouth != 1 || cube->check.pnorth != 1)
 	{
-		write(2, "Error, map is not last or wrong format on textures\n", 51);
+		ft_putstr_fd("Error\nMap is not last or wrong format on textures\n", 2);
 		return (-1);
 	}
 	return (0);
@@ -69,7 +69,7 @@ int	ft_parseline(t_cube *cube, char *l, int j)
 		{
 			if (cube->check.player == 1)
 			{
-				write(2, "Error, second player found on the map\n", 38);
+				ft_putstr_fd("Error\nSecond player found on the map\n", 2);
 				return (-1);
 			}
 			ft_fullplayer(cube, j, i, l[i]);
@@ -77,7 +77,7 @@ int	ft_parseline(t_cube *cube, char *l, int j)
 		if (l[i] != '0' && l[i] != '1' && l[i] != 'W'
 			&& l[i] != 'E' && l[i] != 'S' && l[i] != 'N' && l[i] != '\n'
 			&& l[i] != '\0')
-			return (ft_message("Error, wrong format map\n", -1));
+			return (ft_message("Error\nWrong format map\n", -1));
 		i++;
 	}
 	return (0);

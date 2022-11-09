@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colourutils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 15:31:43 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/27 13:56:36 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:06:11 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int	ft_testnumber(char **numbers)
 {
 	if (ft_testsize(numbers) == -1)
 	{
-		write(2, "Error, wrong texture format floor / ceiling\n", 45);
+		ft_putstr_fd("Error\nWrong texture format floor / ceiling\n", 2);
 		return (-1);
 	}
 	if (ft_aredigits(numbers) == -1)
 	{
-		write(2, "Error, wrong texture format floor / ceiling\n", 45);
+		ft_putstr_fd("Error\nWrong texture format floor / ceiling\n", 2);
 		return (-1);
 	}
 	if (ft_arergb(numbers) == -1)
 	{
-		write(2, "Error, wrong texture format floor / ceiling\n", 45);
+		ft_putstr_fd("Error\nWrong texture format floor / ceiling\n", 2);
 		return (-1);
 	}
 	return (0);

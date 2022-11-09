@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsefc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 17:04:43 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/27 14:04:16 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:09:12 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_parsefloor(char *line, int i)
 {
 	if ((line[i + 1] < 9 || line[i + 1] > 13) && line[i + 1] != 32)
 	{
-		write(2, "Error, wrong texture format FLOOR\n", 35);
+		ft_putstr_fd("Error\nWrong texture format FLOOR\n", 2);
 		return (-1);
 	}
 	i++;
@@ -24,7 +24,7 @@ int	ft_parsefloor(char *line, int i)
 		i++;
 	if (ft_isdigit(line[i]) != 1)
 	{
-		write(2, "Error, wrong texture format FLOOR\n", 35);
+		ft_putstr_fd("Error\nWrong texture format FLOOR\n", 2);
 		return (-1);
 	}
 	return (0);
@@ -34,7 +34,7 @@ int	ft_parseceiling(char *line, int i)
 {
 	if ((line[i + 1] < 9 || line[i + 1] > 13) && line[i + 1] != 32)
 	{
-		write(2, "Error, wrong texture format CEILING\n", 37);
+		ft_putstr_fd("Error\nWrong texture format CEILING\n", 2);
 		return (-1);
 	}
 	i++;
@@ -42,7 +42,7 @@ int	ft_parseceiling(char *line, int i)
 		i++;
 	if (ft_isdigit(line[i]) != 1)
 	{
-		write(2, "Error, wrong texture format CEILING\n", 37);
+		ft_putstr_fd("Error\nWrong texture format CEILING\n", 2);
 		return (-1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:46:39 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/05 17:05:37 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:07:28 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_testline(char *line)
 			|| line[i] == 'N' || line[i] == 'S')
 		&& ft_ismap(line, i) == 1)
 		return (2);
-	write(2, "Error, one line or more is not well configured\n", 47);
+	ft_putstr_fd("Error\nOne line or more is not well configured\n", 2);
 	return (-1);
 }
 

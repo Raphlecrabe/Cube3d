@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:17:46 by rafy              #+#    #+#             */
-/*   Updated: 2022/11/02 14:18:01 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 12:36:05 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_addshading(int *color, float dist)
 	float	g;
 	float	b;
 
-	if (SHADE == 0)
+	if (SHADE != 1)
 		return ;
 	copy = *color;
 	if (dist >= 14.0f)

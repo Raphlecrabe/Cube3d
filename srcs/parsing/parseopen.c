@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parseopen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:34:43 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/09/05 17:06:38 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/11/09 13:09:56 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	ft_parsecolumns(t_cube *cube)
 int	ft_parseopen(t_cube *cube)
 {
 	if (ft_parsecolumns(cube) == -1)
-		return (ft_message("Error, map not closed\n", -1));
+		return (ft_message("Error\nMap not closed\n", -1));
 	if (ft_parselines(cube) == -1)
-		return (ft_message("Error, map not closed\n", -1));
+		return (ft_message("Error\nMap not closed\n", -1));
 	return (0);
 }
