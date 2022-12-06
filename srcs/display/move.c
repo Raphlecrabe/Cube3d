@@ -6,7 +6,7 @@
 /*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/09/13 13:31:36 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2022/12/06 12:25:53 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
 #include <mlx.h>
 #include <math.h>
 
-static int	other_key(int keycode, t_display *display)
+static int	other_key(t_display *display)
 {
-	display += 0;
-	if (keycode == ESCAPE_KEY_MAC)
+	if (display->keys[ESCAPE_KEY_MAC])
 		return (0);
 	return (1);
 }
@@ -63,7 +62,7 @@ static t_collision	init_collision(t_display *display, float movespeed)
 	return (collision);
 }
 
-static int	key_affect(int keycode, t_display *display)
+static int	key_affect(t_display *display)
 {
 	t_vector2	direction;
 	t_vector2	null;
@@ -72,28 +71,29 @@ static int	key_affect(int keycode, t_display *display)
 	null = vector2(0, 0);
 	direction = null;
 	collision = init_collision(display, MOVE_SPEED);
-	if (keycode == LEFT_KEY_MAC)
+	if (display->keys[LEFT_KEY_MAC])
 		rotate_player(display, -ROTATE_SPEED * DEG_TO_RAD);
-	else if (keycode == RIGHT_KEY_MAC)
+	else if (display->keys[RIGHT_KEY_MAC])
 		rotate_player(display, ROTATE_SPEED * DEG_TO_RAD);
-	else if (keycode == W_KEY_MAC || keycode == Z_KEY_MAC)
+	else if (display->keys[W_KEY_MAC] || display->keys[Z_KEY_MAC])
 		direction = vector2_multiply(display->player_dir, MOVE_SPEED);
-	else if (keycode == S_KEY_MAC)
+	else if (display->keys[S_KEY_MAC])
 		direction = vector2_multiply(display->player_dir, -MOVE_SPEED);
-	else if (keycode == Q_KEY_MAC || keycode == A_KEY_MAC)
+	else if (display->keys[Q_KEY_MAC] || display->keys[A_KEY_MAC])
 		direction = vector2_multiply(display->plane, -MOVE_SPEED);
-	else if (keycode == D_KEY_MAC)
+	else if (display->keys[D_KEY_MAC])
 		direction = vector2_multiply(display->plane, MOVE_SPEED);
 	else
-		return (other_key(keycode, display));
+		return (other_key(display));
 	if (!vector2_equals(direction, null) && !col(collision, direction))
 		move(display, direction);
+	resetkeys(display);
 	return (1);
 }
 
-int	key_hook(int keycode, t_display *display)
+int	key_hook(t_display *display)
 {
-	if (key_affect(keycode, display) == 1)
+	if (key_affect(display) == 1)
 		return (1);
 	exit_cub(display);
 	return (0);

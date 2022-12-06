@@ -21,7 +21,7 @@
 # include "events.h"
 # include "minimap.h"
 # include "events.h"
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 
@@ -70,6 +70,7 @@ typedef struct s_display
 	t_texture	*textures;
 	int			screen_width;
 	t_vector2	mouse_pos;
+	int			keys[125];
 }				t_display;
 
 int		ft_maindisplay(t_cube *cube);

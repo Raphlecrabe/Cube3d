@@ -51,7 +51,8 @@ int	ft_maindisplay(t_cube *cube)
 		exit_cub(display);
 	if (display_all(display) == 0)
 		exit_cub(display);
-	mlx_hook(display->mlx_win, 2, 0, key_hook, display);
+	mlx_hook(display->mlx_win, ON_KEYDOWN, 0, key_press, display);
+	mlx_hook(display->mlx_win, ON_KEYUP, 0, key_release, display);
 	mlx_hook(display->mlx_win, 6, 0, handle_mouse, display);
 	mlx_hook(display->mlx_win, 17, (1L << 2), exit_cub, display);
 	mlx_loop_hook(display->mlx, display_loop, display);
@@ -62,6 +63,7 @@ int	ft_maindisplay(t_cube *cube)
 int	display_all(t_display *display)
 {
 	ft_freetemp(display->mem);
+	key_hook(display);
 	if (display_screen(display))
 	{
 		if (display_minimap(display))

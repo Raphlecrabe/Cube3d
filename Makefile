@@ -59,6 +59,7 @@ SRCS_DISPLAY = 	display.c \
 				shading.c \
 				drawcf.c \
 				drawcf_utils.c \
+				keys.c \
 
 #OBJS
 
