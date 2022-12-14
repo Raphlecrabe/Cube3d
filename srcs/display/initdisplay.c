@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initdisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/11/02 14:17:34 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2022/12/14 12:02:05 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 		return (-1);
 	if (init_mlxdatas((*display)->mlx, (*display)->win_size,
 			(*display)->view) == -1)
+		return (-1);
+	(*display)->hitpos = ft_malloc_const(sizeof(t_vector2),
+			(*display)->screen_width, (*display)->mem);
+	if ((*display)->hitpos == NULL)
 		return (-1);
 	(*display)->minimap = (*display)->view;
 	(*display)->mlx_win = mlx_new_window((*display)->mlx,

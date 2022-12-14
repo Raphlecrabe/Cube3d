@@ -26,10 +26,6 @@ int	display_screen(t_display *display)
 	int			x;
 
 	x = 0;
-	display->hitpos = ft_malloc_temp(sizeof(t_vector2),
-			display->screen_width, display->mem);
-	if (display->hitpos == NULL)
-		return (0);
 	ft_drawcf(display);
 	while (x < display->screen_width)
 	{
