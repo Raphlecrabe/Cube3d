@@ -22,6 +22,7 @@ typedef struct s_mlx_datas{
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			bits_per_pix_calculated;
 }				t_mlx_datas;	
 
 int		create_trgb(int t, int r, int g, int b);

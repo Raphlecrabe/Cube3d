@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openspritewall.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:49:42 by raphael           #+#    #+#             */
-/*   Updated: 2022/11/09 13:07:54 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:24:06 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	ft_open_one_text(t_display *display, char *path, t_mlx_datas **imgpoint)
 		(*imgpoint)->addr = mlx_get_data_addr((*imgpoint)->img,
 				&(*imgpoint)->bits_per_pixel,
 				&(*imgpoint)->line_length, &(*imgpoint)->endian);
+		(*imgpoint)->bits_per_pix_calculated = (*imgpoint)->bits_per_pixel / 8;
 	}
 	if (i == 1)
 		return (ft_message("Error\nWrong texture format\n", -1));

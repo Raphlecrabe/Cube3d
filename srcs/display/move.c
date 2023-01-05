@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/12/06 12:25:53 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:05:56 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static int	key_affect(t_display *display)
 		return (other_key(display));
 	if (!vector2_equals(direction, null) && !col(collision, direction))
 		move(display, direction);
-	resetkeys(display);
 	return (1);
 }
 

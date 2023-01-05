@@ -158,4 +158,4 @@ fclean:		clean
 
 re:			fclean all
 
-PHONY= all clean fclean re makelib makemlx makedirs
+.PHONY: all clean fclean re makelib makemlx makedirs
