@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:29:14 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 17:05:51 by fbelthoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_collision
 
 # define DEG_TO_RAD 0.01745f
 # define MOVE_SPEED 0.1f
-# define ROTATE_SPEED 10.0f
+# define ROTATE_SPEED 5.0f
 # define MOUSE_ROTATE_SPEED 0.2f
 
 # define ON_KEYDOWN 2
