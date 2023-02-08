@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:17:46 by rafy              #+#    #+#             */
-/*   Updated: 2022/11/09 12:36:05 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:39:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ int	ft_getthird(char c, int color)
 
 void	ft_addshading(int *color, float dist)
 {
-	int		copy;
 	float	r;
 	float	g;
 	float	b;
 
 	if (SHADE != 1)
 		return ;
-	copy = *color;
 	if (dist >= 14.0f)
 	{
 		*color = 0 << 16 | 0 << 8 | 0;

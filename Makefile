@@ -93,9 +93,9 @@ IMLX_MACOS = -Imlx
 
 LMLX_MACOS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-IMLX_LINUX = -I/usr/include -Imlx_linux -O3
+IMLX_LINUX = -I/usr/include -I mlx -O3
 
-LMLX_LINUX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+LMLX_LINUX = -L mlx -L /usr/lib -lmlx -lmlx_Linux -lXext -lX11 -lm
 
 #INCLUDES
 
@@ -118,38 +118,37 @@ INCLUDES =	mlx/mlx.h \
 
 LIBFT_PATH = libft
 
-NAME= cub3D
+NAME= cub3d
 
 CC= gcc
 
-FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror -g
 
 LEAKS= -fsanitize=address -g3
 
 ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
-				${CC} ${FLAGS} ${IMLX_MACOS} -c $< -o $@
+				${CC} ${FLAGS} ${IMLX_LINUX} -c $< -o $@
 
 all: Makefile makelib makemlx makedirs ${NAME}
 
 ${NAME}:	${OBJS}
-			${CC} ${OBJS} ${FLAGS} ${LMLX_MACOS} ${LIBFT_PATH}/libft.a -o ${NAME}
+			${CC} ${OBJS} ${LMLX_LINUX} -L ${LIBFT_PATH} -lft -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
 
 makemlx:
-		${MAKE} -C mlx/ all
+			${MAKE} -C mlx/ all
 
 makedirs:
-			@mkdir -p ${OBJ_DIR}${GNL}
-			@mkdir -p ${OBJ_DIR}${GARBAGE}
-			@mkdir -p ${OBJ_DIR}${RAYCAST}
-			@mkdir -p ${OBJ_DIR}${DISPLAY}
-			@mkdir -p ${OBJ_DIR}${PARSING}
+			mkdir -p ${OBJ_DIR}${GNL}
+			mkdir -p ${OBJ_DIR}${GARBAGE}
+			mkdir -p ${OBJ_DIR}${RAYCAST}
+			mkdir -p ${OBJ_DIR}${DISPLAY}
+			mkdir -p ${OBJ_DIR}${PARSING}
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
-			${MAKE} -C mlx/ clean
 			rm -f ${OBJS}
 			rm -rf objs
 

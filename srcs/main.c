@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:23:36 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/11/09 13:04:29 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:08:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@ int	exit_cub(t_display *display)
 {
 	if (display)
 	{
+		mlx_destroy_image(display->mlx, display->textures->wtext->img);
+		mlx_destroy_image(display->mlx, display->textures->etext->img);
+		mlx_destroy_image(display->mlx, display->textures->ntext->img);
+		mlx_destroy_image(display->mlx, display->textures->stext->img);
 		if (display->mlx && display->view->img)
 			mlx_destroy_image(display->mlx, display->view->img);
 		if (display->mlx && display->mlx_win)
 			mlx_destroy_window(display->mlx, display->mlx_win);
+		void *mem = display->mem;
 		ft_freemem(display->mem);
-		free(display->mem);
+		free(mem);
 	}
 	exit(EXIT_SUCCESS);
 }

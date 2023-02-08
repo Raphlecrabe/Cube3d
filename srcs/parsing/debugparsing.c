@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debugparsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafy <rafy@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 11:31:08 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/08/31 18:10:34 by rafy             ###   ########.fr       */
+/*   Updated: 2023/02/08 16:39:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_printlist(t_list *list)
 {
 	while (list)
 	{
-		printf("list = %s\n", list->content);
+		printf("list = %s\n", (char *)list->content);
 		list = list->next;
 	}
 }

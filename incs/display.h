@@ -49,9 +49,6 @@ typedef struct s_texture
 	t_mlx_datas	*etext;
 	t_mlx_datas	*ntext;
 	t_mlx_datas	*stext;
-	t_mlx_datas	*first;
-	t_mlx_datas	*second;
-	t_mlx_datas	*third;
 }				t_texture;
 
 typedef struct s_display

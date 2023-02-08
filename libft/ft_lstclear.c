@@ -6,12 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 14:40:10 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/03/16 11:05:18 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:59:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static void	ft_recclear(t_list *lst, void (*del)(void *))
 {

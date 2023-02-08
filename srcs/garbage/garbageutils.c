@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbageutils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:38:34 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/25 14:11:30 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2023/02/08 17:45:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strncopy_const(char *line, int n, char c, t_memory *mem)
 		copy[i] = line[i];
 		i++;
 	}
-	while (i <= n)
+	while (i < n)
 	{
 		copy[i] = c;
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2022/12/06 12:25:53 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:48:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static int	other_key(t_display *display)
 {
-	if (display->keys[ESCAPE_KEY_MAC])
+	if (display->keys[X_KEY_LIN])
 		return (0);
 	return (1);
 }
@@ -71,17 +71,17 @@ static int	key_affect(t_display *display)
 	null = vector2(0, 0);
 	direction = null;
 	collision = init_collision(display, MOVE_SPEED);
-	if (display->keys[LEFT_KEY_MAC])
+	if (display->keys[K_KEY_LIN])
 		rotate_player(display, -ROTATE_SPEED * DEG_TO_RAD);
-	else if (display->keys[RIGHT_KEY_MAC])
+	else if (display->keys[M_KEY_LIN])
 		rotate_player(display, ROTATE_SPEED * DEG_TO_RAD);
-	else if (display->keys[W_KEY_MAC] || display->keys[Z_KEY_MAC])
+	else if (display->keys[W_KEY_LIN] || display->keys[Z_KEY_LIN])
 		direction = vector2_multiply(display->player_dir, MOVE_SPEED);
-	else if (display->keys[S_KEY_MAC])
+	else if (display->keys[S_KEY_LIN])
 		direction = vector2_multiply(display->player_dir, -MOVE_SPEED);
-	else if (display->keys[Q_KEY_MAC] || display->keys[A_KEY_MAC])
+	else if (display->keys[Q_KEY_LIN] || display->keys[A_KEY_LIN])
 		direction = vector2_multiply(display->plane, -MOVE_SPEED);
-	else if (display->keys[D_KEY_MAC])
+	else if (display->keys[D_KEY_LIN])
 		direction = vector2_multiply(display->plane, MOVE_SPEED);
 	else
 		return (other_key(display));

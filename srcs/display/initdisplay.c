@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initdisplay.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 11:58:20 by rafy              #+#    #+#             */
-/*   Updated: 2022/12/14 12:02:05 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:55:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_init_textures(t_display **display, t_cube *cube)
 
 int	ft_init_map(t_display **display, t_cube *cube)
 {
+	printf("display size: %zu\n", sizeof(t_display));
 	*display = ft_malloc_const(sizeof(t_display), 1, cube->mem);
 	if (*display == NULL)
 		return (-1);
@@ -69,8 +70,8 @@ int	ft_initdisplay(t_display **display, t_cube *cube)
 	if (ft_init_textures(display, cube) == -1)
 		return (-1);
 	ft_init_plane(*display, cube);
-	(*display)->screen_width = 1900;
-	(*display)->win_size = vector2(1900, 1080);
+	(*display)->screen_width = 1500;
+	(*display)->win_size = vector2(1500, 800);
 	(*display)->mouse_pos = vector2((*display)->screen_width / 2, 0);
 	(*display)->mlx = mlx_init();
 	if ((*display)->mlx == NULL)

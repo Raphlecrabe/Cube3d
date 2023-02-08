@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelthoi <fbelthoi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 13:53:33 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/11/09 13:08:42 by fbelthoi         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:28:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ int	ft_convertchar(t_cube *cube, t_list *mapping)
 			(cube->map->heigth + 1), cube->mem);
 	if (cube->map->lines == NULL)
 		return (-1);
+	cube->map->lines[cube->map->heigth] = NULL;
 	while (mapmalloc)
 	{
 		ft_strlen((char *)mapmalloc->content);
 		cube->map->lines[i] = ft_strncopy_const((char *)mapmalloc->content,
-				cube->map->width, ' ', cube->mem);
+				cube->map->width + 1, ' ', cube->mem);
 		if (cube->map->lines[i] == NULL)
 			return (-1);
+		cube->map->lines[i][cube->map->width] = '\0';
 		i++;
 		mapmalloc = mapmalloc->next;
 	}

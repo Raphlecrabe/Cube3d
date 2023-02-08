@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testcolours.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:07:05 by rmonacho          #+#    #+#             */
-/*   Updated: 2022/07/27 13:05:00 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2023/02/08 17:44:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ int	ft_aredigits(char **numbers)
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (j < 3)
 	{
+		i = 0;
 		while (numbers[j][i] != '\0' && ft_isdigit(numbers[j][i]) == 1)
+		{
 			i++;
+		}
 		if (numbers[j][i] != '\0')
 			return (-1);
 		j++;
