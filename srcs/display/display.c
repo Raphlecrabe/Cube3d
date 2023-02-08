@@ -26,7 +26,6 @@ int	display_screen(t_display *display)
 	int			x;
 
 	x = 0;
-	ft_drawcf(display);
 	while (x < display->screen_width)
 	{
 		stripe = get_stripe(x, display);

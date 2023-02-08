@@ -6,7 +6,7 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:11:24 by raphael           #+#    #+#             */
-/*   Updated: 2022/11/02 12:10:25 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 15:51:43 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_getcolor2(t_mlx_datas *texture, t_calc *calc, int i)
 
 	ycalc = calc->ytext + ((i * texture->img_size.y) / calc->height);
 	color = texture->addr + (ycalc * texture->line_length
-			+ calc->widthwall * (texture->bits_per_pixel / 8));
+			+ calc->widthwall * (texture->bits_per_pix_calculated));
 	calc->color = *(unsigned int *)color;
 }
 
@@ -30,7 +30,7 @@ void	ft_getcolor1(t_mlx_datas *texture, t_calc *calc, int i)
 
 	ycalc = calc->ytext - ((i * (int)texture->img_size.y) / calc->height);
 	color = texture->addr + (ycalc * texture->line_length
-			+ calc->widthwall * (texture->bits_per_pixel / 8));
+			+ calc->widthwall * (texture->bits_per_pix_calculated));
 	calc->color = *(unsigned int *)color;
 }
 
@@ -41,27 +41,27 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	int		y;
 
 	i = 0;
-	y = (int)display->view->img_size.y / 2
+	y = (int)(display->view->img_size.y * 0.5)
 		+ (int)display->view->img_size.y % 2 - 1;
-	calc->ytext = (int)texture->img_size.y / 2
+	calc->ytext = (int)(texture->img_size.y * 0.5)
 		+ (int)texture->img_size.y % 2 - 1;
-	while (i < stripe.height / 2 + stripe.height % 2
-		&& i < display->win_size.y / 2)
+	while (i < stripe.height * 0.5 + stripe.height % 2
+		&& i < display->win_size.y * 0.5)
 	{
-		ft_getcolor1(texture, calc, i);
-		ft_addshading(&calc->color, stripe.dist);
+		ft_drawpixel1(texture, calc, stripe, i);
 		my_mlx_pixel_put(display->view, stripe.x, y - i, calc->color);
 		i++;
 	}
+	ft_drawceiling(i, display, stripe, y);
 	i = 1;
-	while (i < stripe.height / 2 + stripe.height % 2
-		&& i < display->win_size.y / 2)
+	while (i < stripe.height * 0.5 + stripe.height % 2
+		&& i < display->win_size.y * 0.5)
 	{
-		ft_getcolor2(texture, calc, i);
-		ft_addshading(&calc->color, stripe.dist);
+		ft_drawpixel2(texture, calc, stripe, i);
 		my_mlx_pixel_put(display->view, stripe.x, y + i, calc->color);
 		i++;
 	}
+	ft_drawfloor(i, display, stripe, y);
 }
 
 void	ft_drawwall(t_stripe stripe,

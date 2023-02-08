@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:49:18 by fbelthoi          #+#    #+#             */
-/*   Updated: 2023/02/08 16:48:59 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:11:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static int	key_affect(t_display *display)
 		return (other_key(display));
 	if (!vector2_equals(direction, null) && !col(collision, direction))
 		move(display, direction);
-	resetkeys(display);
 	return (1);
 }
 

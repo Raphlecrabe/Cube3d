@@ -25,7 +25,7 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define SHADE 0
+# define SHADE 1
 
 typedef struct s_calc
 {
@@ -89,5 +89,14 @@ int		exit_cub(t_display *display);
 void	ft_drawfloorshade(t_display *display);
 void	ft_drawceilingshade(t_display *display);
 void	ft_setcolourceiling(t_display *display);
+void	ft_setcolorfloor(t_display *display);
+void	ft_drawfloor(int i, t_display *display, t_stripe stripe, int y);
+void	ft_drawceiling(int i, t_display *display, t_stripe stripe, int y);
+void	ft_drawpixel2(t_mlx_datas *texture, t_calc *calc,
+			t_stripe stripe, int i);
+void	ft_drawpixel1(t_mlx_datas *texture, t_calc *calc,
+			t_stripe stripe, int i);
+void	ft_getcolor2(t_mlx_datas *texture, t_calc *calc, int i);
+void	ft_getcolor1(t_mlx_datas *texture, t_calc *calc, int i);
 
 #endif

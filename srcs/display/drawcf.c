@@ -6,93 +6,60 @@
 /*   By: rmonacho <rmonacho@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:36:56 by rafy              #+#    #+#             */
-/*   Updated: 2022/11/02 13:44:41 by rmonacho         ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 15:51:50 by rmonacho         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/display.h"
 
-void	ft_andreutilsfloor(int *x, int *y, int r, int *d)
+void	ft_setcolorfloor(t_display *display)
 {
-	if (*d >= 2 * *x)
-	{
-		*d -= 2 * *x + 1;
-		*x = *x + 1;
-	}
-	else if (*d < 2 * (r - *y))
-	{
-		*d += 2 * *y - 1;
-		*y = *y - 1;
-	}
+	if (SHADE != 1)
+			display->textures->shade = display->textures->floor;
 	else
 	{
-		*d += 2 * (*y - *x - 1);
-		*y = *y - 1;
-		*x = *x + 1;
+		display->textures->shade = create_trgb(0,
+				((display->textures->floor >> 16) & 0xFF)
+				* 0.2,
+				((display->textures->floor >> 8) & 0xFF)
+				* 0.2,
+				(display->textures->floor & 0xFF)
+				* 0.2);
 	}
 }
 
-void	ft_andrescirclefloor(int xc, int yc, int r, t_display *display)
+void	ft_drawpixel1(t_mlx_datas *texture, t_calc *calc,
+		t_stripe stripe, int i)
 {
-	int	x;
-	int	y;
-	int	d;
+	ft_getcolor1(texture, calc, i);
+	ft_addshading(&calc->color, stripe.dist);
+}
 
-	x = 0;
-	y = r;
-	d = r - 1;
-	while (y >= x)
+void	ft_drawpixel2(t_mlx_datas *texture, t_calc *calc,
+		t_stripe stripe, int i)
+{
+	ft_getcolor2(texture, calc, i);
+	ft_addshading(&calc->color, stripe.dist);
+}
+
+void	ft_drawceiling(int i, t_display *display, t_stripe stripe, int y)
+{
+	while (i < display->win_size.y * 0.5)
 	{
-		if (display->textures->shade != 0)
-		{
-			my_mlx_pixel_put(display->view, xc - x,
-				yc - y, display->textures->shade);
-			my_mlx_pixel_put(display->view, xc - y,
-				yc - x, display->textures->shade);
-			my_mlx_pixel_put(display->view, xc + x,
-				yc - y, display->textures->shade);
-			my_mlx_pixel_put(display->view, xc + y,
-				yc - x, display->textures->shade);
-		}
-		ft_andreutilsfloor(&x, &y, r, &d);
+		ft_setcolourceiling(display);
+		my_mlx_pixel_put(display->view, stripe.x,
+			y - i, display->textures->shade);
+		i++;
 	}
 }
 
-void	ft_drawfloor(t_display *display)
+void	ft_drawfloor(int i, t_display *display, t_stripe stripe, int y)
 {
-	int	x;
-	int	y;
-	int	r;
-
-	x = display->win_size.x / 2;
-	y = display->win_size.y - 1;
-	r = 0;
-	while (r < display->win_size.y / 2)
+	while (i <= display->win_size.y * 0.5)
 	{
-		if (r > 340)
-			display->textures->shade = 0x00000000;
-		if (r <= 340)
-			display->textures->shade = create_trgb(0,
-					ft_getthird('r', display->textures->floor)
-					* 0.025 * (400 - r) / 15,
-					ft_getthird('g', display->textures->floor)
-					* 0.025 * (400 - r) / 15,
-					ft_getthird('b', display->textures->floor)
-					* 0.025 * (400 - r) / 15);
-		ft_andrescirclefloor(x, y, r, display);
-		r++;
+		ft_setcolorfloor(display);
+		my_mlx_pixel_put(display->view, stripe.x,
+			y + i, display->textures->shade);
+		i++;
 	}
-}
-
-void	ft_drawshade(t_display *display)
-{
-	ft_drawceilingshade(display);
-	ft_drawfloorshade(display);
-}
-
-void	ft_drawcf(t_display *display)
-{
-	ft_drawshade(display);
-	if (SHADE == 1)
-		ft_drawfloor(display);
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 10:11:14 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/08 16:38:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:11:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_collision
 
 # define DEG_TO_RAD 0.01745f
 # define MOVE_SPEED 0.1f
-# define ROTATE_SPEED 10.0f
+# define ROTATE_SPEED 5.0f
 # define MOUSE_ROTATE_SPEED 0.2f
 
 # define ON_KEYDOWN 2

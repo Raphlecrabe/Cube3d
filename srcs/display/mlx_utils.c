@@ -20,12 +20,12 @@ void	ft_setcolourceiling(t_display *display)
 	else
 	{
 		display->textures->shade = create_trgb(0,
-				ft_getthird('r', display->textures->ceiling)
-				* 0.10,
-				ft_getthird('g', display->textures->ceiling)
-				* 0.10,
-				ft_getthird('b', display->textures->ceiling)
-				* 0.10);
+				((display->textures->ceiling >> 16) & 0xFF)
+				* 0.2,
+				((display->textures->ceiling >> 8) & 0xFF)
+				* 0.2,
+				(display->textures->ceiling & 0xFF)
+				* 0.2);
 	}
 }
 
@@ -40,6 +40,7 @@ int	init_mlxdatas(void *mlx, t_vector2 img_size, t_mlx_datas *datas)
 	}
 	datas->addr = mlx_get_data_addr(datas->img, &datas->bits_per_pixel,
 			&datas->line_length, &datas->endian);
+	datas->bits_per_pix_calculated = datas->bits_per_pixel / 8;
 	return (0);
 }
 
