@@ -138,7 +138,7 @@ makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
 
 makemlx:
-			${MAKE} -C mlx/ all
+			#${MAKE} -C mlx/ all
 
 makedirs:
 			mkdir -p ${OBJ_DIR}${GNL}

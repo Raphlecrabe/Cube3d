@@ -28,6 +28,7 @@ void	ft_getcolor1(t_mlx_datas *texture, t_calc *calc, int i)
 	int		ycalc;
 	char	*color;
 
+	
 	ycalc = calc->ytext - ((i * (int)texture->img_size.y) / calc->height);
 	color = texture->addr + (ycalc * texture->line_length
 			+ calc->widthwall * (texture->bits_per_pix_calculated));
@@ -45,7 +46,7 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 		+ (int)display->view->img_size.y % 2 - 1;
 	calc->ytext = (int)(texture->img_size.y * 0.5)
 		+ (int)texture->img_size.y % 2 - 1;
-	while (i < stripe.height * 0.5 + stripe.height % 2
+	while (i < stripe.height * 0.5
 		&& i < display->win_size.y * 0.5)
 	{
 		ft_drawpixel1(texture, calc, stripe, i);
@@ -54,7 +55,7 @@ void	ft_drawone(t_stripe stripe, t_display *display,
 	}
 	ft_drawceiling(i, display, stripe, y);
 	i = 1;
-	while (i < stripe.height * 0.5 + stripe.height % 2
+	while (i < stripe.height * 0.5
 		&& i < display->win_size.y * 0.5)
 	{
 		ft_drawpixel2(texture, calc, stripe, i);

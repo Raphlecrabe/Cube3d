@@ -52,7 +52,6 @@ int	ft_init_textures(t_display **display, t_cube *cube)
 
 int	ft_init_map(t_display **display, t_cube *cube)
 {
-	printf("display size: %zu\n", sizeof(t_display));
 	*display = ft_malloc_const(sizeof(t_display), 1, cube->mem);
 	if (*display == NULL)
 		return (-1);
