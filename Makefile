@@ -110,13 +110,17 @@ INC_FILES = garbage.h \
 			mlx_utils.h \
 			minimap.h \
 			display.h \
+			vectors.h \
 
-INCLUDES =	mlx/mlx.h \
-			${INC_FILES:%.h=${INC_DIR}/%.h} \
+INCLUDES = ${INC_FILES:%.h=${INC_DIR}/%.h} \
 
 #OTHER
 
 LIBFT_PATH = libft
+
+LIBFT = ${LIBFT_PATH}/libft.a
+
+MLX = mlx/libmlx_Linux.a
 
 NAME= cub3d
 
@@ -131,24 +135,25 @@ ${OBJ_DIR}%.o : ${SRCS_DIR}%.c	${INCLUDES}
 
 all: Makefile makelib makemlx makedirs ${NAME}
 
-${NAME}:	${OBJS}
+${NAME}:	${OBJS} ${LIBFT} ${MLX}
 			${CC} ${OBJS} ${LMLX_LINUX} -L ${LIBFT_PATH} -lft -o ${NAME}
 
 makelib:
 			${MAKE} -C ${LIBFT_PATH}/ all
 
 makemlx:
-			#${MAKE} -C mlx/ all
+			${MAKE} -C mlx/ all
 
 makedirs:
-			mkdir -p ${OBJ_DIR}${GNL}
-			mkdir -p ${OBJ_DIR}${GARBAGE}
-			mkdir -p ${OBJ_DIR}${RAYCAST}
-			mkdir -p ${OBJ_DIR}${DISPLAY}
-			mkdir -p ${OBJ_DIR}${PARSING}
+			@mkdir -p ${OBJ_DIR}${GNL}
+			@mkdir -p ${OBJ_DIR}${GARBAGE}
+			@mkdir -p ${OBJ_DIR}${RAYCAST}
+			@mkdir -p ${OBJ_DIR}${DISPLAY}
+			@mkdir -p ${OBJ_DIR}${PARSING}
 
 clean:
 			${MAKE} -C ${LIBFT_PATH}/ fclean
+			${MAKE} -C mlx/ clean
 			rm -f ${OBJS}
 			rm -rf objs
 
