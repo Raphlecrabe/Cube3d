@@ -15,7 +15,7 @@
 void	ft_setcolorfloor(t_display *display)
 {
 	if (SHADE != 1)
-			display->textures->shade = display->textures->floor;
+		display->textures->shade = display->textures->floor;
 	else
 	{
 		display->textures->shade = create_trgb(0,

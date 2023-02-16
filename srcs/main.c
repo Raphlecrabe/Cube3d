@@ -30,6 +30,8 @@ int	mapformat(char *map)
 
 int	exit_cub(t_display *display)
 {
+	void	*mem;
+
 	if (display)
 	{
 		mlx_destroy_image(display->mlx, display->textures->wtext->img);
@@ -40,7 +42,7 @@ int	exit_cub(t_display *display)
 			mlx_destroy_image(display->mlx, display->view->img);
 		if (display->mlx && display->mlx_win)
 			mlx_destroy_window(display->mlx, display->mlx_win);
-		void *mem = display->mem;
+		mem = display->mem;
 		ft_freemem(display->mem);
 		free(mem);
 	}

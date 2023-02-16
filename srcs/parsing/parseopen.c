@@ -16,7 +16,7 @@ int	ft_initparseonec(int j, char **lines, int *i)
 {
 	*i = 0;
 	while (lines[*i] != NULL && ft_checkspacec(lines, j, *i) == 1)
-			*i = *i + 1;
+		*i = *i + 1;
 	if (lines[*i] != NULL && (lines[*i][j] == '0' || lines[*i][j] == 'W'
 			|| lines[*i][j] == 'E'
 			|| lines[*i][j] == 'N' || lines[*i][j] == 'S'))

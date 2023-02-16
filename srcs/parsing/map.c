@@ -26,18 +26,16 @@ size_t	ft_maxlines(t_list *mapping)
 	return (i);
 }
 
-int	ft_convertchar(t_cube *cube, t_list *mapping)
+int	ft_convertchar(t_cube *cube, t_list *mapmalloc)
 {
 	int		i;
-	t_list	*mapmalloc;
 
 	i = 0;
-	mapmalloc = mapping;
 	cube->map = ft_malloc_const(sizeof(t_map), 1, cube->mem);
 	if (cube->map == NULL)
 		return (-1);
-	cube->map->heigth = ft_lstsize(mapping);
-	cube->map->width = ft_maxlines(mapping);
+	cube->map->heigth = ft_lstsize(mapmalloc);
+	cube->map->width = ft_maxlines(mapmalloc);
 	cube->map->lines = ft_malloc_const(sizeof(char *),
 			(cube->map->heigth + 1), cube->mem);
 	if (cube->map->lines == NULL)
@@ -50,8 +48,7 @@ int	ft_convertchar(t_cube *cube, t_list *mapping)
 				cube->map->width + 1, ' ', cube->mem);
 		if (cube->map->lines[i] == NULL)
 			return (-1);
-		cube->map->lines[i][cube->map->width] = '\0';
-		i++;
+		cube->map->lines[i++][cube->map->width] = '\0';
 		mapmalloc = mapmalloc->next;
 	}
 	return (0);

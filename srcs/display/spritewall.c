@@ -28,7 +28,6 @@ void	ft_getcolor1(t_mlx_datas *texture, t_calc *calc, int i)
 	int		ycalc;
 	char	*color;
 
-	
 	ycalc = calc->ytext - ((i * (int)texture->img_size.y) / calc->height);
 	color = texture->addr + (ycalc * texture->line_length
 			+ calc->widthwall * (texture->bits_per_pix_calculated));

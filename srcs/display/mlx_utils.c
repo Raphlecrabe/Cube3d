@@ -16,7 +16,7 @@
 void	ft_setcolourceiling(t_display *display)
 {
 	if (SHADE != 1)
-			display->textures->shade = display->textures->ceiling;
+		display->textures->shade = display->textures->ceiling;
 	else
 	{
 		display->textures->shade = create_trgb(0,
